@@ -1,10 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Kaviya Admin</title>
+<title>Kaviya Diamond Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+header{
+    background:black;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#00f2ff;
+}
+.store{
+    padding:20px;
+}
+.card{
+    background:#1a1a1a;
+    margin:15px;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 0 10px #00f2ff33;
+}
+.card h2{
+    margin:10px 0;
+}
+.price{
+    color:#00ff88;
+    font-size:18px;
+    margin:10px 0;
+}
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    background:#00f2ff;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#00c3cc;
+}
+footer{
+    text-align:center;
+    padding:15px;
+    background:black;
+    margin-top:20px;
+}
+</style>
 </head>
-<body style="background:#111;color:white;text-align:center;">
-  <h1>Kaviya Admin Dashboard</h1>
-  <p>Welcome to my website</p>
+<body>
+
+<header>
+💎 Kaviya Diamond Store 💎
+</header>
+
+<div class="store">
+
+<div class="card">
+<h2>💎 100 Diamonds</h2>
+<div class="price">Rs 300</div>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<h2>💎 310 Diamonds</h2>
+<div class="price">Rs 850</div>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<h2>💎 520 Diamonds</h2>
+<div class="price">Rs 1400</div>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+<div class="card">
+<h2>💎 1060 Diamonds</h2>
+<div class="price">Rs 2700</div>
+<button onclick="buy()">Buy Now</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Kaviya Store | All Rights Reserved
+</footer>
+
+<script>
+function buy(){
+    alert("Contact WhatsApp to Order 💬");
+}
+</script>
+
 </body>
 </html>
