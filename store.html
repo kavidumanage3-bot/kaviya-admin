@@ -6,90 +6,133 @@
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background:#111;
+  background:#000;
+  font-family:Arial, sans-serif;
   color:white;
 }
 
-.section-title{
+.section{
   text-align:center;
-  font-size:24px;
-  margin-top:40px;
+  font-size:26px;
+  margin:30px 0 10px;
   font-weight:bold;
 }
 
 .card{
-  width:320px;
-  background:#1e1e1e;
+  width:330px;
+  background:linear-gradient(145deg,#1c1c1c,#111);
   margin:15px auto;
-  padding:15px;
-  border-radius:12px;
+  padding:20px;
+  border-radius:20px;
   text-align:center;
-  box-shadow:0 0 10px rgba(0,0,0,0.5);
 }
 
-.card h3{
-  margin:5px 0;
+.title{
   font-size:18px;
+  font-weight:bold;
 }
 
 .price{
-  font-size:20px;
-  font-weight:bold;
+  font-size:22px;
   color:#00ff99;
+  font-weight:bold;
+  margin:8px 0;
 }
 
+.qty{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+button{
+  width:35px;
+  height:35px;
+  font-size:20px;
+  border:none;
+  border-radius:8px;
+  background:#00ff99;
+  font-weight:bold;
+}
+
+.total-box{
+  width:330px;
+  margin:40px auto;
+  padding:20px;
+  background:#111;
+  border-radius:20px;
+  text-align:center;
+  font-size:24px;
+  font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
-<div class="section-title">MEMBERSHIP</div>
+<div class="section">MEMBERSHIP</div>
 
-<div class="card"><h3>WEEKLY LITE MEMBERSHIP</h3><div class="price">LKR 130</div></div>
-<div class="card"><h3>WEEKLY MEMBERSHIP</h3><div class="price">LKR 520</div></div>
-<div class="card"><h3>MONTHLY MEMBERSHIP</h3><div class="price">LKR 2560</div></div>
-<div class="card"><h3>VIP MEMBERSHIP</h3><div class="price">LKR 3080</div></div>
-<div class="card"><h3>VIP PLUS MEMBERSHIP</h3><div class="price">LKR 3210</div></div>
-<div class="card"><h3>S VIP MEMBERSHIP</h3><div class="price">LKR 4640</div></div>
-<div class="card"><h3>S VIP PLUS MEMBERSHIP</h3><div class="price">LKR 5160</div></div>
+<!-- Membership -->
+<div class="card"><div class="title">WEEKLY LITE MEMBERSHIP</div><div class="price">LKR 130</div><div class="qty"><button onclick="changeQty(130,-1)">−</button><span id="q130">0</span><button onclick="changeQty(130,1)">+</button></div></div>
 
-<div class="section-title">DAIOMED PACK</div>
+<div class="card"><div class="title">WEEKLY MEMBERSHIP</div><div class="price">LKR 520</div><div class="qty"><button onclick="changeQty(520,-1)">−</button><span id="q520">0</span><button onclick="changeQty(520,1)">+</button></div></div>
 
-<div class="card"><h3>25 💎</h3><div class="price">LKR 100</div></div>
-<div class="card"><h3>50 💎</h3><div class="price">LKR 200</div></div>
-<div class="card"><h3>75 💎</h3><div class="price">LKR 300</div></div>
-<div class="card"><h3>100 💎</h3><div class="price">LKR 400</div></div>
-<div class="card"><h3>150 💎</h3><div class="price">LKR 600</div></div>
-<div class="card"><h3>200 💎</h3><div class="price">LKR 800</div></div>
-<div class="card"><h3>310 💎</h3><div class="price">LKR 950</div></div>
-<div class="card"><h3>350 💎</h3><div class="price">LKR 1400</div></div>
-<div class="card"><h3>520 💎</h3><div class="price">LKR 1580</div></div>
-<div class="card"><h3>830 💎</h3><div class="price">LKR 2530</div></div>
-<div class="card"><h3>1060 💎</h3><div class="price">LKR 3020</div></div>
-<div class="card"><h3>2180 💎</h3><div class="price">LKR 6020</div></div>
-<div class="card"><h3>3240 💎</h3><div class="price">LKR 9040</div></div>
-<div class="card"><h3>5600 💎</h3><div class="price">LKR 14700</div></div>
-<div class="card"><h3>6660 💎</h3><div class="price">LKR 17720</div></div>
-<div class="card"><h3>8840 💎</h3><div class="price">LKR 23740</div></div>
-<div class="card"><h3>11500 💎</h3><div class="price">LKR 31000</div></div>
-<div class="card"><h3>15500 💎</h3><div class="price">LKR 41460</div></div>
-<div class="card"><h3>23000 💎</h3><div class="price">LKR 61000</div></div>
-<div class="card"><h3>46000 💎</h3><div class="price">LKR 124000</div></div>
+<div class="card"><div class="title">MONTHLY MEMBERSHIP</div><div class="price">LKR 2560</div><div class="qty"><button onclick="changeQty(2560,-1)">−</button><span id="q2560">0</span><button onclick="changeQty(2560,1)">+</button></div></div>
 
-<div class="section-title">LEVEL UP PASS PACKAGE</div>
+<div class="card"><div class="title">VIP MEMBERSHIP</div><div class="price">LKR 3080</div><div class="qty"><button onclick="changeQty(3080,-1)">−</button><span id="q3080">0</span><button onclick="changeQty(3080,1)">+</button></div></div>
 
-<div class="card"><h3>LEVEL 6</h3><div class="price">LKR 180</div></div>
-<div class="card"><h3>LEVEL 10</h3><div class="price">LKR 300</div></div>
-<div class="card"><h3>LEVEL 15</h3><div class="price">LKR 300</div></div>
-<div class="card"><h3>LEVEL 25</h3><div class="price">LKR 300</div></div>
-<div class="card"><h3>LEVEL 30</h3><div class="price">LKR 450</div></div>
+<div class="card"><div class="title">VIP PLUS MEMBERSHIP</div><div class="price">LKR 3210</div><div class="qty"><button onclick="changeQty(3210,-1)">−</button><span id="q3210">0</span><button onclick="changeQty(3210,1)">+</button></div></div>
 
-<div class="section-title">EVO ACCESS PACKAGE</div>
+<div class="card"><div class="title">S VIP MEMBERSHIP</div><div class="price">LKR 4640</div><div class="qty"><button onclick="changeQty(4640,-1)">−</button><span id="q4640">0</span><button onclick="changeQty(4640,1)">+</button></div></div>
 
-<div class="card"><h3>3 DAY</h3><div class="price">LKR 200</div></div>
-<div class="card"><h3>7 DAY</h3><div class="price">LKR 350</div></div>
-<div class="card"><h3>30 DAY</h3><div class="price">LKR 900</div></div>
+<div class="card"><div class="title">S VIP PLUS MEMBERSHIP</div><div class="price">LKR 5160</div><div class="qty"><button onclick="changeQty(5160,-1)">−</button><span id="q5160">0</span><button onclick="changeQty(5160,1)">+</button></div></div>
+
+<div class="section">DAIOMED PACK</div>
+
+<div class="card"><div class="title">25 💎</div><div class="price">LKR 100</div><div class="qty"><button onclick="changeQty(100,-1)">−</button><span id="q100">0</span><button onclick="changeQty(100,1)">+</button></div></div>
+
+<div class="card"><div class="title">50 💎</div><div class="price">LKR 200</div><div class="qty"><button onclick="changeQty(200,-1)">−</button><span id="q200">0</span><button onclick="changeQty(200,1)">+</button></div></div>
+
+<div class="card"><div class="title">75 💎</div><div class="price">LKR 300</div><div class="qty"><button onclick="changeQty(300,-1)">−</button><span id="q300">0</span><button onclick="changeQty(300,1)">+</button></div></div>
+
+<div class="card"><div class="title">100 💎</div><div class="price">LKR 400</div><div class="qty"><button onclick="changeQty(400,-1)">−</button><span id="q400">0</span><button onclick="changeQty(400,1)">+</button></div></div>
+
+<!-- Oya anith Daiomed prices walatath me widihata copy karanna -->
+
+<div class="section">LEVEL UP PASS PACKAGE</div>
+
+<div class="card"><div class="title">LEVEL 6</div><div class="price">LKR 180</div><div class="qty"><button onclick="changeQty(180,-1)">−</button><span id="q180">0</span><button onclick="changeQty(180,1)">+</button></div></div>
+
+<div class="card"><div class="title">LEVEL 10</div><div class="price">LKR 300</div><div class="qty"><button onclick="changeQty(300,-1)">−</button><span id="q300">0</span><button onclick="changeQty(300,1)">+</button></div></div>
+
+<div class="section">EVO ACCESS PACKAGE</div>
+
+<div class="card"><div class="title">3 DAY</div><div class="price">LKR 200</div><div class="qty"><button onclick="changeQty(200,-1)">−</button><span id="q200">0</span><button onclick="changeQty(200,1)">+</button></div></div>
+
+<div class="card"><div class="title">7 DAY</div><div class="price">LKR 350</div><div class="qty"><button onclick="changeQty(350,-1)">−</button><span id="q350">0</span><button onclick="changeQty(350,1)">+</button></div></div>
+
+<div class="card"><div class="title">30 DAY</div><div class="price">LKR 900</div><div class="qty"><button onclick="changeQty(900,-1)">−</button><span id="q900">0</span><button onclick="changeQty(900,1)">+</button></div></div>
+
+<div class="total-box">
+TOTAL: LKR <span id="total">0</span>
+</div>
+
+<script>
+let total = 0;
+
+function changeQty(price, change){
+  let qty = document.getElementById("q"+price);
+  let current = parseInt(qty.innerText);
+  
+  if(current + change >= 0){
+    qty.innerText = current + change;
+    total += price * change;
+    if(total < 0) total = 0;
+    document.getElementById("total").innerText = total;
+  }
+}
+</script>
 
 </body>
 </html>
