@@ -68,6 +68,37 @@ transition:0.3s;
 button:hover{
 opacity:0.85;
 }
+
+/* 🔥 EZ CASH card style */
+.bank-card{
+background:#0f0f0f;
+padding:25px;
+margin:20px 0;
+border-radius:20px;
+border:1px solid #00c3ff;
+box-shadow:0 0 15px rgba(0,195,255,0.4);
+text-align:left;
+}
+
+.bank-card h3{
+margin:0 0 10px 0;
+color:white;
+font-size:18px;
+}
+
+.bank-card p{
+margin:5px 0;
+color:#cccccc;
+font-size:16px;
+}
+
+/* 🔴 Red warning text */
+.warning{
+color:#ff3b3b;
+font-size:13px;
+margin-top:8px;
+text-align:center;
+}
 </style>
 </head>
 <body>
@@ -118,6 +149,12 @@ WhatsApp Number
 <input type="file" id="receipt" accept="image/*">
 
 <button type="button" onclick="sendOrder()">SUBMIT ORDER</button>
+
+<!-- 🔴 Red message under button -->
+<div class="warning">
+EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමීම අනිවාරය වේ.
+</div>
+
 </div>
 
 <script>
@@ -173,7 +210,7 @@ message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 
 message += "\n💰 Total: "+total+" LKR";
-message += "\n\nPlease transfer receipt send me.";
+message += "\n\nEZ Cash payment requires additional Rs.20.";
 
 let encodedMessage = encodeURIComponent(message);
 
