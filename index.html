@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAVIYA ADMIN</title>
+
 <style>
 body{
 margin:0;
@@ -53,23 +54,42 @@ color:white;
 <h1>KAVIYA ADMIN</h1>
 <p>Fast • Secure • Professional Admin Panel</p>
 
-<!-- LOGIN SECTION -->
 <input type="text" id="username" placeholder="Username">
 <input type="password" id="password" placeholder="Password">
 
 <button class="loginbtn" onclick="login()">LOGIN</button>
 
-<!-- ORIGINAL BUTTONS -->
-<button class="topup" onclick="location.href='store.html'">
-TOP UP NOW
-</button>
+<button class="topup" onclick="goTopup()">TOP UP NOW</button>
 
-<button class="contact">
-CONTACT ADMIN
-</button>
+<button class="contact">CONTACT ADMIN</button>
 
-<!-- CONNECT ALERT.JS -->
 <script src="alert.js"></script>
+
+<script>
+let loggedIn = false;
+
+function login(){
+let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
+
+if(username === "" || password === ""){
+alert("Enter Username & Password");
+return;
+}
+
+loggedIn = true;
+alert("Login Success");
+}
+
+function goTopup(){
+if(!loggedIn){
+alert("⚠️ Please first login");
+return;
+}
+
+location.href="store.html";
+}
+</script>
 
 </body>
 </html>
