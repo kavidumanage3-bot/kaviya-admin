@@ -11,10 +11,21 @@ font-family:Arial;
 background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
 color:white;
 text-align:center;
-padding:40px;
+padding:30px;
 }
 
-/* TOP STORE TITLE */
+/* PAGE FRAME */
+body::before{
+content:"";
+position:fixed;
+top:5px; bottom:5px; left:5px; right:5px;
+border-radius:20px;
+border:3px solid;
+border-image: linear-gradient(45deg,#00c6ff,#00ffcc,#00c6ff) 1;
+pointer-events:none;
+}
+
+/* STORE TITLE */
 .store-title{
 font-size:28px;
 font-weight:900;
@@ -27,22 +38,22 @@ margin-bottom:10px;
 /* DELIVERY TEXT */
 .delivery{
 font-size:16px;
-margin-bottom:30px;
+margin-bottom:25px;
 color:#ffffffcc;
 }
 
-/* ADMIN TITLE */
+/* ADMIN TITLE WHITE GLOW */
 .main-title{
 font-size:42px;
 font-weight:900;
 letter-spacing:4px;
-color:#00c6ff;
+color:white;
 text-transform:uppercase;
 text-shadow:
-0 0 5px #00c6ff,
+0 0 5px #ffffff,
 0 0 10px #00c6ff,
-0 0 20px #0099ff,
-0 0 40px #0077ff;
+0 0 20px #00c6ff,
+0 0 40px #00c6ff;
 margin-bottom:20px;
 }
 
@@ -99,6 +110,14 @@ background:transparent;
 border:2px solid white;
 color:white;
 }
+
+/* FOOTER TEXT */
+.footer-text{
+margin-top:10px;
+font-size:14px;
+color:#00ffcc;
+font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -120,20 +139,16 @@ color:white;
 
 <button class="contact">CONTACT ADMIN</button>
 
+<div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
+
 <script>
 let loggedIn = false;
 
-/* SHOW PASSWORD */
 function togglePassword(){
 let pw = document.getElementById("password");
-if(pw.type === "password"){
-pw.type = "text";
-}else{
-pw.type = "password";
-}
+pw.type = (pw.type === "password") ? "text" : "password";
 }
 
-/* LOGIN */
 function login(){
 let username = document.getElementById("username").value;
 let password = document.getElementById("password").value;
@@ -147,11 +162,9 @@ localStorage.setItem("savedUsername", username);
 localStorage.setItem("savedPassword", password);
 
 loggedIn = true;
-
 alert("Login Success");
 }
 
-/* TOPUP CHECK */
 function goTopup(){
 if(!loggedIn){
 alert("⚠️ Please first login");
