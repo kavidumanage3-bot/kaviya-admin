@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login - Kaviya Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+<title>Kaviya Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#141e30,#243b55);
+color:white;
+text-align:center;
+}
 
-    body{
-      margin:0;
-      font-family:Arial;
-      background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-      color:white;
-    }
+.container{
+padding:60px 20px;
+}
 
-    .login-box{
-      background:rgba(255,255,255,0.08);
-      padding:30px;
-      border-radius:15px;
-      width:90%;
-      max-width:350px;
-      backdrop-filter:blur(10px);
-      text-align:center;
-    }
+h1{
+font-size:28px;
+margin-bottom:10px;
+}
 
-    h2{
-      margin-bottom:20px;
-    }
+p{
+opacity:0.8;
+}
 
-    input{
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-      border:none;
-      border-radius:8px;
-      outline:none;
-    }
+.btn{
+display:inline-block;
+margin:15px;
+padding:12px 25px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
 
-    .btn{
-      width:100%;
-      padding:12px;
-      margin-top:15px;
-      background:#00c3ff;
-      border:none;
-      border-radius:8px;
-      color:white;
-      font-weight:bold;
-      cursor:pointer;
-    }
+.primary{
+background:#00c3ff;
+color:white;
+}
 
-    .btn:hover{
-      background:#0099cc;
-    }
+.secondary{
+border:2px solid white;
+color:white;
+}
 
-    a{
-      color:#00c3ff;
-      text-decoration:none;
-      font-size:14px;
-    }
+.card-box{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:40px;
+}
 
-  </style>
+.card{
+background:rgba(255,255,255,0.1);
+padding:15px;
+margin:10px;
+border-radius:10px;
+font-size:14px;
+}
+</style>
 </head>
 <body>
 
-<div class="login-box">
-  <h2>🔐 Login</h2>
+<div class="container">
 
-  <input type="text" placeholder="Username">
-  <input type="password" placeholder="Password">
+<h1>👑 Kaviya Admin Panel</h1>
+<p>Fast • Secure • Trusted • Admin Control Center</p>
 
-  <button class="btn">Login</button>
+<a href="login.html" class="btn primary">🔐 Admin Login</a>
+<a href="store.html" class="btn secondary">💎 View Store</a>
 
-  <p style="margin-top:15px;">
-    <a href="#">Forgot Password?</a>
-  </p>
+<div class="card-box">
+<div class="card">⚡ Fast System</div>
+<div class="card">🔒 Secure Access</div>
+<div class="card">🛡 Safe & Protected</div>
+</div>
+
 </div>
 
 </body>
