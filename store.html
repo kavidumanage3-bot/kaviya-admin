@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Kaviya Diamond Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
@@ -13,7 +14,7 @@ body{
 
 h2{
   text-align:center;
-  padding:15px;
+  padding:20px 0;
 }
 
 .container{
@@ -25,19 +26,20 @@ h2{
 
 .card{
   background:#11163a;
-  padding:15px;
+  padding:20px;
   border-radius:20px;
   text-align:center;
 }
 
 .card img{
-  width:80px;
+  width:90px;
+  height:auto;
   margin-bottom:10px;
 }
 
 .price{
   font-size:18px;
-  margin:8px 0;
+  margin:10px 0;
 }
 
 .qty-box{
@@ -46,18 +48,24 @@ h2{
   align-items:center;
   gap:15px;
   background:#000;
-  padding:8px;
-  border-radius:20px;
+  padding:10px;
+  border-radius:25px;
 }
 
 .qty-box button{
-  width:35px;
-  height:35px;
+  width:40px;
+  height:40px;
   border:none;
   border-radius:50%;
   background:#00c2ff;
   color:white;
+  font-size:20px;
+}
+
+.qty{
   font-size:18px;
+  width:30px;
+  display:inline-block;
 }
 
 .bottom-bar{
@@ -66,18 +74,20 @@ h2{
   left:0;
   width:100%;
   background:#111;
-  padding:15px;
+  padding:20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-size:18px;
+  font-size:22px;
+  font-weight:bold;
 }
 
 .checkout-btn{
-  background:#222;
+  background:#00c2ff;
   color:white;
-  padding:10px 20px;
-  border-radius:20px;
+  padding:12px 25px;
+  border-radius:30px;
+  font-size:18px;
 }
 </style>
 </head>
@@ -148,7 +158,6 @@ function changeQty(button, amount){
 
   let card = button.closest(".card");
   let qtySpan = card.querySelector(".qty");
-  let price = parseInt(card.querySelector(".price").innerText);
 
   let qty = parseInt(qtySpan.innerText);
   qty += amount;
