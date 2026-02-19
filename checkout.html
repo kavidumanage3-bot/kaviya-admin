@@ -8,21 +8,23 @@
 body{
 margin:0;
 font-family:Arial;
-background:#06142e;
+background:#000000; /* BLACK BACKGROUND */
 color:white;
 padding:15px;
 }
 
 h2{
 text-align:center;
+letter-spacing:1px;
 }
 
 .box{
-background:#0d1f40;
+background:#111111;
 padding:15px;
 border-radius:14px;
 margin:12px 0;
-box-shadow:0 0 10px rgba(0,0,0,0.4);
+box-shadow:0 0 15px rgba(0,150,255,0.2);
+border:1px solid #1f1f1f;
 }
 
 .total{
@@ -39,7 +41,7 @@ margin-top:8px;
 border-radius:10px;
 border:none;
 outline:none;
-background:#081833;
+background:#1a1a1a;
 color:white;
 font-size:15px;
 }
@@ -65,12 +67,10 @@ opacity:0.85;
 </head>
 <body>
 
-<h2>CHECKOUT</h2>
+<h2>PAYMENT DETAIL</h2>
 
 <div id="summary"></div>
 <div class="box total" id="total"></div>
-
-<!-- PAYMENT DETAILS -->
 
 <div class="box">
 🏦 <b>COMMERCIAL BANK</b><br>
@@ -98,8 +98,6 @@ Branch: BANDARAWELA
 Number: 0768571751
 </div>
 
-<!-- CUSTOMER DETAILS -->
-
 <div class="box">
 Player Name
 <input type="text" id="playerName" placeholder="Enter Player Name">
@@ -110,16 +108,16 @@ Player ID (Game ID)
 WhatsApp Number
 <input type="text" id="whatsapp" placeholder="Enter WhatsApp Number">
 
-<button onclick="sendOrder()">SUBMIT ORDER</button>
+<button type="button" onclick="sendOrder()">SUBMIT ORDER</button>
 </div>
 
 <script>
+
 let cart = JSON.parse(localStorage.getItem("cart"))||{};
 let items = JSON.parse(localStorage.getItem("items"))||[];
 let summary=document.getElementById("summary");
 let total=0;
 
-/* SHOW ORDER ITEMS */
 for(let i in cart){
 if(cart[i]>0){
 let line=document.createElement("div");
@@ -132,12 +130,10 @@ total+=items[i][1]*cart[i];
 
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
-/* LOAD SAVED DATA */
 document.getElementById("playerName").value = localStorage.getItem("playerName")||"";
 document.getElementById("playerId").value = localStorage.getItem("playerId")||"";
 document.getElementById("whatsapp").value = localStorage.getItem("whatsapp")||"";
 
-/* SEND ORDER FUNCTION */
 function sendOrder(){
 
 let name=document.getElementById("playerName").value;
@@ -149,15 +145,12 @@ alert("Please fill all fields!");
 return;
 }
 
-/* GENERATE ORDER ID */
 let orderId = "ORD" + Date.now();
 
-/* SAVE */
 localStorage.setItem("playerName",name);
 localStorage.setItem("playerId",id);
 localStorage.setItem("whatsapp",wp);
 
-/* CREATE MESSAGE */
 let order="🛒 *NEW ORDER* %0A%0A";
 order+="🆔 Order ID: "+orderId+"%0A";
 order+="👤 Name: "+name+"%0A";
@@ -173,10 +166,10 @@ order+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR%0A";
 
 order+="%0A💰 Total: "+total+" LKR";
 
-/* SEND TO YOUR WHATSAPP */
 window.open("https://wa.me/94773847598?text="+order,"_blank");
 
 }
+
 </script>
 
 </body>
