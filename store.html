@@ -14,7 +14,6 @@ padding:15px;
 padding-bottom:120px;
 }
 
-/* Sections */
 .section{
 margin-bottom:40px;
 }
@@ -31,18 +30,16 @@ grid-template-columns:repeat(2,1fr);
 gap:20px;
 }
 
-/* 🔥 CARD WITH WHITE FRAME */
 .card{
 background:#0d1b3d;
 padding:20px;
 border-radius:20px;
-border:2px solid white;   /* WHITE FRAME */
+border:2px solid white;
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 text-align:center;
 transition:0.3s;
 }
 
-/* Hover Glow */
 .card:hover{
 box-shadow:0 0 20px rgba(255,255,255,0.7);
 transform:scale(1.03);
@@ -84,7 +81,6 @@ cursor:pointer;
 font-size:18px;
 }
 
-/* 🔥 NEW MODERN BOTTOM BAR */
 .bottom-bar{
 position:fixed;
 bottom:10px;
@@ -99,13 +95,11 @@ padding:15px 20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* Total Text */
 .total{
 font-size:18px;
 font-weight:bold;
 }
 
-/* 🔥 Animated NEXT Button */
 .next-btn{
 background:black;
 color:white;
@@ -117,7 +111,6 @@ cursor:pointer;
 animation: borderMove 4s infinite;
 }
 
-/* Border Color Animation */
 @keyframes borderMove{
 0%{border-color:green;}
 25%{border-color:blue;}
@@ -242,9 +235,28 @@ i++;
 document.getElementById("total").innerText="Total: "+total+" LKR";
 }
 
+/* 🔥 CHECK BEFORE GO CHECKOUT */
 function goCheckout(){
+
+let hasItem = false;
+
+for(let i in cart){
+if(cart[i] > 0){
+hasItem = true;
+break;
+}
+}
+
+if(!hasItem){
+alert("Please select top up pack!");
+return;
+}
+
 localStorage.setItem("cart",JSON.stringify(cart));
-localStorage.setItem("sections",JSON.stringify(sections));
+localStorage.setItem("items",JSON.stringify(
+sections.flatMap(section => section.items)
+));
+
 location.href="checkout.html";
 }
 
