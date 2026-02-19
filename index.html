@@ -14,15 +14,24 @@ text-align:center;
 padding:30px;
 }
 
-/* PAGE FRAME */
+/* ANIMATED FRAME */
 body::before{
 content:"";
 position:fixed;
 top:5px; bottom:5px; left:5px; right:5px;
 border-radius:20px;
-border:3px solid;
-border-image: linear-gradient(45deg,#00c6ff,#00ffcc,#00c6ff) 1;
+border:4px solid;
+animation: frameColor 4s infinite;
 pointer-events:none;
+}
+
+/* FRAME COLOR CHANGE */
+@keyframes frameColor{
+0%{border-color:green;}
+25%{border-color:blue;}
+50%{border-color:red;}
+75%{border-color:yellow;}
+100%{border-color:green;}
 }
 
 /* STORE TITLE */
@@ -57,7 +66,7 @@ text-shadow:
 margin-bottom:20px;
 }
 
-/* COLOR ANIMATION */
+/* STORE TITLE COLOR ANIMATION */
 @keyframes colorChange{
 0%{color:#00c6ff;}
 50%{color:#00ffcc;}
