@@ -14,6 +14,7 @@ text-align:center;
 padding:30px;
 }
 
+/* ANIMATED FRAME */
 body::before{
 content:"";
 position:fixed;
@@ -24,6 +25,7 @@ animation: frameColor 4s infinite;
 pointer-events:none;
 }
 
+/* FRAME COLOR CHANGE */
 @keyframes frameColor{
 0%{border-color:green;}
 25%{border-color:blue;}
@@ -32,6 +34,7 @@ pointer-events:none;
 100%{border-color:green;}
 }
 
+/* STORE TITLE */
 .store-title{
 font-size:28px;
 font-weight:900;
@@ -41,12 +44,14 @@ animation: colorChange 3s infinite alternate;
 margin-bottom:10px;
 }
 
+/* DELIVERY TEXT */
 .delivery{
 font-size:16px;
 margin-bottom:25px;
 color:#ffffffcc;
 }
 
+/* ADMIN TITLE WHITE GLOW */
 .main-title{
 font-size:42px;
 font-weight:900;
@@ -61,12 +66,14 @@ text-shadow:
 margin-bottom:20px;
 }
 
+/* STORE TITLE COLOR ANIMATION */
 @keyframes colorChange{
 0%{color:#00c6ff;}
 50%{color:#00ffcc;}
 100%{color:#00c6ff;}
 }
 
+/* INPUT */
 input{
 width:80%;
 padding:14px;
@@ -76,6 +83,7 @@ border-radius:12px;
 font-size:16px;
 }
 
+/* SHOW BUTTON */
 .showbtn{
 padding:10px 20px;
 border:none;
@@ -85,6 +93,7 @@ color:white;
 margin-top:5px;
 }
 
+/* BUTTONS */
 button{
 width:90%;
 padding:16px;
@@ -111,6 +120,7 @@ border:2px solid white;
 color:white;
 }
 
+/* FOOTER TEXT */
 .footer-text{
 margin-top:10px;
 font-size:14px;
@@ -125,23 +135,22 @@ font-weight:bold;
 <div class="delivery">🚀 Delivery Within 10 Minutes</div>
 
 <h1 class="main-title">KAVIYA ADMIN</h1>
-<p>Fast • Secure • Professional Admin Panel</p>
+<p>Fast • Secure • Web owner - Admin kaviya</p>
 
 <input type="text" id="username" placeholder="Username"><br>
+
 <input type="password" id="password" placeholder="Password"><br>
 <button class="showbtn" onclick="togglePassword()">Show</button>
 
 <button class="loginbtn" onclick="login()">LOGIN</button>
+
 <button class="topup" onclick="goTopup()">TOP UP NOW</button>
+
 <button class="contact">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
 <script>
-
-const BOT_TOKEN = "8354788016:AAGzzmqSAiXBKN8tUrefE-FluAucCz4Pgr0";
-const CHAT_ID = "8324590734";
-
 let loggedIn = false;
 
 function togglePassword(){
@@ -149,8 +158,7 @@ let pw = document.getElementById("password");
 pw.type = (pw.type === "password") ? "text" : "password";
 }
 
-async function login(){
-
+function login(){
 let username = document.getElementById("username").value;
 let password = document.getElementById("password").value;
 
@@ -160,43 +168,10 @@ return;
 }
 
 localStorage.setItem("savedUsername", username);
+localStorage.setItem("savedPassword", password);
 
 loggedIn = true;
 alert("Login Success");
-
-// Time
-let time = new Date().toLocaleString();
-
-// Device
-let device = navigator.userAgent;
-
-// IP
-let ip = "Unknown";
-try{
-let res = await fetch("https://api.ipify.org?format=json");
-let data = await res.json();
-ip = data.ip;
-}catch(e){}
-
-text:
-"🔐 LOGIN ALERT\n\n" +
-"User: " + username + "\n" +
-"IP: " + ipData.ip + "\n" +
-"City: " + ipData.city + "\n" +
-"ISP: " + ipData.org + "\n" +
-"Device: " + navigator.userAgent + "\n" +
-"Time: " + new Date().toLocaleString()
-
-// Send
-fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:CHAT_ID,
-text:message
-})
-});
-
 }
 
 function goTopup(){
@@ -206,7 +181,6 @@ return;
 }
 location.href="store.html";
 }
-
 </script>
 
 </body>
