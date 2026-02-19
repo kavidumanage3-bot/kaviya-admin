@@ -8,103 +8,77 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(to bottom,#050b1e,#0a1030);
+background:#06142e;
 color:white;
-padding:20px;
-}
-
-h1{
-text-align:center;
-color:#00d0ff;
+padding:15px;
 }
 
 .box{
-background:#0b1330;
-padding:20px;
-border-radius:20px;
-margin-bottom:15px;
-}
-
-.order-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:8px;
+background:#0d1f40;
+padding:12px;
+border-radius:12px;
+margin:10px 0;
 }
 
 .total{
+color:#00e5ff;
+font-weight:bold;
 text-align:right;
-font-size:20px;
-color:#00d0ff;
-margin-top:10px;
-}
-
-.bank{
-background:#0b1330;
-padding:15px;
-border-radius:15px;
-margin-bottom:10px;
-}
-
-button{
-width:100%;
-padding:15px;
-border:none;
-border-radius:30px;
-background:#00bcd4;
-color:white;
-font-size:16px;
 }
 </style>
 </head>
-
 <body>
 
-<h1>CHECKOUT</h1>
+<h2>CHECKOUT</h2>
 
-<div class="box" id="orderList"></div>
+<div id="summary"></div>
 
-<div class="bank">
-🏦 COMMERCIAL BANK <br>
-8028325273 <br>
-K B DULANI <br>
+<div class="box total" id="total"></div>
+
+<div class="box">
+🏦 COMMERCIAL BANK<br>
+8028325273<br>
+K B DULANI<br>
 BANDARAWELA
 </div>
 
-<div class="bank">
-🏦 DIALOG FINANCE BANK <br>
-001022035261 <br>
-M M R I HANSAKA <br>
+<div class="box">
+🏦 DIALOG FINANCE BANK<br>
+001022035261<br>
+M M R I HANSAKA<br>
 HEAD OFFICE
 </div>
 
-<div class="bank">
-🏦 HNB BANK <br>
-012020083286 <br>
-ASANKA M M I S <br>
+<div class="box">
+🏦 HNB BANK<br>
+012020083286<br>
+ASANKA M M I S<br>
 BANDARAWELA
 </div>
 
-<div class="bank">
-📲 Ez Cash: 0768571751
+<div class="box">
+📲 EZ CASH<br>
+0768571751
 </div>
 
-<button>SENDING ORDER</button>
-
 <script>
-let items=JSON.parse(localStorage.getItem("orderItems"))||[];
-let total=localStorage.getItem("orderTotal")||0;
+let cart = JSON.parse(localStorage.getItem("cart"))||{};
+let items = JSON.parse(localStorage.getItem("items"))||[];
+let summary=document.getElementById("summary");
+let total=0;
 
-let orderDiv=document.getElementById("orderList");
+for(let i in cart){
+if(cart[i]>0){
+let line=document.createElement("div");
+line.className="box";
+line.innerHTML=items[i][0]+" x "+cart[i]+" — "+(items[i][1]*cart[i])+" LKR";
+summary.appendChild(line);
+total+=items[i][1]*cart[i];
+}
+}
 
-items.forEach(item=>{
-let div=document.createElement("div");
-div.className="order-item";
-div.innerHTML=`<span>${item}</span>`;
-orderDiv.appendChild(div);
-});
-
-orderDiv.innerHTML+=`<div class="total">TOTAL: ${total} LKR</div>`;
+document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 </script>
 
 </body>
-</html>
+  </html>
