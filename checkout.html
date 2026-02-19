@@ -8,7 +8,7 @@
 body{
 margin:0;
 font-family:Arial;
-background:#000000; /* BLACK BACKGROUND */
+background:#000000;
 color:white;
 padding:15px;
 }
@@ -130,10 +130,6 @@ total+=items[i][1]*cart[i];
 
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
-document.getElementById("playerName").value = localStorage.getItem("playerName")||"";
-document.getElementById("playerId").value = localStorage.getItem("playerId")||"";
-document.getElementById("whatsapp").value = localStorage.getItem("whatsapp")||"";
-
 function sendOrder(){
 
 let name=document.getElementById("playerName").value;
@@ -147,26 +143,25 @@ return;
 
 let orderId = "ORD" + Date.now();
 
-localStorage.setItem("playerName",name);
-localStorage.setItem("playerId",id);
-localStorage.setItem("whatsapp",wp);
-
-let order="🛒 *NEW ORDER* %0A%0A";
-order+="🆔 Order ID: "+orderId+"%0A";
-order+="👤 Name: "+name+"%0A";
-order+="🆔 Player ID: "+id+"%0A";
-order+="📱 WhatsApp: "+wp+"%0A%0A";
-order+="📦 Order Details:%0A";
+let message = 
+"🛒 *NEW ORDER*\n\n"+
+"🆔 Order ID: "+orderId+"\n"+
+"👤 Name: "+name+"\n"+
+"🆔 Player ID: "+id+"\n"+
+"📱 WhatsApp: "+wp+"\n\n"+
+"📦 Order Details:\n";
 
 for(let i in cart){
 if(cart[i]>0){
-order+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR%0A";
+message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 }
 
-order+="%0A💰 Total: "+total+" LKR";
+message += "\n💰 Total: "+total+" LKR";
 
-window.open("https://wa.me/94773847598?text="+order,"_blank");
+let encodedMessage = encodeURIComponent(message);
+
+window.open("https://wa.me/94773847598?text="+encodedMessage,"_blank");
 
 }
 
