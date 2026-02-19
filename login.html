@@ -1,42 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Kaviya Admin</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kavita Admin</title>
+
 <style>
-body{
+*{
 margin:0;
-font-family:Arial;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 background:linear-gradient(135deg,#141e30,#243b55);
 color:white;
 text-align:center;
 }
 
 .container{
-padding:60px 20px;
+max-width:400px;
+width:90%;
 }
 
 h1{
-font-size:28px;
+font-size:30px;
 margin-bottom:10px;
 }
 
-p{
+.subtitle{
 opacity:0.8;
+margin-bottom:30px;
 }
 
 .btn{
-display:inline-block;
-margin:15px;
-padding:12px 25px;
+display:block;
+width:100%;
+padding:14px;
+margin:10px 0;
 border-radius:8px;
 text-decoration:none;
 font-weight:bold;
+transition:0.3s;
 }
 
 .primary{
-background:#00c3ff;
-color:white;
+background:#00e0ff;
+color:black;
+}
+
+.primary:hover{
+background:#00bcd4;
 }
 
 .secondary{
@@ -44,36 +63,39 @@ border:2px solid white;
 color:white;
 }
 
-.card-box{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:40px;
+.secondary:hover{
+background:white;
+color:black;
+}
+
+.features{
+margin-top:30px;
 }
 
 .card{
 background:rgba(255,255,255,0.1);
-padding:15px;
-margin:10px;
-border-radius:10px;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
 font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<h1>👑 Kaviya Admin Panel</h1>
-<p>Fast • Secure • Trusted • Admin Control Center</p>
+<h1>Kavita Admin</h1>
+<p class="subtitle">Fast • Secure • Professional Admin Panel</p>
 
-<a href="login.html" class="btn primary">🔐 Admin Login</a>
-<a href="store.html" class="btn secondary">💎 View Store</a>
+<a href="#" class="btn primary">Login Panel</a>
+<a href="#" class="btn secondary">Dashboard</a>
 
-<div class="card-box">
-<div class="card">⚡ Fast System</div>
+<div class="features">
+<div class="card">⚡ Fast Performance</div>
 <div class="card">🔒 Secure Access</div>
-<div class="card">🛡 Safe & Protected</div>
+<div class="card">🛡 Encrypted System</div>
 </div>
 
 </div>
