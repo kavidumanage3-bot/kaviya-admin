@@ -35,41 +35,36 @@ margin-bottom:10px;
 
 .subtitle{
 opacity:0.8;
-margin-bottom:30px;
+margin-bottom:20px;
 }
 
-.btn{
-display:block;
+input{
 width:100%;
-padding:14px;
-margin:10px 0;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:6px;
+font-size:14px;
 }
 
-.primary{
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+font-weight:bold;
 background:#00e0ff;
 color:black;
+cursor:pointer;
 }
 
-.primary:hover{
+button:hover{
 background:#00bcd4;
 }
 
-.secondary{
-border:2px solid white;
-color:white;
-}
-
-.secondary:hover{
-background:white;
-color:black;
-}
-
 .features{
-margin-top:30px;
+margin-top:25px;
 }
 
 .card{
@@ -89,8 +84,11 @@ font-size:14px;
 <h1>Kavita Admin</h1>
 <p class="subtitle">Fast • Secure • Professional Admin Panel</p>
 
-<a href="#" class="btn primary">Login Panel</a>
-<a href="#" class="btn secondary">Dashboard</a>
+<!-- LOGIN FORM -->
+<input type="text" id="username" placeholder="Enter Username">
+<input type="password" id="password" placeholder="Enter Password">
+
+<button onclick="login()">LOGIN</button>
 
 <div class="features">
 <div class="card">⚡ Fast Performance</div>
@@ -99,6 +97,9 @@ font-size:14px;
 </div>
 
 </div>
+
+<!-- LINK alert.js -->
+<script src="alert.js"></script>
 
 </body>
 </html>
