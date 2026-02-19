@@ -14,9 +14,26 @@ text-align:center;
 padding:40px;
 }
 
-/* GLOWING TITLE */
+/* TOP STORE TITLE */
+.store-title{
+font-size:28px;
+font-weight:900;
+letter-spacing:3px;
+text-transform:uppercase;
+animation: colorChange 3s infinite alternate;
+margin-bottom:10px;
+}
+
+/* DELIVERY TEXT */
+.delivery{
+font-size:16px;
+margin-bottom:30px;
+color:#ffffffcc;
+}
+
+/* ADMIN TITLE */
 .main-title{
-font-size:48px;
+font-size:42px;
 font-weight:900;
 letter-spacing:4px;
 color:#00c6ff;
@@ -29,33 +46,41 @@ text-shadow:
 margin-bottom:20px;
 }
 
+/* COLOR ANIMATION */
+@keyframes colorChange{
+0%{color:#00c6ff;}
+50%{color:#00ffcc;}
+100%{color:#00c6ff;}
+}
+
 /* INPUT */
 input{
-width:70%;
-padding:12px;
-margin:8px;
+width:80%;
+padding:14px;
+margin:10px;
 border:none;
-border-radius:8px;
+border-radius:12px;
+font-size:16px;
 }
 
 /* SHOW BUTTON */
 .showbtn{
-width:18%;
-padding:12px;
+padding:10px 20px;
 border:none;
-border-radius:8px;
-background:#ffffff33;
+border-radius:10px;
+background:#555;
 color:white;
+margin-top:5px;
 }
 
 /* BUTTONS */
 button{
 width:90%;
-padding:15px;
-margin:10px;
+padding:16px;
+margin:12px;
 border:none;
-border-radius:10px;
-font-size:16px;
+border-radius:14px;
+font-size:17px;
 font-weight:bold;
 }
 
@@ -78,12 +103,15 @@ color:white;
 </head>
 <body>
 
+<div class="store-title">KAVIYA DIAMOND STORE</div>
+<div class="delivery">🚀 Delivery Within 10 Minutes</div>
+
 <h1 class="main-title">KAVIYA ADMIN</h1>
 <p>Fast • Secure • Professional Admin Panel</p>
 
 <input type="text" id="username" placeholder="Username"><br>
 
-<input type="password" id="password" placeholder="Password">
+<input type="password" id="password" placeholder="Password"><br>
 <button class="showbtn" onclick="togglePassword()">Show</button>
 
 <button class="loginbtn" onclick="login()">LOGIN</button>
@@ -98,7 +126,6 @@ let loggedIn = false;
 /* SHOW PASSWORD */
 function togglePassword(){
 let pw = document.getElementById("password");
-
 if(pw.type === "password"){
 pw.type = "text";
 }else{
@@ -116,13 +143,12 @@ alert("Enter Username & Password");
 return;
 }
 
-/* SAVE DATA */
 localStorage.setItem("savedUsername", username);
 localStorage.setItem("savedPassword", password);
 
 loggedIn = true;
 
-alert("Login Success & Saved");
+alert("Login Success");
 }
 
 /* TOPUP CHECK */
