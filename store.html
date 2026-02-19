@@ -31,12 +31,21 @@ grid-template-columns:repeat(2,1fr);
 gap:20px;
 }
 
+/* 🔥 CARD WITH WHITE FRAME */
 .card{
 background:#0d1b3d;
 padding:20px;
 border-radius:20px;
+border:2px solid white;   /* WHITE FRAME */
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 text-align:center;
+transition:0.3s;
+}
+
+/* Hover Glow */
+.card:hover{
+box-shadow:0 0 20px rgba(255,255,255,0.7);
+transform:scale(1.03);
 }
 
 .card h3{
@@ -117,7 +126,6 @@ animation: borderMove 4s infinite;
 100%{border-color:green;}
 }
 
-/* Button Hover Effect */
 .next-btn:hover{
 background:#00c2d1;
 color:black;
