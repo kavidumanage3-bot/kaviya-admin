@@ -1,154 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaviya Admin</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#141e30,#243b55);
-color:white;
-text-align:center;
-}
-
-.container{
-max-width:400px;
-width:90%;
-}
-
-h1{
-font-size:30px;
-margin-bottom:10px;
-}
-
-.subtitle{
-opacity:0.8;
-margin-bottom:30px;
-}
-
-.btn{
-display:block;
-width:100%;
-padding:14px;
-margin:10px 0;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-}
-
-.primary{
-background:#00e0ff;
-color:black;
-}
-
-.primary:hover{
-background:#00bcd4;
-}
-
-.secondary{
-border:2px solid white;
-color:white;
-}
-
-.secondary:hover{
-background:white;
-color:black;
-}
-
-.features{
-margin-top:30px;
-}
-
-.card{
-background:rgba(255,255,255,0.1);
-padding:12px;
-margin:8px 0;
-border-radius:8px;
-font-size:14px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<h1>Kaviya Admin</h1>
-<p class="subtitle">Fast • Secure • Professional Admin Panel</p>
-
-<a href="store.html" class="btn primary">⚡ Top Up Now</a>
-<a href="#" class="btn secondary">Dashboard</a>
-
-<div class="features">
-<div class="card">⚡ Fast Performance</div>
-<div class="card">🔒 Secure Access</div>
-<div class="card">🛡 Encrypted System</div>
-</div>
-
-</div>
-
-</body>
-</html>
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Store</title>
+<title>Kaviya Admin</title>
 
 <style>
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(to bottom,#050b1e,#0a1030);
+background:linear-gradient(to bottom,#050b2c,#020a1f);
 color:white;
 }
 
 h2{
-padding:20px 15px 5px;
-color:#00d0ff;
+padding:20px;
+color:#00cfff;
 }
 
 .container{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-padding:15px;
+display:flex;
+justify-content:center;
+gap:20px;
+padding:20px;
+flex-wrap:wrap;
 padding-bottom:140px;
 }
 
 .card{
-background:#0b1330;
-border-radius:25px;
-padding:18px;
+background:#0b1a3a;
+border-radius:20px;
+padding:20px;
+width:160px;
 text-align:center;
 }
 
+.card h3{
+margin:0;
+font-size:15px;
+}
+
 .price{
-font-weight:bold;
 margin:10px 0;
+font-weight:bold;
 }
 
 .qty-box{
 display:flex;
 justify-content:center;
 align-items:center;
-background:#071026;
-border-radius:30px;
-padding:6px;
+gap:10px;
 }
 
 .qty-box button{
@@ -156,13 +56,13 @@ width:35px;
 height:35px;
 border:none;
 border-radius:50%;
-background:#00bcd4;
+background:#00cfff;
 color:white;
 font-size:18px;
 }
 
 .qty{
-width:40px;
+width:30px;
 text-align:center;
 }
 
@@ -172,7 +72,7 @@ bottom:20px;
 left:50%;
 transform:translateX(-50%);
 width:90%;
-background:rgba(30,30,30,0.7);
+background:rgba(0,0,0,0.7);
 border-radius:40px;
 padding:15px 20px;
 display:flex;
@@ -181,14 +81,16 @@ align-items:center;
 }
 
 .total{
-font-size:20px;
+font-size:18px;
 font-weight:bold;
 }
 
-.checkout{
+.checkout-btn{
 background:#1f1f1f;
-padding:12px 30px;
+color:white;
+padding:10px 25px;
 border-radius:30px;
+text-decoration:none;
 }
 </style>
 </head>
@@ -196,11 +98,13 @@ border-radius:30px;
 <body>
 
 <h2>MEMBERSHIP</h2>
+
 <div class="container">
 
 <div class="card">
-<h4>WEEKLY LITE MEMBERSHIP</h4>
+<h3>WEEKLY LITE<br>MEMBERSHIP</h3>
 <div class="price" data-price="130">130 LKR</div>
+
 <div class="qty-box">
 <button onclick="changeQty(this,-1)">-</button>
 <div class="qty">0</div>
@@ -209,8 +113,9 @@ border-radius:30px;
 </div>
 
 <div class="card">
-<h4>WEEKLY MEMBERSHIP</h4>
+<h3>WEEKLY<br>MEMBERSHIP</h3>
 <div class="price" data-price="520">520 LKR</div>
+
 <div class="qty-box">
 <button onclick="changeQty(this,-1)">-</button>
 <div class="qty">0</div>
@@ -221,51 +126,31 @@ border-radius:30px;
 </div>
 
 <div class="bottom-bar">
-<div class="total" id="total">0 LKR</div>
-<div class="checkout" onclick="goCheckout()">CHECKOUT</div>
+<div class="total">0 LKR</div>
+
+<a href="checkout.html" class="checkout-btn">
+CHECKOUT
+</a>
 </div>
 
 <script>
-function changeQty(btn,amount){
-let card = btn.closest(".card");
-let qtyDiv = card.querySelector(".qty");
+function changeQty(btn, amount){
+let qtyDiv = btn.parentElement.querySelector(".qty");
 let qty = parseInt(qtyDiv.innerText);
 qty += amount;
-if(qty<0) qty=0;
+if(qty < 0) qty = 0;
 qtyDiv.innerText = qty;
-calculateTotal();
+updateTotal();
 }
 
-function calculateTotal(){
-let cards=document.querySelectorAll(".card");
-let total=0;
-cards.forEach(card=>{
-let qty=parseInt(card.querySelector(".qty").innerText);
-let price=parseInt(card.querySelector(".price").dataset.price);
-total+=qty*price;
-});
-document.getElementById("total").innerText=total+" LKR";
-}
-
-function goCheckout(){
-
-let items=[];
-let total=0;
-
+function updateTotal(){
+let total = 0;
 document.querySelectorAll(".card").forEach(card=>{
-let qty=parseInt(card.querySelector(".qty").innerText);
-if(qty>0){
-let name=card.querySelector("h4").innerText;
-let price=parseInt(card.querySelector(".price").dataset.price);
-items.push(`${name} x ${qty} - ${price*qty} LKR`);
-total+=price*qty;
-}
+let price = parseFloat(card.querySelector(".price").dataset.price);
+let qty = parseInt(card.querySelector(".qty").innerText);
+total += price * qty;
 });
-
-localStorage.setItem("orderItems",JSON.stringify(items));
-localStorage.setItem("orderTotal",total);
-
-window.location.href="checkout.html";
+document.querySelector(".total").innerText = total + " LKR";
 }
 </script>
 
