@@ -66,7 +66,6 @@ text-shadow:
 margin-bottom:20px;
 }
 
-/* STORE TITLE COLOR ANIMATION */
 @keyframes colorChange{
 0%{color:#00c6ff;}
 50%{color:#00ffcc;}
@@ -93,45 +92,32 @@ color:white;
 margin-top:5px;
 }
 
-/* BUTTON BASE */
+/* BUTTONS */
 button{
 width:90%;
 padding:16px;
 margin:12px;
+border:none;
 border-radius:14px;
 font-size:17px;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
 }
 
-/* LOGIN BUTTON - GREEN FRAME */
 .loginbtn{
 background:#00ff99;
 color:black;
-border:3px solid green;
-box-shadow:0 0 10px green, 0 0 20px green;
 }
 
-/* TOPUP BUTTON - BLUE FRAME */
 .topup{
 background:#00c6d7;
 color:black;
-border:3px solid blue;
-box-shadow:0 0 10px blue, 0 0 20px blue;
 }
 
-/* CONTACT BUTTON - RED FRAME */
 .contact{
 background:transparent;
+border:2px solid white;
 color:white;
-border:3px solid red;
-box-shadow:0 0 10px red, 0 0 20px red;
-}
-
-/* HOVER EFFECT */
-button:hover{
-transform:scale(1.05);
 }
 
 /* FOOTER TEXT */
@@ -160,7 +146,7 @@ font-weight:bold;
 
 <button class="topup" onclick="goTopup()">TOP UP NOW</button>
 
-<button class="contact">CONTACT ADMIN</button>
+<button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
@@ -194,6 +180,13 @@ alert("⚠️ Please first login");
 return;
 }
 location.href="store.html";
+}
+
+function contactAdmin(){
+let phone = "94773847598";
+let message = "Hello Admin, I need help.";
+let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+window.open(url, "_blank");
 }
 </script>
 
