@@ -1,152 +1,165 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kaviya Diamond Store</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:#070b1a;
-color:white;
-}
-
-h1{
-text-align:center;
-padding:25px 0;
-color:#00e0ff;
+  background:#0b0f2a;
+  font-family:Arial;
+  color:white;
+  text-align:center;
 }
 
 .container{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-padding:15px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  padding:15px;
 }
 
 .card{
-background:#0f1629;
-border-radius:20px;
-padding:15px;
-text-align:center;
-cursor:pointer;
+  background:#11163a;
+  padding:15px;
+  border-radius:15px;
+}
+
+.card img{
+  width:80px;
+  margin-bottom:10px;
 }
 
 .price{
-font-size:18px;
-font-weight:bold;
-margin:10px 0;
+  font-size:20px;
+  margin:10px 0;
 }
 
-.qty{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-margin-top:10px;
+.qty-box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
 }
 
-.qty button{
-width:30px;
-height:30px;
-border:none;
-border-radius:50%;
-background:#00e0ff;
-color:black;
-font-size:18px;
-font-weight:bold;
+.qty-box button{
+  width:30px;
+  height:30px;
+  border:none;
+  border-radius:50%;
+  background:#00c2ff;
+  color:white;
+  font-size:18px;
 }
 
-.checkout-bar{
-position:fixed;
-bottom:0;
-width:100%;
-background:#111;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.add-btn{
+  background:#00ffcc;
+  border:none;
+  padding:8px 15px;
+  border-radius:10px;
+  font-weight:bold;
 }
 
-.checkout-btn{
-background:#00e0ff;
-color:black;
-padding:10px 20px;
-border-radius:20px;
-text-decoration:none;
-font-weight:bold;
+.bottom-bar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#000;
+  padding:15px;
+  font-size:20px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>MEMBERSHIPS</h1>
+<h2>MEMBERSHIPS</h2>
 
 <div class="container">
 
-<div class="card" onclick="selectPack(130)">
-<h3>Weekly Lite</h3>
-<div class="price">130 LKR</div>
+  <!-- Weekly Lite -->
+  <div class="card">
+    <img src="weekly.png">
+    <h3>Weekly Lite</h3>
+    <div class="price">130</div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(this,-1)">-</button>
+      <span class="qty">1</span>
+      <button onclick="changeQty(this,1)">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart(130,this)">Add</button>
+  </div>
+
+  <!-- Weekly -->
+  <div class="card">
+    <img src="weekly2.png">
+    <h3>Weekly</h3>
+    <div class="price">520</div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(this,-1)">-</button>
+      <span class="qty">1</span>
+      <button onclick="changeQty(this,1)">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart(520,this)">Add</button>
+  </div>
+
+  <!-- Monthly -->
+  <div class="card">
+    <img src="monthly.png">
+    <h3>Monthly</h3>
+    <div class="price">2560</div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(this,-1)">-</button>
+      <span class="qty">1</span>
+      <button onclick="changeQty(this,1)">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart(2560,this)">Add</button>
+  </div>
+
+  <!-- VIP -->
+  <div class="card">
+    <img src="vip.png">
+    <h3>VIP</h3>
+    <div class="price">3080</div>
+
+    <div class="qty-box">
+      <button onclick="changeQty(this,-1)">-</button>
+      <span class="qty">1</span>
+      <button onclick="changeQty(this,1)">+</button>
+    </div>
+
+    <button class="add-btn" onclick="addToCart(3080,this)">Add</button>
+  </div>
+
 </div>
 
-<div class="card" onclick="selectPack(520)">
-<h3>Weekly</h3>
-<div class="price">520 LKR</div>
-</div>
-
-<div class="card" onclick="selectPack(2560)">
-<h3>Monthly</h3>
-<div class="price">2560 LKR</div>
-</div>
-
-<div class="card" onclick="selectPack(3080)">
-<h3>VIP</h3>
-<div class="price">3080 LKR</div>
-</div>
-
-</div>
-
-<div class="checkout-bar">
-<div id="totalPrice">0 LKR</div>
-
-<div class="qty">
-<button onclick="decrease()">-</button>
-<span id="quantity">0</span>
-<button onclick="increase()">+</button>
-</div>
-
-<a href="#" class="checkout-btn">CHECKOUT</a>
+<div class="bottom-bar">
+  Total: <span id="total">0</span> LKR
 </div>
 
 <script>
-let selectedPrice = 0;
-let quantity = 0;
+let total = 0;
 
-function selectPack(price){
-selectedPrice = price;
-quantity = 1;
-updateTotal();
-}
-
-function increase(){
-if(selectedPrice > 0){
-quantity++;
-updateTotal();
-}
+function changeQty(button, amount){
+  let qtySpan = button.parentElement.querySelector(".qty");
+  let qty = parseInt(qtySpan.innerText);
+  qty += amount;
+  if(qty < 1) qty = 1;
+  qtySpan.innerText = qty;
 }
 
-function decrease(){
-if(quantity > 1){
-quantity--;
-updateTotal();
-}
-}
-
-function updateTotal(){
-document.getElementById("quantity").innerText = quantity;
-document.getElementById("totalPrice").innerText = (selectedPrice * quantity) + " LKR";
+function addToCart(price, button){
+  let card = button.parentElement;
+  let qty = parseInt(card.querySelector(".qty").innerText);
+  total += price * qty;
+  document.getElementById("total").innerText = total;
 }
 </script>
 
