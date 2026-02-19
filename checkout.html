@@ -74,6 +74,29 @@ font-size:13px;
 text-align:center;
 margin-top:8px;
 }
+
+/* SUCCESS POPUP */
+
+#successBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#111;
+padding:25px;
+border-radius:15px;
+border:1px solid #00ff99;
+box-shadow:0 0 25px rgba(0,255,150,0.6);
+text-align:center;
+z-index:999;
+}
+
+#successBox h3{
+color:#00ff99;
+margin-bottom:10px;
+}
+
 </style>
 </head>
 <body>
@@ -126,7 +149,7 @@ WhatsApp Number
 📤 Upload Transfer Receipt
 <input type="file" id="receipt" accept="image/*">
 
-<button type="button" onclick="sendToTelegram()">ORDER SENDING</button>
+<button onclick="sendToTelegram()">ORDER SENDING</button>
 
 <div class="warning">
 EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමීම අනිවාරය වේ.
@@ -134,6 +157,13 @@ EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමී
 
 <button id="contactBtn" onclick="contactAdmin()">CONTACT ADMIN</button>
 
+</div>
+
+<!-- SUCCESS POPUP -->
+<div id="successBox">
+<h3>✅ Order Sent Successfully!</h3>
+<p>Your Order ID:</p>
+<p id="orderDisplay" style="font-weight:bold;"></p>
 </div>
 
 <script>
@@ -156,7 +186,7 @@ total+=items[i][1]*cart[i];
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
 let lastOrderId="";
-let adminNumber="94773847598"; // your WhatsApp number
+let adminNumber="94773847598"; // CHANGE ADMIN NUMBER
 
 async function sendToTelegram(){
 
@@ -165,7 +195,7 @@ let id=document.getElementById("playerId").value;
 let wp=document.getElementById("whatsapp").value;
 let receipt=document.getElementById("receipt");
 
-if(name=="" || id=="" || wp==""){
+if(name==""||id==""||wp==""){
 alert("Fill all fields!");
 return;
 }
@@ -180,10 +210,10 @@ lastOrderId=orderId;
 
 let message=
 "🛒 NEW ORDER\n\n"+
-"Order ID: "+orderId+"\n"+
-"Name: "+name+"\n"+
-"Player ID: "+id+"\n"+
-"Customer WhatsApp: "+wp+"\n\n";
+"🆔 Order ID: "+orderId+"\n"+
+"👤 Name: "+name+"\n"+
+"🎮 Player ID: "+id+"\n"+
+"📲 Customer WhatsApp: https://wa.me/"+wp+"\n\n";
 
 for(let i in cart){
 if(cart[i]>0){
@@ -191,8 +221,7 @@ message+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 }
 
-message+="\nTotal: "+total+" LKR";
-message+="\n+ Rs.20 EZ Cash Fee";
+message+="\n💰 Total: "+total+" LKR (+20 EZ Fee)";
 
 let botToken="8543584838:AAGFGgn20yzXsmS1bAjp3BIB0eCZW0NvVs0";
 let chatId="8324590734";
@@ -207,24 +236,49 @@ method:"POST",
 body:formData
 });
 
-alert("Order Sent Successfully!");
+// Show nice popup instead of alert
+document.getElementById("orderDisplay").innerText=orderId;
+document.getElementById("successBox").style.display="block";
 
+// Hide popup after 3 sec
+setTimeout(()=>{
+document.getElementById("successBox").style.display="none";
+},3000);
+
+// Show Contact Admin button
 document.getElementById("contactBtn").style.display="block";
 }
 
 function contactAdmin(){
 
+let name=document.getElementById("playerName").value;
+let id=document.getElementById("playerId").value;
+let wp=document.getElementById("whatsapp").value;
+
 let fullMessage =
 "🛒 *ORDER CONFIRMATION*\n\n"+
 "🆔 Order ID: "+lastOrderId+"\n"+
-"💰 Total: "+total+" LKR\n\n"+
-"Please confirm my order.";
+"👤 Name: "+name+"\n"+
+"🎮 Player ID: "+id+"\n"+
+"📲 Customer WhatsApp: "+wp+"\n\n";
 
+for(let i in cart){
+if(cart[i]>0){
+fullMessage+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
+}
+}
+
+fullMessage+="\n💰 Total: "+total+" LKR (+20 EZ Fee)";
+
+// Auto copy Order ID
 navigator.clipboard.writeText(lastOrderId);
 
-let encodedText = encodeURIComponent(fullMessage);
+// Open WhatsApp with full order
+window.open(
+"https://wa.me/"+adminNumber+"?text="+encodeURIComponent(fullMessage),
+"_blank"
+);
 
-window.open("https://wa.me/"+adminNumber+"?text="+encodedText,"_blank");
 }
 
 </script>
