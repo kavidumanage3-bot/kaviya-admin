@@ -144,14 +144,14 @@ function sendOrder(){
 let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerId").value;
 let wp=document.getElementById("whatsapp").value;
-let receipt=document.getElementById("receipt").files.length;
+let receipt=document.getElementById("receipt");
 
 if(name=="" || id=="" || wp==""){
 alert("Please fill all fields!");
 return;
 }
 
-if(receipt==0){
+if(receipt.files.length==0){
 alert("Please add transfer receipt!");
 return;
 }
@@ -159,7 +159,7 @@ return;
 let orderId = "ORD" + Date.now();
 
 let message = 
-"🛒 *NEW ORDER* \n\n"+
+"🛒 *NEW ORDER*\n\n"+
 "🆔 Order ID: "+orderId+"\n"+
 "👤 Name: "+name+"\n"+
 "🆔 Player ID: "+id+"\n"+
@@ -173,11 +173,11 @@ message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 
 message += "\n💰 Total: "+total+" LKR";
+message += "\n\nPlease transfer receipt send me.";
 
 let encodedMessage = encodeURIComponent(message);
 
-/* WhatsApp Open */
-window.location.href = "https://wa.me/94773847598?text="+encodedMessage;
+window.open("https://wa.me/94773847598?text="+encodedMessage, "_blank");
 
 }
 
