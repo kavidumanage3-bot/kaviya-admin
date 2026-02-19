@@ -1,186 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kaviya Diamond Store</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaviya Store</title>
 
 <style>
 body{
-  margin:0;
-  background:#0b0f2a;
-  font-family:Arial;
-  color:white;
-}
-
-h2{
-  text-align:center;
-  padding:20px 0;
-}
-
-.container{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  padding:15px;
-}
-
-.card{
-  background:#11163a;
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
-}
-
-.card img{
-  width:90px;
-  height:auto;
-  margin-bottom:10px;
-}
-
-.price{
-  font-size:18px;
-  margin:10px 0;
-}
-
-.qty-box{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:15px;
-  background:#000;
-  padding:10px;
-  border-radius:25px;
-}
-
-.qty-box button{
-  width:40px;
-  height:40px;
-  border:none;
-  border-radius:50%;
-  background:#00c2ff;
-  color:white;
-  font-size:20px;
-}
-
-.qty{
-  font-size:18px;
-  width:30px;
-  display:inline-block;
-}
-
-.bottom-bar{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
+  font-family: Arial, sans-serif;
   background:#111;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:22px;
+  color:white;
+}
+
+.section-title{
+  text-align:center;
+  font-size:24px;
+  margin-top:40px;
   font-weight:bold;
 }
 
-.checkout-btn{
-  background:#00c2ff;
-  color:white;
-  padding:12px 25px;
-  border-radius:30px;
+.card{
+  width:320px;
+  background:#1e1e1e;
+  margin:15px auto;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.card h3{
+  margin:5px 0;
   font-size:18px;
 }
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+  color:#00ff99;
+}
+
 </style>
 </head>
 
 <body>
 
-<h2>MEMBERSHIPS</h2>
+<div class="section-title">MEMBERSHIP</div>
 
-<div class="container">
+<div class="card"><h3>WEEKLY LITE MEMBERSHIP</h3><div class="price">LKR 130</div></div>
+<div class="card"><h3>WEEKLY MEMBERSHIP</h3><div class="price">LKR 520</div></div>
+<div class="card"><h3>MONTHLY MEMBERSHIP</h3><div class="price">LKR 2560</div></div>
+<div class="card"><h3>VIP MEMBERSHIP</h3><div class="price">LKR 3080</div></div>
+<div class="card"><h3>VIP PLUS MEMBERSHIP</h3><div class="price">LKR 3210</div></div>
+<div class="card"><h3>S VIP MEMBERSHIP</h3><div class="price">LKR 4640</div></div>
+<div class="card"><h3>S VIP PLUS MEMBERSHIP</h3><div class="price">LKR 5160</div></div>
 
-  <div class="card">
-    <img src="weekly.png">
-    <h3>Weekly Lite</h3>
-    <div class="price">130</div>
+<div class="section-title">DAIOMED PACK</div>
 
-    <div class="qty-box">
-      <button onclick="changeQty(this,-1)">-</button>
-      <span class="qty">0</span>
-      <button onclick="changeQty(this,1)">+</button>
-    </div>
-  </div>
+<div class="card"><h3>25 💎</h3><div class="price">LKR 100</div></div>
+<div class="card"><h3>50 💎</h3><div class="price">LKR 200</div></div>
+<div class="card"><h3>75 💎</h3><div class="price">LKR 300</div></div>
+<div class="card"><h3>100 💎</h3><div class="price">LKR 400</div></div>
+<div class="card"><h3>150 💎</h3><div class="price">LKR 600</div></div>
+<div class="card"><h3>200 💎</h3><div class="price">LKR 800</div></div>
+<div class="card"><h3>310 💎</h3><div class="price">LKR 950</div></div>
+<div class="card"><h3>350 💎</h3><div class="price">LKR 1400</div></div>
+<div class="card"><h3>520 💎</h3><div class="price">LKR 1580</div></div>
+<div class="card"><h3>830 💎</h3><div class="price">LKR 2530</div></div>
+<div class="card"><h3>1060 💎</h3><div class="price">LKR 3020</div></div>
+<div class="card"><h3>2180 💎</h3><div class="price">LKR 6020</div></div>
+<div class="card"><h3>3240 💎</h3><div class="price">LKR 9040</div></div>
+<div class="card"><h3>5600 💎</h3><div class="price">LKR 14700</div></div>
+<div class="card"><h3>6660 💎</h3><div class="price">LKR 17720</div></div>
+<div class="card"><h3>8840 💎</h3><div class="price">LKR 23740</div></div>
+<div class="card"><h3>11500 💎</h3><div class="price">LKR 31000</div></div>
+<div class="card"><h3>15500 💎</h3><div class="price">LKR 41460</div></div>
+<div class="card"><h3>23000 💎</h3><div class="price">LKR 61000</div></div>
+<div class="card"><h3>46000 💎</h3><div class="price">LKR 124000</div></div>
 
-  <div class="card">
-    <img src="weekly2.png">
-    <h3>Weekly</h3>
-    <div class="price">520</div>
+<div class="section-title">LEVEL UP PASS PACKAGE</div>
 
-    <div class="qty-box">
-      <button onclick="changeQty(this,-1)">-</button>
-      <span class="qty">0</span>
-      <button onclick="changeQty(this,1)">+</button>
-    </div>
-  </div>
+<div class="card"><h3>LEVEL 6</h3><div class="price">LKR 180</div></div>
+<div class="card"><h3>LEVEL 10</h3><div class="price">LKR 300</div></div>
+<div class="card"><h3>LEVEL 15</h3><div class="price">LKR 300</div></div>
+<div class="card"><h3>LEVEL 25</h3><div class="price">LKR 300</div></div>
+<div class="card"><h3>LEVEL 30</h3><div class="price">LKR 450</div></div>
 
-  <div class="card">
-    <img src="monthly.png">
-    <h3>Monthly</h3>
-    <div class="price">2560</div>
+<div class="section-title">EVO ACCESS PACKAGE</div>
 
-    <div class="qty-box">
-      <button onclick="changeQty(this,-1)">-</button>
-      <span class="qty">0</span>
-      <button onclick="changeQty(this,1)">+</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="vip.png">
-    <h3>VIP</h3>
-    <div class="price">3080</div>
-
-    <div class="qty-box">
-      <button onclick="changeQty(this,-1)">-</button>
-      <span class="qty">0</span>
-      <button onclick="changeQty(this,1)">+</button>
-    </div>
-  </div>
-
-</div>
-
-<div class="bottom-bar">
-  <div><span id="total">0</span> LKR</div>
-  <div class="checkout-btn">CHECKOUT</div>
-</div>
-
-<script>
-function changeQty(button, amount){
-
-  let card = button.closest(".card");
-  let qtySpan = card.querySelector(".qty");
-
-  let qty = parseInt(qtySpan.innerText);
-  qty += amount;
-  if(qty < 0) qty = 0;
-  qtySpan.innerText = qty;
-
-  updateTotal();
-}
-
-function updateTotal(){
-
-  let cards = document.querySelectorAll(".card");
-  let total = 0;
-
-  cards.forEach(card => {
-    let price = parseInt(card.querySelector(".price").innerText);
-    let qty = parseInt(card.querySelector(".qty").innerText);
-    total += price * qty;
-  });
-
-  document.getElementById("total").innerText = total;
-}
-</script>
+<div class="card"><h3>3 DAY</h3><div class="price">LKR 200</div></div>
+<div class="card"><h3>7 DAY</h3><div class="price">LKR 350</div></div>
+<div class="card"><h3>30 DAY</h3><div class="price">LKR 900</div></div>
 
 </body>
 </html>
