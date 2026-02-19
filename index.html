@@ -93,31 +93,45 @@ color:white;
 margin-top:5px;
 }
 
-/* BUTTONS */
+/* BUTTON BASE */
 button{
 width:90%;
 padding:16px;
 margin:12px;
-border:none;
 border-radius:14px;
 font-size:17px;
 font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
 
+/* LOGIN BUTTON - GREEN FRAME */
 .loginbtn{
 background:#00ff99;
 color:black;
+border:3px solid green;
+box-shadow:0 0 10px green, 0 0 20px green;
 }
 
+/* TOPUP BUTTON - BLUE FRAME */
 .topup{
 background:#00c6d7;
 color:black;
+border:3px solid blue;
+box-shadow:0 0 10px blue, 0 0 20px blue;
 }
 
+/* CONTACT BUTTON - RED FRAME */
 .contact{
 background:transparent;
-border:2px solid white;
 color:white;
+border:3px solid red;
+box-shadow:0 0 10px red, 0 0 20px red;
+}
+
+/* HOVER EFFECT */
+button:hover{
+transform:scale(1.05);
 }
 
 /* FOOTER TEXT */
