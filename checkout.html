@@ -8,18 +8,15 @@
 body{
 margin:0;
 font-family:Arial;
-background:#000000;
+background:#000;
 color:white;
 padding:15px;
 }
 
-h2{
-text-align:center;
-letter-spacing:1px;
-}
+h2{text-align:center;}
 
 .box{
-background:#111111;
+background:#111;
 padding:15px;
 border-radius:14px;
 margin:12px 0;
@@ -34,21 +31,13 @@ text-align:right;
 font-size:18px;
 }
 
-input{
-width:100%;
-padding:12px;
-margin-top:8px;
-border-radius:10px;
-border:none;
-outline:none;
-background:#1a1a1a;
-color:white;
-font-size:15px;
-}
-
-input[type="file"]{
-background:#1a1a1a;
-padding:10px;
+.bank-card{
+background:#0f0f0f;
+padding:25px;
+margin:20px 0;
+border-radius:20px;
+border:1px solid #00c3ff;
+box-shadow:0 0 15px rgba(0,195,255,0.4);
 }
 
 button{
@@ -62,42 +51,28 @@ font-weight:bold;
 cursor:pointer;
 background:linear-gradient(90deg,#00c6ff,#0072ff);
 color:white;
-transition:0.3s;
 }
 
-button:hover{
-opacity:0.85;
+#contactBtn{
+display:none;
+background:linear-gradient(90deg,#25D366,#128C7E);
 }
 
-/* 🔥 EZ CASH card style */
-.bank-card{
-background:#0f0f0f;
-padding:25px;
-margin:20px 0;
-border-radius:20px;
-border:1px solid #00c3ff;
-box-shadow:0 0 15px rgba(0,195,255,0.4);
-text-align:left;
-}
-
-.bank-card h3{
-margin:0 0 10px 0;
+input{
+width:100%;
+padding:12px;
+margin-top:8px;
+border-radius:10px;
+border:none;
+background:#1a1a1a;
 color:white;
-font-size:18px;
 }
 
-.bank-card p{
-margin:5px 0;
-color:#cccccc;
-font-size:16px;
-}
-
-/* 🔴 Red warning text */
 .warning{
 color:#ff3b3b;
 font-size:13px;
-margin-top:8px;
 text-align:center;
+margin-top:8px;
 }
 </style>
 </head>
@@ -107,6 +82,8 @@ text-align:center;
 
 <div id="summary"></div>
 <div class="box total" id="total"></div>
+
+<!-- 🏦 BANK DETAILS -->
 
 <div class="box">
 🏦 <b>COMMERCIAL BANK</b><br>
@@ -129,16 +106,21 @@ Name: ASANKA M M I S<br>
 Branch: BANDARAWELA
 </div>
 
+<!-- 🔥 EZ CASH STYLE CARD -->
+
 <div class="bank-card">
-  <h3>🏦 EZ CASH</h3>
-  <p><strong>EZ No:</strong> 0768571751</p>
+<h3>🏦 EZ CASH</h3>
+<p><strong>EZ No:</strong> 0768571751</p>
 </div>
 
+<!-- 📦 ORDER FORM -->
+
 <div class="box">
+
 Player Name
 <input type="text" id="playerName" placeholder="Enter Player Name">
 
-Player ID (Game ID)
+Player ID
 <input type="text" id="playerId" placeholder="Enter Player ID">
 
 WhatsApp Number
@@ -148,12 +130,13 @@ WhatsApp Number
 📤 Upload Transfer Receipt
 <input type="file" id="receipt" accept="image/*">
 
-<button type="button" onclick="sendOrder()">SUBMIT ORDER</button>
+<button type="button" onclick="sendToTelegram()">ORDER SENDING</button>
 
-<!-- 🔴 Red message under button -->
 <div class="warning">
 EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමීම අනිවාරය වේ.
 </div>
+
+<button id="contactBtn" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 </div>
 
@@ -176,7 +159,9 @@ total+=items[i][1]*cart[i];
 
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
-function sendOrder(){
+let lastOrderId="";
+
+async function sendToTelegram(){
 
 let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerId").value;
@@ -184,39 +169,60 @@ let wp=document.getElementById("whatsapp").value;
 let receipt=document.getElementById("receipt");
 
 if(name=="" || id=="" || wp==""){
-alert("Please fill all fields!");
+alert("Fill all fields!");
 return;
 }
 
 if(receipt.files.length==0){
-alert("Please add transfer receipt!");
+alert("Upload receipt!");
 return;
 }
 
-let orderId = "ORD" + Date.now();
+let orderId="ORD"+Date.now();
+lastOrderId=orderId;
 
-let message = 
-"🛒 *NEW ORDER*\n\n"+
-"🆔 Order ID: "+orderId+"\n"+
-"👤 Name: "+name+"\n"+
-"🆔 Player ID: "+id+"\n"+
-"📱 WhatsApp: "+wp+"\n\n"+
-"📦 Order Details:\n";
+let message=
+"🛒 NEW ORDER\n\n"+
+"Order ID: "+orderId+"\n"+
+"Name: "+name+"\n"+
+"Player ID: "+id+"\n"+
+"WhatsApp: "+wp+"\n\n";
 
 for(let i in cart){
 if(cart[i]>0){
-message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
+message+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 }
 
-message += "\n💰 Total: "+total+" LKR";
-message += "\n\nEZ Cash payment requires additional Rs.20.";
-message += "\n\nPlease send me transer risit.";
+message+="\nTotal: "+total+" LKR";
+message+="\n+ Rs.20 EZ Cash Fee";
 
-let encodedMessage = encodeURIComponent(message);
+let botToken="8543584838:AAGFGgn20yzXsmS1bAjp3BIB0eCZW0NvVs0";
+let chatId="8324590734";
 
-window.open("https://wa.me/94773847598?text="+encodedMessage, "_blank");
+let formData=new FormData();
+formData.append("chat_id",chatId);
+formData.append("caption",message);
+formData.append("photo",receipt.files[0]);
 
+await fetch("https://api.telegram.org/bot"+botToken+"/sendPhoto",{
+method:"POST",
+body:formData
+});
+
+alert("Order Sent Successfully!");
+
+document.getElementById("contactBtn").style.display="block";
+}
+
+function contactAdmin(){
+
+navigator.clipboard.writeText(lastOrderId);
+
+let number="94773847598"; // change admin number
+let text=encodeURIComponent("Hello Admin, My Order ID is "+lastOrderId);
+
+window.open("https://wa.me/"+number+"?text="+text,"_blank");
 }
 
 </script>
