@@ -27,8 +27,8 @@ padding-bottom:140px;
 
 .card{
 background:#0b1330;
-border-radius:25px;
-padding:18px;
+border-radius:20px;
+padding:15px;
 text-align:center;
 }
 
@@ -43,7 +43,7 @@ justify-content:center;
 align-items:center;
 background:#071026;
 border-radius:30px;
-padding:6px;
+padding:5px;
 }
 
 .qty-box button{
@@ -51,7 +51,7 @@ width:35px;
 height:35px;
 border:none;
 border-radius:50%;
-background:#00bcd4;
+background:#00b0d4;
 color:white;
 font-size:18px;
 }
@@ -67,7 +67,7 @@ bottom:20px;
 left:50%;
 transform:translateX(-50%);
 width:90%;
-background:rgba(30,30,30,0.7);
+background:rgba(30,30,30,0.8);
 border-radius:40px;
 padding:15px 20px;
 display:flex;
@@ -76,26 +76,30 @@ align-items:center;
 }
 
 .total{
-font-size:20px;
+font-size:18px;
 font-weight:bold;
 }
 
-.checkout{
-background:#1f1f1f;
-padding:12px 30px;
+.checkout-btn{
+background:#00d0ff;
+padding:10px 20px;
 border-radius:30px;
+text-decoration:none;
+color:black;
+font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<h2>MEMBERSHIP</h2>
+<h2>Game Diamonds</h2>
+
 <div class="container">
 
 <div class="card">
-<h4>WEEKLY LITE MEMBERSHIP</h4>
-<div class="price" data-price="130">130 LKR</div>
+<h3>100 Diamonds</h3>
+<div class="price" data-price="1">$1</div>
 <div class="qty-box">
 <button onclick="changeQty(this,-1)">-</button>
 <div class="qty">0</div>
@@ -104,8 +108,8 @@ border-radius:30px;
 </div>
 
 <div class="card">
-<h4>WEEKLY MEMBERSHIP</h4>
-<div class="price" data-price="520">520 LKR</div>
+<h3>500 Diamonds</h3>
+<div class="price" data-price="4">$4</div>
 <div class="qty-box">
 <button onclick="changeQty(this,-1)">-</button>
 <div class="qty">0</div>
@@ -116,51 +120,32 @@ border-radius:30px;
 </div>
 
 <div class="bottom-bar">
-<div class="total" id="total">0 LKR</div>
-<div class="checkout" onclick="goCheckout()">CHECKOUT</div>
+<div class="total">Total: $0</div>
+
+<a href="checkout.html" class="checkout-btn">
+Checkout
+</a>
+
 </div>
 
 <script>
-function changeQty(btn,amount){
-let card = btn.closest(".card");
-let qtyDiv = card.querySelector(".qty");
+function changeQty(btn, amount){
+let qtyDiv = btn.parentElement.querySelector(".qty");
 let qty = parseInt(qtyDiv.innerText);
 qty += amount;
-if(qty<0) qty=0;
+if(qty < 0) qty = 0;
 qtyDiv.innerText = qty;
-calculateTotal();
+updateTotal();
 }
 
-function calculateTotal(){
-let cards=document.querySelectorAll(".card");
-let total=0;
-cards.forEach(card=>{
-let qty=parseInt(card.querySelector(".qty").innerText);
-let price=parseInt(card.querySelector(".price").dataset.price);
-total+=qty*price;
-});
-document.getElementById("total").innerText=total+" LKR";
-}
-
-function goCheckout(){
-
-let items=[];
-let total=0;
-
+function updateTotal(){
+let total = 0;
 document.querySelectorAll(".card").forEach(card=>{
-let qty=parseInt(card.querySelector(".qty").innerText);
-if(qty>0){
-let name=card.querySelector("h4").innerText;
-let price=parseInt(card.querySelector(".price").dataset.price);
-items.push(`${name} x ${qty} - ${price*qty} LKR`);
-total+=price*qty;
-}
+let price = parseFloat(card.querySelector(".price").dataset.price);
+let qty = parseInt(card.querySelector(".qty").innerText);
+total += price * qty;
 });
-
-localStorage.setItem("orderItems",JSON.stringify(items));
-localStorage.setItem("orderTotal",total);
-
-window.location.href="checkout.html";
+document.querySelector(".total").innerText = "Total: $" + total;
 }
 </script>
 
