@@ -8,38 +8,46 @@
 body{
 margin:0;
 font-family:Arial;
-background:#06142e;
+background:linear-gradient(to bottom,#06142e,#021026);
 color:white;
 padding:15px;
 }
 
-h2{
+.section-title{
 color:#00e5ff;
+margin-top:30px;
+margin-bottom:10px;
+font-size:20px;
 }
 
 .card{
 background:#0d1f40;
-padding:12px;
-margin:8px 0;
-border-radius:12px;
+border-radius:15px;
+padding:15px;
+margin-bottom:10px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 }
 
+.card-title{
+font-size:15px;
+}
+
 .qty-box{
 display:flex;
 align-items:center;
-gap:5px;
+gap:8px;
 }
 
 .qty-box button{
-width:28px;
-height:28px;
+width:30px;
+height:30px;
 border:none;
 border-radius:50%;
 background:#00c6d7;
 color:white;
+font-size:16px;
 }
 
 .bottom{
@@ -48,7 +56,7 @@ bottom:0;
 left:0;
 width:100%;
 background:#000;
-padding:10px;
+padding:12px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -57,15 +65,13 @@ align-items:center;
 .next-btn{
 background:#00c6d7;
 border:none;
-padding:10px 20px;
+padding:10px 25px;
 border-radius:20px;
 font-weight:bold;
 }
 </style>
 </head>
 <body>
-
-<h2>MEMBERSHIP</h2>
 
 <div id="products"></div>
 
@@ -75,65 +81,89 @@ font-weight:bold;
 </div>
 
 <script>
-const items = [
+
+const sections = [
+
+{
+title:"MEMBERSHIP PACKAGE",
+items:[
 ["WEEKLY LITE MEMBERSHIP",130],
 ["WEEKLY MEMBERSHIP",520],
 ["MONTHLY MEMBERSHIP",2560],
 ["VIP MEMBERSHIP",3080],
 ["VIP PLUS MEMBERSHIP",3210],
 ["S VIP MEMBERSHIP",4640],
-["S VIP PLUS MEMBERSHIP",5160],
-["25 💎",100],
-["50 💎",200],
-["75 💎",300],
-["100 💎",400],
-["150 💎",600],
-["200 💎",800],
-["310 💎",950],
-["350 💎",1400],
-["520 💎",1580],
-["830 💎",2530],
-["1060 💎",3020],
-["2180 💎",6020],
-["3240 💎",9040],
-["5600 💎",14700],
-["6660 💎",17720],
-["8840 💎",23740],
-["11500 💎",31000],
-["15500 💎",41460],
-["23000 💎",61000],
-["46000 💎",124000],
+["S VIP PLUS MEMBERSHIP",5160]
+]
+},
+
+{
+title:"DIAMOND PACKAGE",
+items:[
+["25 💎",100],["50 💎",200],["75 💎",300],
+["100 💎",400],["150 💎",600],["200 💎",800],
+["310 💎",950],["350 💎",1400],["520 💎",1580],
+["830 💎",2530],["1060 💎",3020],["2180 💎",6020],
+["3240 💎",9040],["5600 💎",14700],["6660 💎",17720],
+["8840 💎",23740],["11500 💎",31000],
+["15500 💎",41460],["23000 💎",61000],
+["46000 💎",124000]
+]
+},
+
+{
+title:"LEVEL UP PASS PACKAGE",
+items:[
 ["LEVEL 6",180],
 ["LEVEL 10",300],
 ["LEVEL 15",300],
 ["LEVEL 25",300],
-["LEVEL 30",450],
-["EVO 3 DAY",200],
-["EVO 7 DAY",350],
-["EVO 30 DAY",900]
+["LEVEL 30",450]
+]
+},
+
+{
+title:"EVO ACCESS PACKAGE",
+items:[
+["EVO ACCESS 3 DAY",200],
+["EVO ACCESS 7 DAY",350],
+["EVO ACCESS 30 DAY",900]
+]
+}
+
 ];
 
 let container = document.getElementById("products");
+let cart = {};
+let index=0;
 
-items.forEach((item,i)=>{
+sections.forEach(section=>{
+
+container.innerHTML += `<h2 class="section-title">${section.title}</h2>`;
+
+section.items.forEach(item=>{
 container.innerHTML += `
 <div class="card">
-<div>${item[0]}<br>${item[1]} LKR</div>
+<div class="card-title">
+${item[0]}<br>${item[1]} LKR
+</div>
 <div class="qty-box">
-<button onclick="change(${i},-1)">-</button>
-<span id="q${i}">0</span>
-<button onclick="change(${i},1)">+</button>
+<button onclick="change(${index},-1)">-</button>
+<span id="q${index}">0</span>
+<button onclick="change(${index},1)">+</button>
 </div>
 </div>
 `;
+cart[index]=0;
+index++;
 });
 
-let cart = {};
+});
 
 function change(i,val){
-let q = document.getElementById("q"+i);
-let qty = parseInt(q.innerText);
-qty += val;
+let q=document.getElementById("q"+i);
+let qty=parseInt(q.innerText);
+qty+=val;
 if(qty<0) qty=0;
 q.innerText=qty;
 cart[i]=qty;
@@ -142,17 +172,24 @@ updateTotal();
 
 function updateTotal(){
 let total=0;
-for(let i in cart){
-total += items[i][1]*cart[i];
-}
+let i=0;
+
+sections.forEach(section=>{
+section.items.forEach(item=>{
+total+=item[1]*cart[i];
+i++;
+});
+});
+
 document.getElementById("total").innerText="Total: "+total+" LKR";
 }
 
 function goCheckout(){
 localStorage.setItem("cart",JSON.stringify(cart));
-localStorage.setItem("items",JSON.stringify(items));
+localStorage.setItem("sections",JSON.stringify(sections));
 location.href="checkout.html";
 }
+
 </script>
 
 </body>
