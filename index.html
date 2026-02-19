@@ -1,104 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAVIYA ADMIN</title>
-
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
 body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#141e30,#243b55);
+margin:0;
+font-family:Arial;
+background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
 color:white;
 text-align:center;
+padding:40px;
 }
 
-.container{
-max-width:400px;
+button{
 width:90%;
-}
-
-h1{
-font-size:30px;
-margin-bottom:10px;
-}
-
-.subtitle{
-opacity:0.8;
-margin-bottom:30px;
-}
-
-.btn{
-display:block;
-width:100%;
-padding:14px;
-margin:10px 0;
-border-radius:8px;
-text-decoration:none;
+padding:15px;
+margin:10px;
+border:none;
+border-radius:10px;
+font-size:16px;
 font-weight:bold;
-transition:0.3s;
 }
 
-.primary{
-background:#00e0ff;
+.topup{
+background:#00c6d7;
 color:black;
 }
 
-.primary:hover{
-background:#00bcd4;
-}
-
-.secondary{
+.contact{
+background:transparent;
 border:2px solid white;
 color:white;
 }
-
-.secondary:hover{
-background:white;
-color:black;
-}
-
-.features{
-margin-top:30px;
-}
-
-.card{
-background:rgba(255,255,255,0.1);
-padding:12px;
-margin:8px 0;
-border-radius:8px;
-font-size:14px;
-}
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
 <h1>KAVIYA ADMIN</h1>
-<p class="subtitle">Fast • Secure • Professional Admin Panel</p>
+<p>Fast • Secure • Professional Admin Panel</p>
 
-<a href="#" class="btn primary">TOP UP NOW</a>
-<a href="#" class="btn secondary">CONTACK ADMIN</a>
+<button class="topup" onclick="location.href='store.html'">
+TOP UP NOW
+</button>
 
-<div class="features">
-<div class="card">⚡ Fast Performance</div>
-<div class="card">🔒 Secure Access</div>
-<div class="card">🛡 Encrypted System</div>
-</div>
-
-</div>
+<button class="contact">
+CONTACT ADMIN
+</button>
 
 </body>
 </html>
