@@ -2,135 +2,211 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kaviya Store</title>
+<title>Game Store</title>
 
 <style>
 body{
-  background:#000;
-  font-family:Arial, sans-serif;
-  color:white;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#050b1e,#0a1030);
+    color:white;
 }
 
-.section{
-  text-align:center;
-  font-size:26px;
-  margin:30px 0 10px;
-  font-weight:bold;
+h2{
+    padding:20px 15px 5px;
+    color:#00d0ff;
+    font-weight:600;
+}
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:15px;
+    padding-bottom:140px;
 }
 
 .card{
-  width:330px;
-  background:linear-gradient(145deg,#1c1c1c,#111);
-  margin:15px auto;
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
+    background:#0b1330;
+    border-radius:25px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
 }
 
-.title{
-  font-size:18px;
-  font-weight:bold;
+.card h4{
+    font-size:14px;
+    min-height:35px;
 }
 
 .price{
-  font-size:22px;
-  color:#00ff99;
-  font-weight:bold;
-  margin:8px 0;
+    font-size:18px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.qty-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#071026;
+    border-radius:30px;
+    padding:6px;
+}
+
+.qty-box button{
+    width:36px;
+    height:36px;
+    border:none;
+    border-radius:50%;
+    background:#00bcd4;
+    color:white;
+    font-size:18px;
 }
 
 .qty{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:20px;
+    width:40px;
+    text-align:center;
+    font-size:16px;
 }
 
-button{
-  width:35px;
-  height:35px;
-  font-size:20px;
-  border:none;
-  border-radius:8px;
-  background:#00ff99;
-  font-weight:bold;
+/* Rounded Glass Bottom Bar */
+.bottom-bar{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    backdrop-filter:blur(12px);
+    background:rgba(30,30,30,0.6);
+    border-radius:40px;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
-.total-box{
-  width:330px;
-  margin:40px auto;
-  padding:20px;
-  background:#111;
-  border-radius:20px;
-  text-align:center;
-  font-size:24px;
-  font-weight:bold;
+.total{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.checkout{
+    background:#1f1f1f;
+    padding:12px 30px;
+    border-radius:30px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="section">MEMBERSHIP</div>
+<script>
+function card(title,price){
+document.write(`
+<div class="card">
+<h4>${title}</h4>
+<div class="price" data-price="${price}">${price} LKR</div>
+<div class="qty-box">
+<button onclick="changeQty(this,-1)">-</button>
+<div class="qty">0</div>
+<button onclick="changeQty(this,1)">+</button>
+</div>
+</div>
+`);
+}
+</script>
 
-<!-- Membership -->
-<div class="card"><div class="title">WEEKLY LITE MEMBERSHIP</div><div class="price">LKR 130</div><div class="qty"><button onclick="changeQty(130,-1)">−</button><span id="q130">0</span><button onclick="changeQty(130,1)">+</button></div></div>
+<!-- MEMBERSHIP -->
+<h2>MEMBERSHIP</h2>
+<div class="container">
+<script>
+card("WEEKLY LITE MEMBERSHIP",130);
+card("WEEKLY MEMBERSHIP",520);
+card("MONTHLY MEMBERSHIP",2560);
+card("VIP MEMBERSHIP",3080);
+card("VIP PLUS MEMBERSHIP",3210);
+card("S VIP MEMBERSHIP",4640);
+card("S VIP PLUS MEMBERSHIP",5160);
+</script>
+</div>
 
-<div class="card"><div class="title">WEEKLY MEMBERSHIP</div><div class="price">LKR 520</div><div class="qty"><button onclick="changeQty(520,-1)">−</button><span id="q520">0</span><button onclick="changeQty(520,1)">+</button></div></div>
+<!-- DAIOMED PACK -->
+<h2>DAIOMED PACK</h2>
+<div class="container">
+<script>
+card("25 💎",100);
+card("50 💎",200);
+card("75 💎",300);
+card("100 💎",400);
+card("150 💎",600);
+card("200 💎",800);
+card("310 💎",950);
+card("350 💎",1400);
+card("520 💎",1580);
+card("830 💎",2530);
+card("1060 💎",3020);
+card("2180 💎",6020);
+card("3240 💎",9040);
+card("5600 💎",14700);
+card("6660 💎",17720);
+card("8840 💎",23740);
+card("11500 💎",31000);
+card("15500 💎",41460);
+card("23000 💎",61000);
+card("46000 💎",124000);
+</script>
+</div>
 
-<div class="card"><div class="title">MONTHLY MEMBERSHIP</div><div class="price">LKR 2560</div><div class="qty"><button onclick="changeQty(2560,-1)">−</button><span id="q2560">0</span><button onclick="changeQty(2560,1)">+</button></div></div>
+<!-- LEVEL UP -->
+<h2>LEVEL UP PASS PACKAGE</h2>
+<div class="container">
+<script>
+card("LEVEL 6",180);
+card("LEVEL 10",300);
+card("LEVEL 15",300);
+card("LEVEL 25",300);
+card("LEVEL 30",450);
+</script>
+</div>
 
-<div class="card"><div class="title">VIP MEMBERSHIP</div><div class="price">LKR 3080</div><div class="qty"><button onclick="changeQty(3080,-1)">−</button><span id="q3080">0</span><button onclick="changeQty(3080,1)">+</button></div></div>
+<!-- EVO ACCESS -->
+<h2>EVO ACCESS PACKAGE</h2>
+<div class="container">
+<script>
+card("EVO ACCESS - 3 DAY",200);
+card("EVO ACCESS - 7 DAY",350);
+card("EVO ACCESS - 30 DAY",900);
+</script>
+</div>
 
-<div class="card"><div class="title">VIP PLUS MEMBERSHIP</div><div class="price">LKR 3210</div><div class="qty"><button onclick="changeQty(3210,-1)">−</button><span id="q3210">0</span><button onclick="changeQty(3210,1)">+</button></div></div>
-
-<div class="card"><div class="title">S VIP MEMBERSHIP</div><div class="price">LKR 4640</div><div class="qty"><button onclick="changeQty(4640,-1)">−</button><span id="q4640">0</span><button onclick="changeQty(4640,1)">+</button></div></div>
-
-<div class="card"><div class="title">S VIP PLUS MEMBERSHIP</div><div class="price">LKR 5160</div><div class="qty"><button onclick="changeQty(5160,-1)">−</button><span id="q5160">0</span><button onclick="changeQty(5160,1)">+</button></div></div>
-
-<div class="section">DAIOMED PACK</div>
-
-<div class="card"><div class="title">25 💎</div><div class="price">LKR 100</div><div class="qty"><button onclick="changeQty(100,-1)">−</button><span id="q100">0</span><button onclick="changeQty(100,1)">+</button></div></div>
-
-<div class="card"><div class="title">50 💎</div><div class="price">LKR 200</div><div class="qty"><button onclick="changeQty(200,-1)">−</button><span id="q200">0</span><button onclick="changeQty(200,1)">+</button></div></div>
-
-<div class="card"><div class="title">75 💎</div><div class="price">LKR 300</div><div class="qty"><button onclick="changeQty(300,-1)">−</button><span id="q300">0</span><button onclick="changeQty(300,1)">+</button></div></div>
-
-<div class="card"><div class="title">100 💎</div><div class="price">LKR 400</div><div class="qty"><button onclick="changeQty(400,-1)">−</button><span id="q400">0</span><button onclick="changeQty(400,1)">+</button></div></div>
-
-<!-- Oya anith Daiomed prices walatath me widihata copy karanna -->
-
-<div class="section">LEVEL UP PASS PACKAGE</div>
-
-<div class="card"><div class="title">LEVEL 6</div><div class="price">LKR 180</div><div class="qty"><button onclick="changeQty(180,-1)">−</button><span id="q180">0</span><button onclick="changeQty(180,1)">+</button></div></div>
-
-<div class="card"><div class="title">LEVEL 10</div><div class="price">LKR 300</div><div class="qty"><button onclick="changeQty(300,-1)">−</button><span id="q300">0</span><button onclick="changeQty(300,1)">+</button></div></div>
-
-<div class="section">EVO ACCESS PACKAGE</div>
-
-<div class="card"><div class="title">3 DAY</div><div class="price">LKR 200</div><div class="qty"><button onclick="changeQty(200,-1)">−</button><span id="q200">0</span><button onclick="changeQty(200,1)">+</button></div></div>
-
-<div class="card"><div class="title">7 DAY</div><div class="price">LKR 350</div><div class="qty"><button onclick="changeQty(350,-1)">−</button><span id="q350">0</span><button onclick="changeQty(350,1)">+</button></div></div>
-
-<div class="card"><div class="title">30 DAY</div><div class="price">LKR 900</div><div class="qty"><button onclick="changeQty(900,-1)">−</button><span id="q900">0</span><button onclick="changeQty(900,1)">+</button></div></div>
-
-<div class="total-box">
-TOTAL: LKR <span id="total">0</span>
+<!-- Bottom Total -->
+<div class="bottom-bar">
+<div class="total" id="total">0 LKR</div>
+<div class="checkout">CHECKOUT</div>
 </div>
 
 <script>
-let total = 0;
+function changeQty(btn,amount){
+let card = btn.closest(".card");
+let qtyDiv = card.querySelector(".qty");
+let qty = parseInt(qtyDiv.innerText);
+qty += amount;
+if(qty<0) qty=0;
+qtyDiv.innerText = qty;
+calculateTotal();
+}
 
-function changeQty(price, change){
-  let qty = document.getElementById("q"+price);
-  let current = parseInt(qty.innerText);
-  
-  if(current + change >= 0){
-    qty.innerText = current + change;
-    total += price * change;
-    if(total < 0) total = 0;
-    document.getElementById("total").innerText = total;
-  }
+function calculateTotal(){
+let cards = document.querySelectorAll(".card");
+let total=0;
+cards.forEach(card=>{
+let qty=parseInt(card.querySelector(".qty").innerText);
+let price=parseInt(card.querySelector(".price").dataset.price);
+total += qty*price;
+});
+document.getElementById("total").innerText = total + " LKR";
 }
 </script>
 
