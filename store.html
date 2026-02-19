@@ -2,214 +2,158 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Store</title>
+<title>Packages</title>
 
 <style>
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(to bottom,#050b1e,#0a1030);
-    color:white;
+margin:0;
+font-family:Arial;
+background:#06142e;
+color:white;
+padding:15px;
 }
 
 h2{
-    padding:20px 15px 5px;
-    color:#00d0ff;
-    font-weight:600;
-}
-
-.container{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    padding:15px;
-    padding-bottom:140px;
+color:#00e5ff;
 }
 
 .card{
-    background:#0b1330;
-    border-radius:25px;
-    padding:18px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,0.4);
-}
-
-.card h4{
-    font-size:14px;
-    min-height:35px;
-}
-
-.price{
-    font-size:18px;
-    font-weight:bold;
-    margin:10px 0;
+background:#0d1f40;
+padding:12px;
+margin:8px 0;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .qty-box{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#071026;
-    border-radius:30px;
-    padding:6px;
+display:flex;
+align-items:center;
+gap:5px;
 }
 
 .qty-box button{
-    width:36px;
-    height:36px;
-    border:none;
-    border-radius:50%;
-    background:#00bcd4;
-    color:white;
-    font-size:18px;
+width:28px;
+height:28px;
+border:none;
+border-radius:50%;
+background:#00c6d7;
+color:white;
 }
 
-.qty{
-    width:40px;
-    text-align:center;
-    font-size:16px;
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#000;
+padding:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
-/* Rounded Glass Bottom Bar */
-.bottom-bar{
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    width:90%;
-    backdrop-filter:blur(12px);
-    background:rgba(30,30,30,0.6);
-    border-radius:40px;
-    padding:15px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.6);
-}
-
-.total{
-    font-size:22px;
-    font-weight:bold;
-}
-
-.checkout{
-    background:#1f1f1f;
-    padding:12px 30px;
-    border-radius:30px;
+.next-btn{
+background:#00c6d7;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+font-weight:bold;
 }
 </style>
 </head>
-
 <body>
 
-<script>
-function card(title,price){
-document.write(`
-<div class="card">
-<h4>${title}</h4>
-<div class="price" data-price="${price}">${price} LKR</div>
-<div class="qty-box">
-<button onclick="changeQty(this,-1)">-</button>
-<div class="qty">0</div>
-<button onclick="changeQty(this,1)">+</button>
-</div>
-</div>
-`);
-}
-</script>
-
-<!-- MEMBERSHIP -->
 <h2>MEMBERSHIP</h2>
-<div class="container">
-<script>
-card("WEEKLY LITE MEMBERSHIP",130);
-card("WEEKLY MEMBERSHIP",520);
-card("MONTHLY MEMBERSHIP",2560);
-card("VIP MEMBERSHIP",3080);
-card("VIP PLUS MEMBERSHIP",3210);
-card("S VIP MEMBERSHIP",4640);
-card("S VIP PLUS MEMBERSHIP",5160);
-</script>
-</div>
 
-<!-- DAIOMED PACK -->
-<h2>DAIOMED PACK</h2>
-<div class="container">
-<script>
-card("25 💎",100);
-card("50 💎",200);
-card("75 💎",300);
-card("100 💎",400);
-card("150 💎",600);
-card("200 💎",800);
-card("310 💎",950);
-card("350 💎",1400);
-card("520 💎",1580);
-card("830 💎",2530);
-card("1060 💎",3020);
-card("2180 💎",6020);
-card("3240 💎",9040);
-card("5600 💎",14700);
-card("6660 💎",17720);
-card("8840 💎",23740);
-card("11500 💎",31000);
-card("15500 💎",41460);
-card("23000 💎",61000);
-card("46000 💎",124000);
-</script>
-</div>
+<div id="products"></div>
 
-<!-- LEVEL UP -->
-<h2>LEVEL UP PASS PACKAGE</h2>
-<div class="container">
-<script>
-card("LEVEL 6",180);
-card("LEVEL 10",300);
-card("LEVEL 15",300);
-card("LEVEL 25",300);
-card("LEVEL 30",450);
-</script>
-</div>
-
-<!-- EVO ACCESS -->
-<h2>EVO ACCESS PACKAGE</h2>
-<div class="container">
-<script>
-card("EVO ACCESS - 3 DAY",200);
-card("EVO ACCESS - 7 DAY",350);
-card("EVO ACCESS - 30 DAY",900);
-</script>
-</div>
-
-<!-- Bottom Total -->
-<div class="bottom-bar">
-<div class="total" id="total">0 LKR</div>
-<div class="checkout">CHECKOUT</div>
+<div class="bottom">
+<div id="total">Total: 0 LKR</div>
+<button class="next-btn" onclick="goCheckout()">NEXT</button>
 </div>
 
 <script>
-function changeQty(btn,amount){
-let card = btn.closest(".card");
-let qtyDiv = card.querySelector(".qty");
-let qty = parseInt(qtyDiv.innerText);
-qty += amount;
+const items = [
+["WEEKLY LITE MEMBERSHIP",130],
+["WEEKLY MEMBERSHIP",520],
+["MONTHLY MEMBERSHIP",2560],
+["VIP MEMBERSHIP",3080],
+["VIP PLUS MEMBERSHIP",3210],
+["S VIP MEMBERSHIP",4640],
+["S VIP PLUS MEMBERSHIP",5160],
+["25 💎",100],
+["50 💎",200],
+["75 💎",300],
+["100 💎",400],
+["150 💎",600],
+["200 💎",800],
+["310 💎",950],
+["350 💎",1400],
+["520 💎",1580],
+["830 💎",2530],
+["1060 💎",3020],
+["2180 💎",6020],
+["3240 💎",9040],
+["5600 💎",14700],
+["6660 💎",17720],
+["8840 💎",23740],
+["11500 💎",31000],
+["15500 💎",41460],
+["23000 💎",61000],
+["46000 💎",124000],
+["LEVEL 6",180],
+["LEVEL 10",300],
+["LEVEL 15",300],
+["LEVEL 25",300],
+["LEVEL 30",450],
+["EVO 3 DAY",200],
+["EVO 7 DAY",350],
+["EVO 30 DAY",900]
+];
+
+let container = document.getElementById("products");
+
+items.forEach((item,i)=>{
+container.innerHTML += `
+<div class="card">
+<div>${item[0]}<br>${item[1]} LKR</div>
+<div class="qty-box">
+<button onclick="change(${i},-1)">-</button>
+<span id="q${i}">0</span>
+<button onclick="change(${i},1)">+</button>
+</div>
+</div>
+`;
+});
+
+let cart = {};
+
+function change(i,val){
+let q = document.getElementById("q"+i);
+let qty = parseInt(q.innerText);
+qty += val;
 if(qty<0) qty=0;
-qtyDiv.innerText = qty;
-calculateTotal();
+q.innerText=qty;
+cart[i]=qty;
+updateTotal();
 }
 
-function calculateTotal(){
-let cards = document.querySelectorAll(".card");
+function updateTotal(){
 let total=0;
-cards.forEach(card=>{
-let qty=parseInt(card.querySelector(".qty").innerText);
-let price=parseInt(card.querySelector(".price").dataset.price);
-total += qty*price;
-});
-document.getElementById("total").innerText = total + " LKR";
+for(let i in cart){
+total += items[i][1]*cart[i];
+}
+document.getElementById("total").innerText="Total: "+total+" LKR";
+}
+
+function goCheckout(){
+localStorage.setItem("cart",JSON.stringify(cart));
+localStorage.setItem("items",JSON.stringify(items));
+location.href="checkout.html";
 }
 </script>
 
 </body>
 </html>
-
