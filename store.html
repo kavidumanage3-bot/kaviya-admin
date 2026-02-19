@@ -5,15 +5,20 @@
 
 <style>
 body{
+  margin:0;
   background:#0b0f2a;
   font-family:Arial;
   color:white;
+}
+
+h2{
   text-align:center;
+  padding:15px;
 }
 
 .container{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+  grid-template-columns:1fr 1fr;
   gap:15px;
   padding:15px;
 }
@@ -22,6 +27,7 @@ body{
   background:#11163a;
   padding:15px;
   border-radius:15px;
+  text-align:center;
 }
 
 .card img{
@@ -30,8 +36,8 @@ body{
 }
 
 .price{
-  font-size:20px;
-  margin:10px 0;
+  font-size:18px;
+  margin:8px 0;
 }
 
 .qty-box{
@@ -60,6 +66,24 @@ body{
   font-weight:bold;
 }
 
+#cartItems{
+  padding:10px;
+  padding-bottom:120px;
+}
+
+.cart-item{
+  background:#11163a;
+  margin-bottom:10px;
+  padding:10px;
+  border-radius:10px;
+  text-align:center;
+}
+
+.cart-item img{
+  width:60px;
+  margin-bottom:5px;
+}
+
 .bottom-bar{
   position:fixed;
   bottom:0;
@@ -68,6 +92,7 @@ body{
   background:#000;
   padding:15px;
   font-size:20px;
+  text-align:center;
 }
 </style>
 </head>
@@ -82,7 +107,7 @@ body{
   <div class="card">
     <img src="weekly.png">
     <h3>Weekly Lite</h3>
-    <div class="price">130</div>
+    <div class="price">130 LKR</div>
 
     <div class="qty-box">
       <button onclick="changeQty(this,-1)">-</button>
@@ -97,7 +122,7 @@ body{
   <div class="card">
     <img src="weekly2.png">
     <h3>Weekly</h3>
-    <div class="price">520</div>
+    <div class="price">520 LKR</div>
 
     <div class="qty-box">
       <button onclick="changeQty(this,-1)">-</button>
@@ -112,7 +137,7 @@ body{
   <div class="card">
     <img src="monthly.png">
     <h3>Monthly</h3>
-    <div class="price">2560</div>
+    <div class="price">2560 LKR</div>
 
     <div class="qty-box">
       <button onclick="changeQty(this,-1)">-</button>
@@ -127,7 +152,7 @@ body{
   <div class="card">
     <img src="vip.png">
     <h3>VIP</h3>
-    <div class="price">3080</div>
+    <div class="price">3080 LKR</div>
 
     <div class="qty-box">
       <button onclick="changeQty(this,-1)">-</button>
@@ -140,6 +165,10 @@ body{
 
 </div>
 
+<!-- Cart Items -->
+<div id="cartItems"></div>
+
+<!-- Bottom Total Bar -->
 <div class="bottom-bar">
   Total: <span id="total">0</span> LKR
 </div>
@@ -156,10 +185,25 @@ function changeQty(button, amount){
 }
 
 function addToCart(price, button){
+
   let card = button.parentElement;
   let qty = parseInt(card.querySelector(".qty").innerText);
+  let name = card.querySelector("h3").innerText;
+  let imgSrc = card.querySelector("img").src;
+
   total += price * qty;
   document.getElementById("total").innerText = total;
+
+  let item = document.createElement("div");
+  item.classList.add("cart-item");
+
+  item.innerHTML = `
+    <img src="${imgSrc}">
+    <div>${name} x${qty}</div>
+    <div>${price * qty} LKR</div>
+  `;
+
+  document.getElementById("cartItems").appendChild(item);
 }
 </script>
 
