@@ -159,7 +159,7 @@ return;
 let orderId = "ORD" + Date.now();
 
 let message = 
-"🛒 *NEW ORDER*\n\n"+
+"🛒 *NEW ORDER* \n\n"+
 "🆔 Order ID: "+orderId+"\n"+
 "👤 Name: "+name+"\n"+
 "🆔 Player ID: "+id+"\n"+
@@ -173,7 +173,6 @@ message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 
 message += "\n💰 Total: "+total+" LKR";
-message += "\n\n📤 Transfer Receipt Attached";
 
 let encodedMessage = encodeURIComponent(message);
 
