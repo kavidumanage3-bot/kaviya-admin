@@ -13,17 +13,53 @@ color:white;
 padding:15px;
 }
 
+h2{
+text-align:center;
+}
+
 .box{
 background:#0d1f40;
-padding:12px;
-border-radius:12px;
-margin:10px 0;
+padding:15px;
+border-radius:14px;
+margin:12px 0;
+box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
 .total{
 color:#00e5ff;
 font-weight:bold;
 text-align:right;
+font-size:18px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:8px;
+border-radius:10px;
+border:none;
+outline:none;
+background:#081833;
+color:white;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+background:linear-gradient(90deg,#00c6ff,#0072ff);
+color:white;
+transition:0.3s;
+}
+
+button:hover{
+opacity:0.85;
 }
 </style>
 </head>
@@ -32,33 +68,49 @@ text-align:right;
 <h2>CHECKOUT</h2>
 
 <div id="summary"></div>
-
 <div class="box total" id="total"></div>
 
+<!-- PAYMENT DETAILS -->
+
 <div class="box">
-🏦 COMMERCIAL BANK<br>
-8028325273<br>
-K B DULANI<br>
-BANDARAWELA
+🏦 <b>COMMERCIAL BANK</b><br>
+Acc No: 8028325273<br>
+Name: K B DULANI<br>
+Branch: BANDARAWELA
 </div>
 
 <div class="box">
-🏦 DIALOG FINANCE BANK<br>
-001022035261<br>
-M M R I HANSAKA<br>
-HEAD OFFICE
+🏦 <b>DIALOG FINANCE BANK</b><br>
+Acc No: 001022035261<br>
+Name: M M R I HANSAKA<br>
+Branch: HEAD OFFICE
 </div>
 
 <div class="box">
-🏦 HNB BANK<br>
-012020083286<br>
-ASANKA M M I S<br>
-BANDARAWELA
+🏦 <b>HNB BANK</b><br>
+Acc No: 012020083286<br>
+Name: ASANKA M M I S<br>
+Branch: BANDARAWELA
 </div>
 
 <div class="box">
-📲 EZ CASH<br>
-0768571751
+📲 <b>EZ CASH</b><br>
+Number: 0768571751
+</div>
+
+<!-- CUSTOMER DETAILS -->
+
+<div class="box">
+Player Name
+<input type="text" id="playerName" placeholder="Enter Player Name">
+
+Player ID (Game ID)
+<input type="text" id="playerId" placeholder="Enter Player ID">
+
+WhatsApp Number
+<input type="text" id="whatsapp" placeholder="Enter WhatsApp Number">
+
+<button onclick="sendOrder()">SUBMIT ORDER</button>
 </div>
 
 <script>
@@ -67,6 +119,7 @@ let items = JSON.parse(localStorage.getItem("items"))||[];
 let summary=document.getElementById("summary");
 let total=0;
 
+/* SHOW ORDER ITEMS */
 for(let i in cart){
 if(cart[i]>0){
 let line=document.createElement("div");
@@ -78,7 +131,53 @@ total+=items[i][1]*cart[i];
 }
 
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
+
+/* LOAD SAVED DATA */
+document.getElementById("playerName").value = localStorage.getItem("playerName")||"";
+document.getElementById("playerId").value = localStorage.getItem("playerId")||"";
+document.getElementById("whatsapp").value = localStorage.getItem("whatsapp")||"";
+
+/* SEND ORDER FUNCTION */
+function sendOrder(){
+
+let name=document.getElementById("playerName").value;
+let id=document.getElementById("playerId").value;
+let wp=document.getElementById("whatsapp").value;
+
+if(name=="" || id=="" || wp==""){
+alert("Please fill all fields!");
+return;
+}
+
+/* GENERATE ORDER ID */
+let orderId = "ORD" + Date.now();
+
+/* SAVE */
+localStorage.setItem("playerName",name);
+localStorage.setItem("playerId",id);
+localStorage.setItem("whatsapp",wp);
+
+/* CREATE MESSAGE */
+let order="🛒 *NEW ORDER* %0A%0A";
+order+="🆔 Order ID: "+orderId+"%0A";
+order+="👤 Name: "+name+"%0A";
+order+="🆔 Player ID: "+id+"%0A";
+order+="📱 WhatsApp: "+wp+"%0A%0A";
+order+="📦 Order Details:%0A";
+
+for(let i in cart){
+if(cart[i]>0){
+order+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR%0A";
+}
+}
+
+order+="%0A💰 Total: "+total+" LKR";
+
+/* SEND TO YOUR WHATSAPP */
+window.open("https://wa.me/94773847598?text="+order,"_blank");
+
+}
 </script>
 
 </body>
-  </html>
+</html>
