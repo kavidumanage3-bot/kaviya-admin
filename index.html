@@ -12,6 +12,38 @@ background:linear-gradient(to bottom,#0f2027,#203a43,#2c5364);
 color:white;
 text-align:center;
 padding:30px;
+overflow-x:hidden;
+}
+
+/* SUCCESS NOTIFICATION */
+.success-bar{
+position:fixed;
+top:-100px;
+left:50%;
+transform:translateX(-50%);
+background:#d4edda;
+color:#155724;
+padding:15px 20px;
+border-radius:12px;
+width:90%;
+max-width:400px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:0.5s;
+z-index:999;
+font-weight:bold;
+}
+
+.success-bar.show{
+top:20px;
+}
+
+.success-bar span{
+cursor:pointer;
+font-weight:bold;
+font-size:18px;
 }
 
 /* ANIMATED FRAME */
@@ -25,7 +57,6 @@ animation: frameColor 4s infinite;
 pointer-events:none;
 }
 
-/* FRAME COLOR CHANGE */
 @keyframes frameColor{
 0%{border-color:green;}
 25%{border-color:blue;}
@@ -44,14 +75,12 @@ animation: colorChange 3s infinite alternate;
 margin-bottom:10px;
 }
 
-/* DELIVERY TEXT */
 .delivery{
 font-size:16px;
 margin-bottom:25px;
 color:#ffffffcc;
 }
 
-/* ADMIN TITLE WHITE GLOW */
 .main-title{
 font-size:42px;
 font-weight:900;
@@ -72,7 +101,6 @@ margin-bottom:20px;
 100%{color:#00c6ff;}
 }
 
-/* INPUT */
 input{
 width:80%;
 padding:14px;
@@ -82,7 +110,6 @@ border-radius:12px;
 font-size:16px;
 }
 
-/* SHOW BUTTON */
 .showbtn{
 padding:10px 20px;
 border:none;
@@ -92,7 +119,6 @@ color:white;
 margin-top:5px;
 }
 
-/* BUTTONS */
 button{
 width:90%;
 padding:16px;
@@ -120,7 +146,6 @@ border:2px solid white;
 color:white;
 }
 
-/* FOOTER TEXT */
 .footer-text{
 margin-top:10px;
 font-size:14px;
@@ -130,6 +155,12 @@ font-weight:bold;
 </style>
 </head>
 <body>
+
+<!-- SUCCESS BAR -->
+<div id="successBar" class="success-bar">
+<span>✅ Login Successfully!</span>
+<span onclick="closeBar()">✖</span>
+</div>
 
 <div class="store-title">KAVIYA DIAMOND STORE</div>
 <div class="delivery">🚀 Delivery Within 10 Minutes</div>
@@ -171,7 +202,19 @@ localStorage.setItem("savedUsername", username);
 localStorage.setItem("savedPassword", password);
 
 loggedIn = true;
-alert("Login Success");
+
+// SHOW SUCCESS BAR
+let bar = document.getElementById("successBar");
+bar.classList.add("show");
+
+// AUTO HIDE AFTER 3 SECONDS
+setTimeout(()=>{
+bar.classList.remove("show");
+},3000);
+}
+
+function closeBar(){
+document.getElementById("successBar").classList.remove("show");
 }
 
 function goTopup(){
