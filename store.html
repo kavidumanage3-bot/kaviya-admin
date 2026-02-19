@@ -8,189 +8,192 @@
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(to bottom,#06142e,#021026);
+background:linear-gradient(to bottom,#06142e,#020d1f);
 color:white;
 padding:15px;
 }
 
-.section-title{
-color:#00e5ff;
-margin-top:30px;
-margin-bottom:10px;
-font-size:20px;
+.section{
+margin-bottom:40px;
+}
+
+.section h2{
+color:#00e0ff;
+font-size:22px;
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
 }
 
 .card{
-background:#0d1f40;
-border-radius:15px;
-padding:15px;
-margin-bottom:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.card-title{
-font-size:15px;
-}
-
-.qty-box{
-display:flex;
-align-items:center;
-gap:8px;
-}
-
-.qty-box button{
-width:30px;
-height:30px;
-border:none;
-border-radius:50%;
-background:#00c6d7;
-color:white;
-font-size:16px;
-}
-
-.bottom{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:#000;
-padding:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.next-btn{
-background:#00c6d7;
-border:none;
-padding:10px 25px;
+background:#0d1b3d;
+padding:20px;
 border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.4);
+text-align:center;
+}
+
+.card h3{
+font-size:14px;
+margin-bottom:10px;
+}
+
+.price{
+font-size:18px;
 font-weight:bold;
+margin-bottom:15px;
+}
+
+.counter{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+background:#08142e;
+padding:8px;
+border-radius:50px;
+}
+
+.counter button{
+background:#00c2d1;
+border:none;
+color:white;
+width:35px;
+height:35px;
+border-radius:50%;
+font-size:18px;
+}
+
+.counter span{
+font-size:18px;
 }
 </style>
 </head>
 <body>
 
-<div id="products"></div>
-
-<div class="bottom">
-<div id="total">Total: 0 LKR</div>
-<button class="next-btn" onclick="goCheckout()">NEXT</button>
-</div>
-
-<script>
-
-const sections = [
-
-{
-title:"MEMBERSHIP PACKAGE",
-items:[
-["WEEKLY LITE MEMBERSHIP",130],
-["WEEKLY MEMBERSHIP",520],
-["MONTHLY MEMBERSHIP",2560],
-["VIP MEMBERSHIP",3080],
-["VIP PLUS MEMBERSHIP",3210],
-["S VIP MEMBERSHIP",4640],
-["S VIP PLUS MEMBERSHIP",5160]
-]
-},
-
-{
-title:"DIAMOND PACKAGE",
-items:[
-["25 💎",100],["50 💎",200],["75 💎",300],
-["100 💎",400],["150 💎",600],["200 💎",800],
-["310 💎",950],["350 💎",1400],["520 💎",1580],
-["830 💎",2530],["1060 💎",3020],["2180 💎",6020],
-["3240 💎",9040],["5600 💎",14700],["6660 💎",17720],
-["8840 💎",23740],["11500 💎",31000],
-["15500 💎",41460],["23000 💎",61000],
-["46000 💎",124000]
-]
-},
-
-{
-title:"LEVEL UP PASS PACKAGE",
-items:[
-["LEVEL 6",180],
-["LEVEL 10",300],
-["LEVEL 15",300],
-["LEVEL 25",300],
-["LEVEL 30",450]
-]
-},
-
-{
-title:"EVO ACCESS PACKAGE",
-items:[
-["EVO ACCESS 3 DAY",200],
-["EVO ACCESS 7 DAY",350],
-["EVO ACCESS 30 DAY",900]
-]
-}
-
-];
-
-let container = document.getElementById("products");
-let cart = {};
-let index=0;
-
-sections.forEach(section=>{
-
-container.innerHTML += `<h2 class="section-title">${section.title}</h2>`;
-
-section.items.forEach(item=>{
-container.innerHTML += `
+<!-- MEMBERSHIP -->
+<div class="section">
+<h2>MEMBERSHIP PACKAGE</h2>
+<div class="grid">
 <div class="card">
-<div class="card-title">
-${item[0]}<br>${item[1]} LKR
+<h3>WEEKLY LITE</h3>
+<div class="price">130 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
 </div>
-<div class="qty-box">
-<button onclick="change(${index},-1)">-</button>
-<span id="q${index}">0</span>
-<button onclick="change(${index},1)">+</button>
+
+<div class="card">
+<h3>WEEKLY</h3>
+<div class="price">520 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>MONTHLY</h3>
+<div class="price">2560 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>VIP</h3>
+<div class="price">3080 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
 </div>
 </div>
-`;
-cart[index]=0;
-index++;
-});
+</div>
 
-});
+<!-- DIAMOND -->
+<div class="section">
+<h2>DIAMOND PACKAGE</h2>
+<div class="grid">
+<div class="card">
+<h3>100 💎</h3>
+<div class="price">400 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
 
-function change(i,val){
-let q=document.getElementById("q"+i);
-let qty=parseInt(q.innerText);
-qty+=val;
-if(qty<0) qty=0;
-q.innerText=qty;
-cart[i]=qty;
-updateTotal();
-}
+<div class="card">
+<h3>310 💎</h3>
+<div class="price">950 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
 
-function updateTotal(){
-let total=0;
-let i=0;
+<div class="card">
+<h3>520 💎</h3>
+<div class="price">1580 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
 
-sections.forEach(section=>{
-section.items.forEach(item=>{
-total+=item[1]*cart[i];
-i++;
-});
-});
+<div class="card">
+<h3>1060 💎</h3>
+<div class="price">3020 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+</div>
+</div>
 
-document.getElementById("total").innerText="Total: "+total+" LKR";
-}
+<!-- LEVEL UP -->
+<div class="section">
+<h2>LEVEL UP PASS</h2>
+<div class="grid">
+<div class="card">
+<h3>LEVEL 6</h3>
+<div class="price">180 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
 
-function goCheckout(){
-localStorage.setItem("cart",JSON.stringify(cart));
-localStorage.setItem("sections",JSON.stringify(sections));
-location.href="checkout.html";
-}
+<div class="card">
+<h3>LEVEL 10</h3>
+<div class="price">300 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
 
-</script>
+<div class="card">
+<h3>LEVEL 15</h3>
+<div class="price">300 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>LEVEL 30</h3>
+<div class="price">450 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+</div>
+</div>
+
+<!-- EVO ACCESS -->
+<div class="section">
+<h2>EVO ACCESS PACKAGE</h2>
+<div class="grid">
+<div class="card">
+<h3>EVO 3 DAY</h3>
+<div class="price">200 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>EVO 7 DAY</h3>
+<div class="price">350 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>EVO 30 DAY</h3>
+<div class="price">900 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+
+<div class="card">
+<h3>EVO 60 DAY</h3>
+<div class="price">1500 LKR</div>
+<div class="counter"><button>-</button><span>0</span><button>+</button></div>
+</div>
+</div>
+</div>
 
 </body>
 </html>
