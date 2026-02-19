@@ -7,7 +7,7 @@
 <style>
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:#070b1a;
 color:white;
 }
@@ -15,7 +15,6 @@ color:white;
 h1{
 text-align:center;
 padding:25px 0;
-letter-spacing:2px;
 color:#00e0ff;
 }
 
@@ -31,21 +30,11 @@ background:#0f1629;
 border-radius:20px;
 padding:15px;
 text-align:center;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.05);
-}
-
-.card img{
-width:80px;
-margin-bottom:10px;
+cursor:pointer;
 }
 
 .price{
-font-size:20px;
+font-size:18px;
 font-weight:bold;
 margin:10px 0;
 }
@@ -65,8 +54,8 @@ border:none;
 border-radius:50%;
 background:#00e0ff;
 color:black;
-font-weight:bold;
 font-size:18px;
+font-weight:bold;
 }
 
 .checkout-bar{
@@ -97,31 +86,22 @@ font-weight:bold;
 
 <div class="container">
 
-<div class="card">
-<img src="https://i.ibb.co/0Y0Y0Y0/weekly.png">
+<div class="card" onclick="selectPack(130)">
 <h3>Weekly Lite</h3>
 <div class="price">130 LKR</div>
-<div class="qty">
-<button>-</button>
-<span>1</span>
-<button>+</button>
-</div>
 </div>
 
-<div class="card">
-<img src="https://i.ibb.co/0Y0Y0Y0/weekly2.png">
+<div class="card" onclick="selectPack(520)">
 <h3>Weekly</h3>
 <div class="price">520 LKR</div>
 </div>
 
-<div class="card">
-<img src="https://i.ibb.co/0Y0Y0Y0/monthly.png">
+<div class="card" onclick="selectPack(2560)">
 <h3>Monthly</h3>
 <div class="price">2560 LKR</div>
 </div>
 
-<div class="card">
-<img src="https://i.ibb.co/0Y0Y0Y0/vip.png">
+<div class="card" onclick="selectPack(3080)">
 <h3>VIP</h3>
 <div class="price">3080 LKR</div>
 </div>
@@ -129,9 +109,46 @@ font-weight:bold;
 </div>
 
 <div class="checkout-bar">
-<div>130 LKR</div>
+<div id="totalPrice">0 LKR</div>
+
+<div class="qty">
+<button onclick="decrease()">-</button>
+<span id="quantity">0</span>
+<button onclick="increase()">+</button>
+</div>
+
 <a href="#" class="checkout-btn">CHECKOUT</a>
 </div>
+
+<script>
+let selectedPrice = 0;
+let quantity = 0;
+
+function selectPack(price){
+selectedPrice = price;
+quantity = 1;
+updateTotal();
+}
+
+function increase(){
+if(selectedPrice > 0){
+quantity++;
+updateTotal();
+}
+}
+
+function decrease(){
+if(quantity > 1){
+quantity--;
+updateTotal();
+}
+}
+
+function updateTotal(){
+document.getElementById("quantity").innerText = quantity;
+document.getElementById("totalPrice").innerText = (selectedPrice * quantity) + " LKR";
+}
+</script>
 
 </body>
 </html>
