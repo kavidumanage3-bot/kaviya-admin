@@ -13,6 +13,14 @@ text-align:center;
 padding:40px;
 }
 
+input{
+width:90%;
+padding:12px;
+margin:8px;
+border:none;
+border-radius:8px;
+}
+
 button{
 width:90%;
 padding:15px;
@@ -21,6 +29,11 @@ border:none;
 border-radius:10px;
 font-size:16px;
 font-weight:bold;
+}
+
+.loginbtn{
+background:#00ff99;
+color:black;
 }
 
 .topup{
@@ -40,6 +53,13 @@ color:white;
 <h1>KAVIYA ADMIN</h1>
 <p>Fast • Secure • Professional Admin Panel</p>
 
+<!-- LOGIN SECTION -->
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button class="loginbtn" onclick="login()">LOGIN</button>
+
+<!-- ORIGINAL BUTTONS -->
 <button class="topup" onclick="location.href='store.html'">
 TOP UP NOW
 </button>
@@ -47,6 +67,9 @@ TOP UP NOW
 <button class="contact">
 CONTACT ADMIN
 </button>
+
+<!-- CONNECT ALERT.JS -->
+<script src="alert.js"></script>
 
 </body>
 </html>
