@@ -83,7 +83,7 @@ margin-top:8px;
 <div id="summary"></div>
 <div class="box total" id="total"></div>
 
-<!-- 🏦 BANK DETAILS -->
+<!-- BANK DETAILS -->
 
 <div class="box">
 🏦 <b>COMMERCIAL BANK</b><br>
@@ -106,14 +106,10 @@ Name: ASANKA M M I S<br>
 Branch: BANDARAWELA
 </div>
 
-<!-- 🔥 EZ CASH STYLE CARD -->
-
 <div class="bank-card">
 <h3>🏦 EZ CASH</h3>
 <p><strong>EZ No:</strong> 0768571751</p>
 </div>
-
-<!-- 📦 ORDER FORM -->
 
 <div class="box">
 
@@ -160,6 +156,7 @@ total+=items[i][1]*cart[i];
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
 let lastOrderId="";
+let adminNumber="94773847598"; // your WhatsApp number
 
 async function sendToTelegram(){
 
@@ -186,7 +183,7 @@ let message=
 "Order ID: "+orderId+"\n"+
 "Name: "+name+"\n"+
 "Player ID: "+id+"\n"+
-"WhatsApp: "+wp+"\n\n";
+"Customer WhatsApp: "+wp+"\n\n";
 
 for(let i in cart){
 if(cart[i]>0){
@@ -217,12 +214,17 @@ document.getElementById("contactBtn").style.display="block";
 
 function contactAdmin(){
 
+let fullMessage =
+"🛒 *ORDER CONFIRMATION*\n\n"+
+"🆔 Order ID: "+lastOrderId+"\n"+
+"💰 Total: "+total+" LKR\n\n"+
+"Please confirm my order.";
+
 navigator.clipboard.writeText(lastOrderId);
 
-let number="94773847598"; // change admin number
-let text=encodeURIComponent("Hello Admin, My Order ID is "+lastOrderId);
+let encodedText = encodeURIComponent(fullMessage);
 
-window.open("https://wa.me/"+number+"?text="+text,"_blank");
+window.open("https://wa.me/"+adminNumber+"?text="+encodedText,"_blank");
 }
 
 </script>
