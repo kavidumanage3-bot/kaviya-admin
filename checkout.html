@@ -46,6 +46,11 @@ color:white;
 font-size:15px;
 }
 
+input[type="file"]{
+background:#1a1a1a;
+padding:10px;
+}
+
 button{
 width:100%;
 padding:14px;
@@ -108,6 +113,10 @@ Player ID (Game ID)
 WhatsApp Number
 <input type="text" id="whatsapp" placeholder="Enter WhatsApp Number">
 
+<br><br>
+📤 Upload Transfer Receipt
+<input type="file" id="receipt" accept="image/*">
+
 <button type="button" onclick="sendOrder()">SUBMIT ORDER</button>
 </div>
 
@@ -135,9 +144,15 @@ function sendOrder(){
 let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerId").value;
 let wp=document.getElementById("whatsapp").value;
+let receipt=document.getElementById("receipt").files.length;
 
 if(name=="" || id=="" || wp==""){
 alert("Please fill all fields!");
+return;
+}
+
+if(receipt==0){
+alert("Please add transfer receipt!");
 return;
 }
 
@@ -158,10 +173,12 @@ message += items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 }
 
 message += "\n💰 Total: "+total+" LKR";
+message += "\n\n📤 Transfer Receipt Attached";
 
 let encodedMessage = encodeURIComponent(message);
 
-window.open("https://wa.me/94773847598?text="+encodedMessage,"_blank");
+/* WhatsApp Open */
+window.location.href = "https://wa.me/94773847598?text="+encodedMessage;
 
 }
 
