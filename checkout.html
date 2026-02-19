@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(to bottom,#050b1e,#0a1030);
+color:white;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#00d0ff;
+}
+
+.box{
+background:#0b1330;
+padding:20px;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+.order-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+}
+
+.total{
+text-align:right;
+font-size:20px;
+color:#00d0ff;
+margin-top:10px;
+}
+
+.bank{
+background:#0b1330;
+padding:15px;
+border-radius:15px;
+margin-bottom:10px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:30px;
+background:#00bcd4;
+color:white;
+font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>CHECKOUT</h1>
+
+<div class="box" id="orderList"></div>
+
+<div class="bank">
+🏦 COMMERCIAL BANK <br>
+8028325273 <br>
+K B DULANI <br>
+BANDARAWELA
+</div>
+
+<div class="bank">
+🏦 DIALOG FINANCE BANK <br>
+001022035261 <br>
+M M R I HANSAKA <br>
+HEAD OFFICE
+</div>
+
+<div class="bank">
+🏦 HNB BANK <br>
+012020083286 <br>
+ASANKA M M I S <br>
+BANDARAWELA
+</div>
+
+<div class="bank">
+📲 Ez Cash: 0768571751
+</div>
+
+<button>SENDING ORDER</button>
+
+<script>
+let items=JSON.parse(localStorage.getItem("orderItems"))||[];
+let total=localStorage.getItem("orderTotal")||0;
+
+let orderDiv=document.getElementById("orderList");
+
+items.forEach(item=>{
+let div=document.createElement("div");
+div.className="order-item";
+div.innerHTML=`<span>${item}</span>`;
+orderDiv.appendChild(div);
+});
+
+orderDiv.innerHTML+=`<div class="total">TOTAL: ${total} LKR</div>`;
+</script>
+
+</body>
+</html>
