@@ -5,6 +5,7 @@
 <title>KAVIYA ADMIN</title>
 
 <style>
+/* OYAGE FULL CSS (UNCHANGED) */
 body{
 margin:0;
 font-family:Arial;
@@ -35,9 +36,7 @@ z-index:999;
 font-weight:bold;
 }
 
-.success-bar.show{
-top:20px;
-}
+.success-bar.show{ top:20px; }
 
 body::before{
 content:"";
@@ -155,9 +154,8 @@ font-weight:bold;
 <h1 class="main-title">KAVIYA ADMIN</h1>
 <p>Fast • Secure • Web owner - Admin kaviya</p>
 
-<!-- TOP PHOTO ONLY -->
 <div class="top-photo">
-    <img src="IMG_20260222_095145_370.jpg">
+<img src="IMG_20260222_095145_370.jpg">
 </div>
 
 <input type="text" id="username" placeholder="Username"><br>
@@ -171,6 +169,7 @@ font-weight:bold;
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
 <script>
+
 let loggedIn = false;
 
 function togglePassword(){
@@ -187,14 +186,45 @@ alert("Enter Username & Password");
 return;
 }
 
-loggedIn = true;
+/* DEMO LOGIN CHECK */
+if(username === "admin" && password === "1234"){
 
+loggedIn = true;
+showSuccess();
+sendTelegram(username);
+
+}else{
+alert("Wrong Username or Password");
+}
+
+}
+
+function showSuccess(){
 let bar = document.getElementById("successBar");
 bar.classList.add("show");
-
 setTimeout(()=>{
 bar.classList.remove("show");
 },3000);
+}
+
+function sendTelegram(user){
+
+let botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
+let chatId = "8324590734";
+
+let message = "✅ Admin Login Alert\n\nUser: " + 
+user + 
+"\nTime: " + new Date().toLocaleString();
+
+fetch("https://api.telegram.org/bot" + botToken + "/sendMessage",{
+method:"POST",
+headers:{ "Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:chatId,
+text:message
+})
+});
+
 }
 
 function goTopup(){
@@ -206,11 +236,12 @@ location.href="store.html";
 }
 
 function contactAdmin(){
-let phone = "94773847598";
-let message = "Hello Admin, I need help.";
-let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-window.open(url, "_blank");
+let phone="94773847598";
+let message="Hello Admin, I need help.";
+let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+window.open(url,"_blank");
 }
+
 </script>
 
 </body>
