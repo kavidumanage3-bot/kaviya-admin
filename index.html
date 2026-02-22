@@ -93,6 +93,19 @@ margin-bottom:20px;
 100%{color:#00ffcc;}
 }
 
+/* 🔥 TOP PHOTO STYLE */
+.top-photo{
+margin:20px auto;
+width:90%;
+max-width:350px;
+}
+
+.top-photo img{
+width:100%;
+border-radius:20px;
+box-shadow:0 0 30px #00c6ff;
+}
+
 input{
 width:80%;
 padding:14px;
@@ -181,6 +194,11 @@ border-radius:20px;
 <h1 class="main-title">KAVIYA ADMIN</h1>
 <p>Fast • Secure • Web owner - Admin kaviya</p>
 
+<!-- 🔥 PHOTO ADDED HERE -->
+<div class="top-photo">
+    <img src="logo.png">
+</div>
+
 <input type="text" id="username" placeholder="Username"><br>
 <input type="password" id="password" placeholder="Password"><br>
 <button class="showbtn" onclick="togglePassword()">Show</button>
@@ -193,7 +211,7 @@ border-radius:20px;
 
 <div class="scroll-space"></div>
 
-<!-- BIG LOGO FRAME (NO TEXT NOW) -->
+<!-- SCROLL FRAME PHOTO -->
 <div class="big-frame" id="bigFrame">
     <div class="inner-frame">
         <img src="logo.png">
@@ -242,7 +260,6 @@ let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 window.open(url, "_blank");
 }
 
-/* SCROLL ANIMATION */
 window.addEventListener("scroll", function(){
 let frame = document.getElementById("bigFrame");
 let position = frame.getBoundingClientRect().top;
