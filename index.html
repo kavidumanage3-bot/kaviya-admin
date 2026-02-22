@@ -141,39 +141,6 @@ font-size:14px;
 color:#00ffcc;
 font-weight:bold;
 }
-
-.scroll-space{
-height:450px;
-}
-
-.big-frame{
-width:95%;
-max-width:420px;
-margin:50px auto;
-padding:15px;
-border-radius:30px;
-background:linear-gradient(45deg,#00ffcc,#00c6ff,#ff00cc);
-box-shadow:0 0 50px rgba(0,0,0,0.7);
-opacity:0;
-transform:translateY(100px) scale(0.8);
-transition:0.8s ease;
-}
-
-.big-frame.show{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-
-.inner-frame{
-background:#111;
-padding:20px;
-border-radius:25px;
-}
-
-.inner-frame img{
-width:100%;
-border-radius:20px;
-}
 </style>
 </head>
 <body>
@@ -188,7 +155,7 @@ border-radius:20px;
 <h1 class="main-title">KAVIYA ADMIN</h1>
 <p>Fast • Secure • Web owner - Admin kaviya</p>
 
-<!-- TOP PHOTO -->
+<!-- TOP PHOTO ONLY -->
 <div class="top-photo">
     <img src="IMG_20260222_095145_370.jpg">
 </div>
@@ -202,15 +169,6 @@ border-radius:20px;
 <button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
-
-<div class="scroll-space"></div>
-
-<!-- SCROLL FRAME PHOTO -->
-<div class="big-frame" id="bigFrame">
-    <div class="inner-frame">
-        <img src="IMG_20260222_095145_370.jpg">
-    </div>
-</div>
 
 <script>
 let loggedIn = false;
@@ -253,16 +211,6 @@ let message = "Hello Admin, I need help.";
 let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 window.open(url, "_blank");
 }
-
-window.addEventListener("scroll", function(){
-let frame = document.getElementById("bigFrame");
-let position = frame.getBoundingClientRect().top;
-let screenHeight = window.innerHeight;
-
-if(position < screenHeight - 100){
-frame.classList.add("show");
-}
-});
 </script>
 
 </body>
