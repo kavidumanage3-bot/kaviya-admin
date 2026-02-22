@@ -46,7 +46,7 @@ font-weight:bold;
 font-size:18px;
 }
 
-/* ANIMATED FRAME */
+/* ANIMATED FRAME BORDER */
 body::before{
 content:"";
 position:fixed;
@@ -152,11 +152,52 @@ font-size:14px;
 color:#00ffcc;
 font-weight:bold;
 }
+
+/* SCROLL SPACE */
+.scroll-space{
+height:500px;
+}
+
+/* BIG DIAMOND FRAME */
+.big-frame{
+width:95%;
+max-width:420px;
+margin:50px auto;
+padding:15px;
+border-radius:25px;
+background:linear-gradient(45deg,#00ffcc,#00c6ff,#ff00cc);
+box-shadow:0 0 40px rgba(0,0,0,0.7);
+opacity:0;
+transform:translateY(100px) scale(0.8);
+transition:0.8s ease;
+}
+
+.big-frame.show{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+.inner-frame{
+background:#111;
+padding:15px;
+border-radius:20px;
+}
+
+.inner-frame img{
+width:100%;
+border-radius:15px;
+}
+
+.frame-title{
+margin-top:10px;
+font-size:18px;
+font-weight:bold;
+color:#00ffcc;
+}
 </style>
 </head>
 <body>
 
-<!-- SUCCESS BAR -->
 <div id="successBar" class="success-bar">
 <span>✅ Login Successfully!</span>
 <span onclick="closeBar()">✖</span>
@@ -169,17 +210,24 @@ font-weight:bold;
 <p>Fast • Secure • Web owner - Admin kaviya</p>
 
 <input type="text" id="username" placeholder="Username"><br>
-
 <input type="password" id="password" placeholder="Password"><br>
 <button class="showbtn" onclick="togglePassword()">Show</button>
 
 <button class="loginbtn" onclick="login()">LOGIN</button>
-
 <button class="topup" onclick="goTopup()">TOP UP NOW</button>
-
 <button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
+
+<div class="scroll-space"></div>
+
+<!-- BIG FRAME SECTION -->
+<div class="big-frame" id="bigFrame">
+    <div class="inner-frame">
+        <img src="photo.jpg">
+        <div class="frame-title">💎 DIAMOND PACK SPECIAL 💎</div>
+    </div>
+</div>
 
 <script>
 let loggedIn = false;
@@ -203,11 +251,9 @@ localStorage.setItem("savedPassword", password);
 
 loggedIn = true;
 
-// SHOW SUCCESS BAR
 let bar = document.getElementById("successBar");
 bar.classList.add("show");
 
-// AUTO HIDE AFTER 3 SECONDS
 setTimeout(()=>{
 bar.classList.remove("show");
 },3000);
@@ -231,6 +277,17 @@ let message = "Hello Admin, I need help.";
 let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 window.open(url, "_blank");
 }
+
+/* SCROLL ANIMATION */
+window.addEventListener("scroll", function(){
+let frame = document.getElementById("bigFrame");
+let position = frame.getBoundingClientRect().top;
+let screenHeight = window.innerHeight;
+
+if(position < screenHeight - 100){
+frame.classList.add("show");
+}
+});
 </script>
 
 </body>
