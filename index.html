@@ -5,7 +5,6 @@
 <title>KAVIYA ADMIN</title>
 
 <style>
-/* OYAGE FULL CSS (UNCHANGED) */
 body{
 margin:0;
 font-family:Arial;
@@ -16,6 +15,7 @@ padding:30px;
 overflow-x:hidden;
 }
 
+/* SUCCESS BAR */
 .success-bar{
 position:fixed;
 top:-100px;
@@ -38,6 +38,7 @@ font-weight:bold;
 
 .success-bar.show{ top:20px; }
 
+/* ANIMATED FRAME */
 body::before{
 content:"";
 position:fixed;
@@ -56,17 +57,16 @@ pointer-events:none;
 100%{border-color:#00ffcc;}
 }
 
+/* TITLES */
 .store-title{
 font-size:28px;
 font-weight:900;
 letter-spacing:3px;
 text-transform:uppercase;
-animation: colorChange 3s infinite alternate;
 margin-bottom:10px;
 }
 
 .delivery{
-font-size:16px;
 margin-bottom:25px;
 color:#ffffffcc;
 }
@@ -75,20 +75,12 @@ color:#ffffffcc;
 font-size:42px;
 font-weight:900;
 letter-spacing:4px;
-color:white;
 text-transform:uppercase;
-text-shadow:
-0 0 5px #ffffff,
-0 0 15px #00c6ff,
-0 0 30px #00c6ff;
+text-shadow:0 0 5px #fff,0 0 15px #00c6ff;
 margin-bottom:20px;
 }
 
-@keyframes colorChange{
-0%{color:#00c6ff;}
-100%{color:#00ffcc;}
-}
-
+/* IMAGE */
 .top-photo{
 margin:20px auto;
 width:90%;
@@ -101,6 +93,7 @@ border-radius:20px;
 box-shadow:0 0 30px #00c6ff;
 }
 
+/* INPUT */
 input{
 width:80%;
 padding:14px;
@@ -110,13 +103,13 @@ border-radius:12px;
 font-size:16px;
 }
 
+/* BUTTONS */
 .showbtn{
 padding:10px 20px;
 border:none;
 border-radius:10px;
 background:#555;
 color:white;
-margin-top:5px;
 }
 
 button{
@@ -131,8 +124,6 @@ cursor:pointer;
 }
 
 .loginbtn{ background:#00ff99; color:black; }
-.topup{ background:#00c6d7; color:black; }
-.contact{ background:transparent; border:2px solid white; color:white; }
 
 .footer-text{
 margin-top:10px;
@@ -163,14 +154,18 @@ font-weight:bold;
 <button class="showbtn" onclick="togglePassword()">Show</button>
 
 <button class="loginbtn" onclick="login()">LOGIN</button>
-<button class="topup" onclick="goTopup()">TOP UP NOW</button>
-<button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
 <script>
 
-let loggedIn = false;
+/* 🔐 OYA KAMATHI USERNAME & PASSWORD EKA */
+const allowedUsername = "kaviya";
+const allowedPassword = "7777";
+
+/* TELEGRAM DETAILS */
+const botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
+const chatId = "8324590734";
 
 function togglePassword(){
 let pw = document.getElementById("password");
@@ -178,23 +173,26 @@ pw.type = (pw.type === "password") ? "text" : "password";
 }
 
 function login(){
-let username = document.getElementById("username").value;
-let password = document.getElementById("password").value;
+
+let username = document.getElementById("username").value.trim();
+let password = document.getElementById("password").value.trim();
 
 if(username === "" || password === ""){
 alert("Enter Username & Password");
 return;
 }
 
-/* DEMO LOGIN CHECK */
-if(username === "admin" && password === "1234"){
+if(username === allowedUsername && password === allowedPassword){
 
-loggedIn = true;
 showSuccess();
 sendTelegram(username);
 
+setTimeout(()=>{
+window.location.href="store.html";
+},1500);
+
 }else{
-alert("Wrong Username or Password");
+alert("Login Details Incorrect");
 }
 
 }
@@ -209,12 +207,10 @@ bar.classList.remove("show");
 
 function sendTelegram(user){
 
-let botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
-let chatId = "8324590734";
-
-let message = "✅ Admin Login Alert\n\nUser: " + 
-user + 
-"\nTime: " + new Date().toLocaleString();
+let message =
+"✅ Admin Login Alert\n\n" +
+"User: " + user + "\n" +
+"Time: " + new Date().toLocaleString();
 
 fetch("https://api.telegram.org/bot" + botToken + "/sendMessage",{
 method:"POST",
@@ -225,21 +221,6 @@ text:message
 })
 });
 
-}
-
-function goTopup(){
-if(!loggedIn){
-alert("⚠️ Please first login");
-return;
-}
-location.href="store.html";
-}
-
-function contactAdmin(){
-let phone="94773847598";
-let message="Hello Admin, I need help.";
-let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
-window.open(url,"_blank");
 }
 
 </script>
