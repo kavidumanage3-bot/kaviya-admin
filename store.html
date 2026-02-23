@@ -46,20 +46,20 @@ transform:scale(1.02);
 }
 
 .card img{
-width:80px;
-height:80px;
+width:120px;       /* increased size */
+height:120px;      /* increased size */
 object-fit:contain;
 border-radius:10px;
 margin-bottom:8px;
 }
 
 .card h3{
-font-size:13px;
+font-size:14px;
 margin-bottom:8px;
 }
 
 .price{
-font-size:14px;
+font-size:16px;
 font-weight:bold;
 margin-bottom:10px;
 }
@@ -273,14 +273,12 @@ updateTotal();
 function updateTotal(){
 let total=0;
 let i=0;
-
 sections.forEach(section=>{
 section.items.forEach(item=>{
 total += cart[i]*item[1];
 i++;
 });
 });
-
 document.getElementById("total").innerText="Total: "+total+" LKR";
 }
 
