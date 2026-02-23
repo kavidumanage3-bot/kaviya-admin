@@ -46,10 +46,8 @@ transform:scale(1.03);
 }
 
 .card img{
-width:80px;       /* smaller */
-height:80px;
-object-fit:contain;
-border-radius:10px;
+width:100%;
+border-radius:15px;
 margin-bottom:10px;
 }
 
@@ -143,6 +141,7 @@ color:black;
 </div>
 
 <script>
+
 const sections = [
 
 {
@@ -196,7 +195,9 @@ let container = document.getElementById("products");
 let cart = {};
 let index = 0;
 
+// Map each item to a separate image (item-level images)
 const itemImages = {
+  // MEMBERSHIP
   "WEEKLY LITE MEMBERSHIP": "3ezFGJgnumUR3SqEjz3cAJBi4J7nEG9fla2myobY.png",
   "WEEKLY MEMBERSHIP": "images/weekly.png",
   "MONTHLY MEMBERSHIP": "images/monthly.png",
@@ -204,6 +205,8 @@ const itemImages = {
   "VIP PLUS MEMBERSHIP": "images/vip_plus.png",
   "S VIP MEMBERSHIP": "images/s_vip.png",
   "S VIP PLUS MEMBERSHIP": "images/s_vip_plus.png",
+
+  // DAIOMED PACK
   "25 💎": "images/25.png",
   "50 💎": "images/50.png",
   "75 💎": "images/75.png",
@@ -224,12 +227,16 @@ const itemImages = {
   "15500 💎": "images/15500.png",
   "23000 💎": "images/23000.png",
   "46000 💎": "images/46000.png",
+
+  // LEVEL UP PASS
   "LEVEL 6": "images/level6.png",
   "LEVEL 10": "images/level10.png",
   "LEVEL 15": "images/level15.png",
   "LEVEL 20": "images/level20.png",
   "LEVEL 25": "images/level25.png",
   "LEVEL 30": "images/level30.png",
+
+  // EVO ACCESS
   "EVO ACCESS — 3 DAY": "images/evo3.png",
   "EVO ACCESS — 7 DAY": "images/evo7.png",
   "EVO ACCESS — 30 DAY": "images/evo30.png",
@@ -239,7 +246,7 @@ sections.forEach(section=>{
 container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
 
 section.items.forEach(item=>{
-  let imgUrl = itemImages[item[0]] || "images/default.png";
+  let imgUrl = itemImages[item[0]] || "images/default.png"; // fallback default
   container.innerHTML += `
   <div class="card">
     <img src="${imgUrl}" alt="${item[0]}">
@@ -272,33 +279,40 @@ updateTotal();
 function updateTotal(){
 let total=0;
 let i=0;
+
 sections.forEach(section=>{
 section.items.forEach(item=>{
 total += cart[i]*item[1];
 i++;
 });
 });
+
 document.getElementById("total").innerText="Total: "+total+" LKR";
 }
 
 function goCheckout(){
 let hasItem = false;
+
 for(let i in cart){
 if(cart[i] > 0){
 hasItem = true;
 break;
 }
 }
+
 if(!hasItem){
 alert("Please select top up pack!");
 return;
 }
+
 localStorage.setItem("cart",JSON.stringify(cart));
 localStorage.setItem("items",JSON.stringify(
 sections.flatMap(section => section.items)
 ));
+
 location.href="checkout.html";
 }
+
 </script>
 
 </body>
