@@ -12,10 +12,19 @@ body{
   color:white;
   padding:15px;
   padding-bottom:140px;
+  text-align:center;
+}
+
+.store-title{
+  color:white;  /* White heading */
+  font-size:28px;
+  font-weight:bold;
+  margin-bottom:25px;
 }
 
 .section{
   margin-bottom:40px;
+  text-align:left; /* Sections left aligned */
 }
 
 .section h2{
@@ -131,11 +140,14 @@ body{
 
 .next-btn:hover{
   background:#00c2d1;
-  color:black;
+  color:green;
 }
 </style>
 </head>
 <body>
+
+<!-- New Store Title -->
+<div class="store-title">KAVIYA DAIOMED STORE</div>
 
 <div id="products"></div>
 
@@ -149,7 +161,7 @@ const sections = [
   {
     title:"MEMBERSHIP",
     items:[
-      ["WEEKLY LITE MEMBERSHIP",140],
+      ["WEEKLY LITE MEMBERSHIP",130],
       ["WEEKLY MEMBERSHIP",520],
       ["MONTHLY MEMBERSHIP",2560],
       ["VIP MEMBERSHIP",3080],
