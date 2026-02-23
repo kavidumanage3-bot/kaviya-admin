@@ -141,7 +141,9 @@ color:black;
 </div>
 
 <script>
+
 const sections = [
+
 {
 title:"MEMBERSHIP",
 items:[
@@ -186,45 +188,82 @@ items:[
 ["EVO ACCESS — 30 DAY",900]
 ]
 }
+
 ];
 
 let container = document.getElementById("products");
 let cart = {};
 let index = 0;
 
-// Function to return image URL based on section
-function getImageURL(sectionTitle){
-  switch(sectionTitle){
-    case "MEMBERSHIP": return "images/membership.png";
-    case "DAIOMED PACK": return "images/daiomed.png";
-    case "LEVEL UP PASS PACKAGE": return "images/levelup.png";
-    case "EVO ACCESS PACKAGE": return "images/evoaccess.png";
-    default: return "images/default.png";
-  }
-}
+// Map each item to a separate image (item-level images)
+const itemImages = {
+  // MEMBERSHIP
+  "WEEKLY LITE MEMBERSHIP": "images/weekly_lite.png",
+  "WEEKLY MEMBERSHIP": "images/weekly.png",
+  "MONTHLY MEMBERSHIP": "images/monthly.png",
+  "VIP MEMBERSHIP": "images/vip.png",
+  "VIP PLUS MEMBERSHIP": "images/vip_plus.png",
+  "S VIP MEMBERSHIP": "images/s_vip.png",
+  "S VIP PLUS MEMBERSHIP": "images/s_vip_plus.png",
+
+  // DAIOMED PACK
+  "25 💎": "images/25.png",
+  "50 💎": "images/50.png",
+  "75 💎": "images/75.png",
+  "100 💎": "images/100.png",
+  "150 💎": "images/150.png",
+  "200 💎": "images/200.png",
+  "310 💎": "images/310.png",
+  "350 💎": "images/350.png",
+  "520 💎": "images/520.png",
+  "830 💎": "images/830.png",
+  "1060 💎": "images/1060.png",
+  "2180 💎": "images/2180.png",
+  "3240 💎": "images/3240.png",
+  "5600 💎": "images/5600.png",
+  "6660 💎": "images/6660.png",
+  "8840 💎": "images/8840.png",
+  "11500 💎": "images/11500.png",
+  "15500 💎": "images/15500.png",
+  "23000 💎": "images/23000.png",
+  "46000 💎": "images/46000.png",
+
+  // LEVEL UP PASS
+  "LEVEL 6": "images/level6.png",
+  "LEVEL 10": "images/level10.png",
+  "LEVEL 15": "images/level15.png",
+  "LEVEL 20": "images/level20.png",
+  "LEVEL 25": "images/level25.png",
+  "LEVEL 30": "images/level30.png",
+
+  // EVO ACCESS
+  "EVO ACCESS — 3 DAY": "images/evo3.png",
+  "EVO ACCESS — 7 DAY": "images/evo7.png",
+  "EVO ACCESS — 30 DAY": "images/evo30.png",
+};
 
 sections.forEach(section=>{
-  container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
+container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
 
-  section.items.forEach(item=>{
-    let imgUrl = getImageURL(section.title);
-    container.innerHTML += `
-    <div class="card">
-      <img src="${imgUrl}" alt="${item[0]}">
-      <h3>${item[0]}</h3>
-      <div class="price">LKR ${item[1]}</div>
-      <div class="counter">
-        <button onclick="change(${index},-1)">-</button>
-        <span id="q${index}">0</span>
-        <button onclick="change(${index},1)">+</button>
-      </div>
+section.items.forEach(item=>{
+  let imgUrl = itemImages[item[0]] || "images/default.png"; // fallback default
+  container.innerHTML += `
+  <div class="card">
+    <img src="${imgUrl}" alt="${item[0]}">
+    <h3>${item[0]}</h3>
+    <div class="price">LKR ${item[1]}</div>
+    <div class="counter">
+      <button onclick="change(${index},-1)">-</button>
+      <span id="q${index}">0</span>
+      <button onclick="change(${index},1)">+</button>
     </div>
-    `;
-    cart[index]=0;
-    index++;
-  });
+  </div>
+  `;
+  cart[index]=0;
+  index++;
+});
 
-  container.innerHTML += `</div></div>`;
+container.innerHTML += `</div></div>`;
 });
 
 function change(i,val){
