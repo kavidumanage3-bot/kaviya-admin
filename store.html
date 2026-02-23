@@ -6,130 +6,132 @@
 
 <style>
 body{
-margin:0;
-font-family:Arial;
-background:#000000; /* Full black background */
-color:white;
-padding:15px;
-padding-bottom:120px;
+  margin:0;
+  font-family:Arial;
+  background:#000000; /* Full black background */
+  color:white;
+  padding:15px;
+  padding-bottom:140px;
 }
 
 .section{
-margin-bottom:40px;
+  margin-bottom:40px;
 }
 
 .section h2{
-color:#00e0ff;
-font-size:22px;
-margin-bottom:20px;
+  color:#00e0ff;
+  font-size:22px;
+  margin-bottom:20px;
 }
 
 .grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
 }
 
 .card{
-background:#000000; /* Card inner black */
-padding:15px;
-border-radius:15px;
-border:2px solid #ffffff;
-box-shadow:0 5px 15px rgba(0,0,0,0.5);
-text-align:center;
-transition:0.3s;
+  background:#000000; /* Card inner black */
+  padding:20px;
+  border-radius:15px;
+  border:2px solid #ffffff;
+  box-shadow:0 5px 15px rgba(255,255,255,0.1);
+  text-align:center;
+  transition:0.3s;
 }
 
 .card:hover{
-box-shadow:0 0 20px rgba(255,255,255,0.7);
-transform:scale(1.03);
+  box-shadow:0 0 20px rgba(255,255,255,0.5);
+  transform:scale(1.03);
 }
 
 .card img{
-width:80px; /* PNG size adjust */
-height:80px;
-object-fit:contain;
-border-radius:10px;
-margin-bottom:8px;
+  width:120px; /* PNG size increased */
+  height:120px;
+  object-fit:contain;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
 .card h3{
-font-size:14px;
-margin-bottom:8px;
+  font-size:16px;
+  margin-bottom:10px;
 }
 
 .price{
-font-size:16px;
-font-weight:bold;
-margin-bottom:10px;
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:12px;
 }
 
 .counter{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-background:#111111; /* Counter dark black */
-padding:6px;
-border-radius:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  background:#111111; /* Counter dark black */
+  padding:6px 10px;
+  border-radius:40px;
 }
 
 .counter button{
-background:#00c2d1;
-border:none;
-color:white;
-width:30px;
-height:30px;
-border-radius:50%;
-font-size:16px;
-cursor:pointer;
+  background:#00c2d1;
+  border:none;
+  color:white;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
 }
 
 .counter span{
-font-size:16px;
+  font-size:18px;
+  min-width:25px;
+  text-align:center;
 }
 
 .bottom-bar{
-position:fixed;
-bottom:10px;
-left:10px;
-right:10px;
-background:#000;
-border-radius:30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 18px;
-box-shadow:0 10px 20px rgba(0,0,0,0.6);
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  right:10px;
+  background:#000;
+  border-radius:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 20px;
+  box-shadow:0 10px 25px rgba(255,255,255,0.1);
 }
 
 .total{
-font-size:16px;
-font-weight:bold;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .next-btn{
-background:black;
-color:white;
-border:3px solid;
-padding:10px 24px;
-border-radius:30px;
-font-weight:bold;
-cursor:pointer;
-animation: borderMove 4s infinite;
+  background:black;
+  color:white;
+  border:3px solid;
+  padding:10px 24px;
+  border-radius:30px;
+  font-weight:bold;
+  cursor:pointer;
+  animation: borderMove 4s infinite;
 }
 
 @keyframes borderMove{
-0%{border-color:green;}
-25%{border-color:blue;}
-50%{border-color:red;}
-75%{border-color:yellow;}
-100%{border-color:green;}
+  0%{border-color:green;}
+  25%{border-color:blue;}
+  50%{border-color:red;}
+  75%{border-color:yellow;}
+  100%{border-color:green;}
 }
 
 .next-btn:hover{
-background:#00c2d1;
-color:black;
+  background:#00c2d1;
+  color:black;
 }
 </style>
 </head>
@@ -138,58 +140,50 @@ color:black;
 <div id="products"></div>
 
 <div class="bottom-bar">
-<div class="total" id="total">Total: 0 LKR</div>
-<button class="next-btn" onclick="goCheckout()">NEXT</button>
+  <div class="total" id="total">Total: 0 LKR</div>
+  <button class="next-btn" onclick="goCheckout()">NEXT</button>
 </div>
 
 <script>
 const sections = [
-
-{
-title:"MEMBERSHIP",
-items:[
-["WEEKLY LITE MEMBERSHIP",130],
-["WEEKLY MEMBERSHIP",520],
-["MONTHLY MEMBERSHIP",2560],
-["VIP MEMBERSHIP",3080],
-["VIP PLUS MEMBERSHIP",3210],
-["S VIP MEMBERSHIP",4640],
-["S VIP PLUS MEMBERSHIP",5160]
-]
-},
-
-{
-title:"DAIOMED PACK",
-items:[
-["25 💎",100],["50 💎",200],["75 💎",300],["100 💎",400],
-["150 💎",600],["200 💎",800],["310 💎",950],["350 💎",1400],
-["520 💎",1580],["830 💎",2530],["1060 💎",3020],["2180 💎",6020],
-["3240 💎",9040],["5600 💎",14700],["6660 💎",17720],["8840 💎",23740],
-["11500 💎",31000],["15500 💎",41460],["23000 💎",61000],["46000 💎",124000]
-]
-},
-
-{
-title:"LEVEL UP PASS PACKAGE",
-items:[
-["LEVEL 6",180],
-["LEVEL 10",300],
-["LEVEL 15",300],
-["LEVEL 20",300],
-["LEVEL 25",300],
-["LEVEL 30",450]
-]
-},
-
-{
-title:"EVO ACCESS PACKAGE",
-items:[
-["EVO ACCESS — 3 DAY",200],
-["EVO ACCESS — 7 DAY",350],
-["EVO ACCESS — 30 DAY",900]
-]
-}
-
+  {
+    title:"MEMBERSHIP",
+    items:[
+      ["WEEKLY LITE MEMBERSHIP",130],
+      ["WEEKLY MEMBERSHIP",520],
+      ["MONTHLY MEMBERSHIP",2560],
+      ["VIP MEMBERSHIP",3080],
+      ["VIP PLUS MEMBERSHIP",3210],
+      ["S VIP MEMBERSHIP",4640],
+      ["S VIP PLUS MEMBERSHIP",5160]
+    ]
+  },
+  {
+    title:"DAIOMED PACK",
+    items:[
+      ["25 💎",100],["50 💎",200],["75 💎",300],["100 💎",400],
+      ["150 💎",600],["200 💎",800],["310 💎",950],["350 💎",1400],
+      ["520 💎",1580],["830 💎",2530],["1060 💎",3020],["2180 💎",6020],
+      ["3240 💎",9040],["5600 💎",14700],["6660 💎",17720],
+      ["8840 💎",23740],["11500 💎",31000],["15500 💎",41460],
+      ["23000 💎",61000],["46000 💎",124000]
+    ]
+  },
+  {
+    title:"LEVEL UP PASS PACKAGE",
+    items:[
+      ["LEVEL 6",180],["LEVEL 10",300],["LEVEL 15",300],
+      ["LEVEL 20",300],["LEVEL 25",300],["LEVEL 30",450]
+    ]
+  },
+  {
+    title:"EVO ACCESS PACKAGE",
+    items:[
+      ["EVO ACCESS — 3 DAY",200],
+      ["EVO ACCESS — 7 DAY",350],
+      ["EVO ACCESS — 30 DAY",900]
+    ]
+  }
 ];
 
 let container = document.getElementById("products");
@@ -198,107 +192,85 @@ let index = 0;
 
 // Images map
 const itemImages = {
-  "WEEKLY LITE MEMBERSHIP": "3ezFGJgnumUR3SqEjz3cAJBi4J7nEG9fla2myobY.png",
-  "WEEKLY MEMBERSHIP": "oss-a4dc82551f55d986ea4bab3e8521c172.png",
-  "MONTHLY MEMBERSHIP": "xF6FE1FBC-FF48-4B7F-A381-C33FC06934AC-430x430.png.pagespeed.ic.phNjUfd3rU.png",
-  "VIP MEMBERSHIP": "F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
-  "VIP PLUS MEMBERSHIP": "F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
-  "S VIP MEMBERSHIP": "F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
-  "S VIP PLUS MEMBERSHIP": "F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
-  "25 💎": "images/25.png",
-  "50 💎": "images/50.png",
-  "75 💎": "images/75.png",
-  "100 💎": "images/100.png",
-  "150 💎": "images/150.png",
-  "200 💎": "images/200.png",
-  "310 💎": "images/310.png",
-  "350 💎": "images/350.png",
-  "520 💎": "images/520.png",
-  "830 💎": "images/830.png",
-  "1060 💎": "images/1060.png",
-  "2180 💎": "images/2180.png",
-  "3240 💎": "images/3240.png",
-  "5600 💎": "images/5600.png",
-  "6660 💎": "images/6660.png",
-  "8840 💎": "images/8840.png",
-  "11500 💎": "images/11500.png",
-  "15500 💎": "images/15500.png",
-  "23000 💎": "images/23000.png",
-  "46000 💎": "images/46000.png",
-  "LEVEL 6": "images/level6.png",
-  "LEVEL 10": "images/level10.png",
-  "LEVEL 15": "images/level15.png",
-  "LEVEL 20": "images/level20.png",
-  "LEVEL 25": "images/level25.png",
-  "LEVEL 30": "images/level30.png",
-  "EVO ACCESS — 3 DAY": "images/evo3.png",
-  "EVO ACCESS — 7 DAY": "images/evo7.png",
-  "EVO ACCESS — 30 DAY": "images/evo30.png",
+  "WEEKLY LITE MEMBERSHIP":"3ezFGJgnumUR3SqEjz3cAJBi4J7nEG9fla2myobY.png",
+  "WEEKLY MEMBERSHIP":"oss-a4dc82551f55d986ea4bab3e8521c172.png",
+  "MONTHLY MEMBERSHIP":"xF6FE1FBC-FF48-4B7F-A381-C33FC06934AC-430x430.png.pagespeed.ic.phNjUfd3rU.png",
+  "VIP MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "S VIP MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "S VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "25 💎":"images/25.png","50 💎":"images/50.png","75 💎":"images/75.png","100 💎":"images/100.png",
+  "150 💎":"images/150.png","200 💎":"images/200.png","310 💎":"images/310.png",
+  "350 💎":"images/350.png","520 💎":"images/520.png","830 💎":"images/830.png",
+  "1060 💎":"images/1060.png","2180 💎":"images/2180.png","3240 💎":"images/3240.png",
+  "5600 💎":"images/5600.png","6660 💎":"images/6660.png","8840 💎":"images/8840.png",
+  "11500 💎":"images/11500.png","15500 💎":"images/15500.png","23000 💎":"images/23000.png",
+  "46000 💎":"images/46000.png",
+  "LEVEL 6":"images/level6.png","LEVEL 10":"images/level10.png",
+  "LEVEL 15":"images/level15.png","LEVEL 20":"images/level20.png",
+  "LEVEL 25":"images/level25.png","LEVEL 30":"images/level30.png",
+  "EVO ACCESS — 3 DAY":"images/evo3.png","EVO ACCESS — 7 DAY":"images/evo7.png","EVO ACCESS — 30 DAY":"images/evo30.png"
 };
 
 sections.forEach(section=>{
-container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
-
-section.items.forEach(item=>{
-  let imgUrl = itemImages[item[0]] || "images/default.png";
-  container.innerHTML += `
-  <div class="card">
-    <img src="${imgUrl}" alt="${item[0]}">
-    <h3>${item[0]}</h3>
-    <div class="price">LKR ${item[1]}</div>
-    <div class="counter">
-      <button onclick="change(${index},-1)">-</button>
-      <span id="q${index}">0</span>
-      <button onclick="change(${index},1)">+</button>
-    </div>
-  </div>
-  `;
-  cart[index]=0;
-  index++;
-});
-
-container.innerHTML += `</div></div>`;
+  container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
+  section.items.forEach(item=>{
+    let imgUrl = itemImages[item[0]] || "images/default.png";
+    container.innerHTML += `
+      <div class="card">
+        <img src="${imgUrl}" alt="${item[0]}">
+        <h3>${item[0]}</h3>
+        <div class="price">LKR ${item[1]}</div>
+        <div class="counter">
+          <button onclick="change(${index},-1)">-</button>
+          <span id="q${index}">0</span>
+          <button onclick="change(${index},1)">+</button>
+        </div>
+      </div>
+    `;
+    cart[index]=0;
+    index++;
+  });
+  container.innerHTML += `</div></div>`;
 });
 
 function change(i,val){
-let q=document.getElementById("q"+i);
-let qty=parseInt(q.innerText);
-qty+=val;
-if(qty<0) qty=0;
-q.innerText=qty;
-cart[i]=qty;
-updateTotal();
+  let q=document.getElementById("q"+i);
+  let qty=parseInt(q.innerText);
+  qty+=val;
+  if(qty<0) qty=0;
+  q.innerText=qty;
+  cart[i]=qty;
+  updateTotal();
 }
 
 function updateTotal(){
-let total=0;
-let i=0;
-sections.forEach(section=>{
-section.items.forEach(item=>{
-total += cart[i]*item[1];
-i++;
-});
-});
-document.getElementById("total").innerText="Total: "+total+" LKR";
+  let total=0;
+  let i=0;
+  sections.forEach(section=>{
+    section.items.forEach(item=>{
+      total += cart[i]*item[1];
+      i++;
+    });
+  });
+  document.getElementById("total").innerText="Total: "+total+" LKR";
 }
 
 function goCheckout(){
-let hasItem = false;
-for(let i in cart){
-if(cart[i] > 0){
-hasItem = true;
-break;
-}
-}
-if(!hasItem){
-alert("Please select top up pack!");
-return;
-}
-localStorage.setItem("cart",JSON.stringify(cart));
-localStorage.setItem("items",JSON.stringify(
-sections.flatMap(section => section.items)
-));
-location.href="checkout.html";
+  let hasItem = false;
+  for(let i in cart){
+    if(cart[i] > 0){
+      hasItem = true;
+      break;
+    }
+  }
+  if(!hasItem){
+    alert("Please select top up pack!");
+    return;
+  }
+  localStorage.setItem("cart",JSON.stringify(cart));
+  localStorage.setItem("items",JSON.stringify(sections.flatMap(section => section.items)));
+  location.href="checkout.html";
 }
 </script>
 
