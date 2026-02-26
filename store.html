@@ -14,16 +14,15 @@ body{
   padding:15px;
   padding-bottom:140px;
   text-align:center;
-  overflow:hidden;
-  position:relative;
+  position:relative; /* relative for absolute diamonds */
 }
 
 /* Animated diamonds layer */
 body::before {
   content:"";
-  position:fixed;
+  position:absolute; /* changed from fixed */
   top:0; left:0; right:0; bottom:0;
-  background-image: url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg'), url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg'), url('diamond3.png'), url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg'), url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg');
+  background-image: url('diamond1.png'), url('diamond2.png'), url('diamond3.png'), url('diamond4.png'), url('diamond5.png');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-position: 10% 20%, 50% 10%, 70% 40%, 30% 60%, 80% 80%;
   background-size: 80px 80px, 100px 100px, 60px 60px, 90px 90px, 70px 70px;
