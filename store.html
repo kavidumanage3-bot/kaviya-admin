@@ -12,18 +12,20 @@ body{
   padding:15px;
   padding-bottom:140px;
   text-align:center;
-  /* Full page background image */
-  background-image: url('diamond-clipart-design-illustration-free-png.png'); /* <- replace with your image path */
+
+  /* Background image full page */
+  background-image: url('img/background/store_bg.jpg'); /* <-- Replace this with your background image path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Optional: overlay to make content readable */
 body::before{
   content:"";
   position:fixed;
   top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.6); /* dark overlay for readability */
+  background: rgba(0,0,0,0.6); /* semi-transparent dark overlay */
   z-index:-1;
 }
 
@@ -52,7 +54,7 @@ body::before{
 }
 
 .card{
-  background:rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.7);
   padding:20px;
   border-radius:15px;
   border:2px solid #ffffff;
@@ -172,57 +174,39 @@ const sections = [
   {
     title:"MEMBERSHIP",
     items:[
-      ["WEEKLY LITE MEMBERSHIP",130,"img/membership/weekly_lite.png"],
-      ["WEEKLY MEMBERSHIP",520,"img/membership/weekly.png"],
-      ["MONTHLY MEMBERSHIP",2560,"img/membership/monthly.png"],
-      ["VIP MEMBERSHIP",3080,"img/membership/vip.png"],
-      ["VIP PLUS MEMBERSHIP",3210,"img/membership/vip_plus.png"],
-      ["S VIP MEMBERSHIP",4640,"img/membership/s_vip.png"],
-      ["S VIP PLUS MEMBERSHIP",5160,"img/membership/s_vip_plus.png"]
+      ["WEEKLY LITE MEMBERSHIP",130],
+      ["WEEKLY MEMBERSHIP",520],
+      ["MONTHLY MEMBERSHIP",2560],
+      ["VIP MEMBERSHIP",3080],
+      ["VIP PLUS MEMBERSHIP",3210],
+      ["S VIP MEMBERSHIP",4640],
+      ["S VIP PLUS MEMBERSHIP",5160]
     ]
   },
   {
     title:"DIAMOND PACK",
     items:[
-      ["25 💎",100,"img/diamonds/25.png"],
-      ["50 💎",200,"img/diamonds/50.png"],
-      ["75 💎",300,"img/diamonds/75.png"],
-      ["100 💎",400,"img/diamonds/100.png"],
-      ["150 💎",600,"img/diamonds/150.png"],
-      ["200 💎",800,"img/diamonds/200.png"],
-      ["310 💎",950,"img/diamonds/310.png"],
-      ["350 💎",1400,"img/diamonds/350.png"],
-      ["520 💎",1580,"img/diamonds/520.png"],
-      ["830 💎",2530,"img/diamonds/830.png"],
-      ["1060 💎",3020,"img/diamonds/1060.png"],
-      ["2180 💎",6020,"img/diamonds/2180.png"],
-      ["3240 💎",9040,"img/diamonds/3240.png"],
-      ["5600 💎",14700,"img/diamonds/5600.png"],
-      ["6660 💎",17720,"img/diamonds/6660.png"],
-      ["8840 💎",23740,"img/diamonds/8840.png"],
-      ["11500 💎",31000,"img/diamonds/11500.png"],
-      ["15500 💎",41460,"img/diamonds/15500.png"],
-      ["23000 💎",61000,"img/diamonds/23000.png"],
-      ["46000 💎",124000,"img/diamonds/46000.png"]
+      ["25 💎",100],["50 💎",200],["75 💎",300],["100 💎",400],
+      ["150 💎",600],["200 💎",800],["310 💎",950],["350 💎",1400],
+      ["520 💎",1580],["830 💎",2530],["1060 💎",3020],["2180 💎",6020],
+      ["3240 💎",9040],["5600 💎",14700],["6660 💎",17720],
+      ["8840 💎",23740],["11500 💎",31000],["15500 💎",41460],
+      ["23000 💎",61000],["46000 💎",124000]
     ]
   },
   {
     title:"LEVEL UP PASS PACKAGE",
     items:[
-      ["LEVEL 6",180,"img/levelup/level6.png"],
-      ["LEVEL 10",300,"img/levelup/level10.png"],
-      ["LEVEL 15",300,"img/levelup/level15.png"],
-      ["LEVEL 20",300,"img/levelup/level20.png"],
-      ["LEVEL 25",300,"img/levelup/level25.png"],
-      ["LEVEL 30",450,"img/levelup/level30.png"]
+      ["LEVEL 6",180],["LEVEL 10",300],["LEVEL 15",300],
+      ["LEVEL 20",300],["LEVEL 25",300],["LEVEL 30",450]
     ]
   },
   {
     title:"EVO ACCESS PACKAGE",
     items:[
-      ["EVO ACCESS — 3 DAY",200,"img/evo/evo3.png"],
-      ["EVO ACCESS — 7 DAY",350,"img/evo/evo7.png"],
-      ["EVO ACCESS — 30 DAY",900,"img/evo/evo30.png"]
+      ["EVO ACCESS — 3 DAY",200],
+      ["EVO ACCESS — 7 DAY",350],
+      ["EVO ACCESS — 30 DAY",900]
     ]
   }
 ];
@@ -231,10 +215,36 @@ let container = document.getElementById("products");
 let cart = {};
 let index = 0;
 
+// Images map
+const itemImages = {
+  "WEEKLY LITE MEMBERSHIP":"3ezFGJgnumUR3SqEjz3cAJBi4J7nEG9fla2myobY.png",
+  "WEEKLY MEMBERSHIP":"oss-a4dc82551f55d986ea4bab3e8521c172.png",
+  "MONTHLY MEMBERSHIP":"xF6FE1FBC-FF48-4B7F-A381-C33FC06934AC-430x430.png.pagespeed.ic.phNjUfd3rU.png",
+  "VIP MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "S VIP MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "S VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
+  "25 💎":"untitled-2025-09-21T105937.573.jpg","50 💎":"untitled-2025-09-21T105937.573.jpg",
+  "75 💎":"untitled-2025-09-21T105937.573.jpg","100 💎":"untitled-2025-09-21T105937.573.jpg",
+  "150 💎":"untitled-2025-09-21T105937.573.jpg","200 💎":"untitled-2025-09-21T105937.573.jpg",
+  "310 💎":"untitled-2025-09-21T105937.573.jpg","350 💎":"untitled-2025-09-21T105937.573.jpg",
+  "520 💎":"untitled-2025-09-21T105937.573.jpg","830 💎":"untitled-2025-09-21T105937.573.jpg",
+  "1060 💎":"untitled-2025-09-21T105937.573.jpg","2180 💎":"untitled-2025-09-21T105937.573.jpg",
+  "3240 💎":"untitled-2025-09-21T105937.573.jpg","5600 💎":"untitled-2025-09-21T105937.573.jpg",
+  "6660 💎":"untitled-2025-09-21T105937.573.jpg","8840 💎":"untitled-2025-09-21T105937.573.jpg",
+  "11500 💎":"untitled-2025-09-21T105937.573.jpg","15500 💎":"untitled-2025-09-21T105937.573.jpg",
+  "23000 💎":"untitled-2025-09-21T105937.573.jpg","46000 💎":"untitled-2025-09-21T105937.573.jpg",
+  "LEVEL 6":"IMG_20260223_234328_528.jpg","LEVEL 10":"IMG_20260223_234328_528.jpg",
+  "LEVEL 15":"IMG_20260223_234328_528.jpg","LEVEL 20":"IMG_20260223_234328_528.jpg",
+  "LEVEL 25":"IMG_20260223_234328_528.jpg","LEVEL 30":"IMG_20260223_234328_528.jpg",
+  "EVO ACCESS — 3 DAY":"IMG_20260223_234325_627.jpg","EVO ACCESS — 7 DAY":"IMG_20260223_234325_627.jpg",
+  "EVO ACCESS — 30 DAY":"IMG_20260223_234325_627.jpg"
+};
+
 sections.forEach(section=>{
   container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
   section.items.forEach(item=>{
-    let imgUrl = item[2];
+    let imgUrl = itemImages[item[0]] || "images/default.png";
     container.innerHTML += `
       <div class="card">
         <img src="${imgUrl}" alt="${item[0]}">
