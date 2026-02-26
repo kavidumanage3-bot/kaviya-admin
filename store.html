@@ -2,47 +2,73 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Packages</title>
-
+<title>Floating Diamonds</title>
 <style>
-/* ===== BODY & ANIMATED DIAMONDS ===== */
 body{
   margin:0;
-  font-family:Arial;
-  background:#000; /* full black background */
-  color:white;
-  padding:15px;
-  padding-bottom:140px;
-  text-align:center;
-  position:relative; /* relative for absolute diamonds */
+  padding:0;
+  background:black;
+  overflow:hidden;
+  height:100vh;
 }
 
-/* Animated diamonds layer */
-body::before {
-  content:"";
-  position:absolute; /* changed from fixed */
-  top:0; left:0; right:0; bottom:0;
-  background-image: url('diamond-clipart-design-illustration-free-png.png'), url('diamond-clipart-design-illustration-free-png.png'), url('diamond-clipart-design-illustration-free-png.png'), url('diamond-clipart-design-illustration-free-png.png'), url('diamond-clipart-design-illustration-free-png.png');
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-position: 10% 20%, 50% 10%, 70% 40%, 30% 60%, 80% 80%;
-  background-size: 80px 80px, 100px 100px, 60px 60px, 90px 90px, 70px 70px;
-  animation: moveDiamonds 20s linear infinite;
-  z-index:-1;
-  opacity:0.4;
+/* Diamond class */
+.diamond {
+  position:absolute;
+  width:50px;
+  height:50px;
+  background-image: url('diamond-clipart-design-illustration-free-png.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity:0.6;
+  pointer-events:none;
+  animation-name: floatDiamond;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
-/* Animation for moving diamonds diagonally */
-@keyframes moveDiamonds {
-  0% {
-    background-position: 10% 20%, 50% 10%, 70% 40%, 30% 60%, 80% 80%;
-  }
-  50% {
-    background-position: 30% 50%, 70% 30%, 90% 60%, 50% 80%, 100% 100%;
-  }
-  100% {
-    background-position: 10% 20%, 50% 10%, 70% 40%, 30% 60%, 80% 80%;
-  }
+@keyframes floatDiamond {
+  0% {transform: translate(0, 0);}
+  100% {transform: translate(var(--x-move, 100px), var(--y-move, 500px));}
 }
+</style>
+</head>
+<body>
+
+<script>
+// Number of diamonds
+const numDiamonds = 20; // hama thanama
+for(let i=0;i<numDiamonds;i++){
+  const diamond = document.createElement('div');
+  diamond.className = 'diamond';
+
+  // Random start position
+  const startX = Math.random() * window.innerWidth;
+  const startY = Math.random() * window.innerHeight;
+  diamond.style.left = startX + 'px';
+  diamond.style.top = startY + 'px';
+
+  // Random movement
+  const xMove = (Math.random() - 0.5) * 300; // horizontal move
+  const yMove = Math.random() * 500 + 200;    // vertical move
+  diamond.style.setProperty('--x-move', xMove + 'px');
+  diamond.style.setProperty('--y-move', yMove + 'px');
+
+  // Random speed
+  const speed = Math.random() * 10 + 10; // 10s to 20s
+  diamond.style.animationDuration = speed + 's';
+
+  // Random size
+  const size = Math.random() * 40 + 30; // 30px to 70px
+  diamond.style.width = size + 'px';
+  diamond.style.height = size + 'px';
+
+  document.body.appendChild(diamond);
+}
+</script>
+
+</body>
+</html>
 
 /* ===== STORE LAYOUT ===== */
 .store-title{
