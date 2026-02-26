@@ -8,13 +8,32 @@
 body {
   margin:0;
   font-family:Arial;
-  background-image: url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg');   /* Oya png image eka */
-  background-repeat: repeat;              /* Small diamonds hama thana repeat wenna */
-  background-size: 50px 50px;             /* Diamond podi karanna, adjust karanna puluwan */
+  background-color:#000; /* black background */
   color:white;
   padding:15px;
   text-align:center;
+  overflow:hidden;
+  position:relative;
 }
+
+/* Animated diamonds layer */
+body::before {
+  content:"";
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background-image: url('modern-sunglasses-with-iridescent-lenses-silver-frames_9975-131563.jpg'); /* diamond PNG */
+  background-repeat: repeat;
+  background-size: 50px 50px;
+  animation: moveDiamond 20s linear infinite;
+  z-index:-1;
+  opacity:0.3; /* transparent diamonds */
+}
+
+@keyframes moveDiamond {
+  0% {background-position: 0 0;}
+  100% {background-position: 1000px 1000px;} /* move diagonally */
+}
+</style>
 
 .store-title{
   color:white;  /* White heading */
