@@ -30,10 +30,18 @@ body::before{
 }
 
 .store-title{
-  color:white;
-  font-size:28px;
+  font-size:48px; /* size වැඩි කරනවා */
   font-weight:bold;
   margin-bottom:25px;
+  background: linear-gradient(90deg, green, blue, yellow, white, red, pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowText 6s linear infinite;
+}
+
+@keyframes rainbowText {
+  0%{background-position:0%;}
+  100%{background-position:300%;}
 }
 
 .section{
