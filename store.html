@@ -2,17 +2,23 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Floating Diamonds</title>
+<title>KAVIYA DAIOMED STORE</title>
+
 <style>
+/* ===== BODY ===== */
 body{
   margin:0;
-  padding:0;
-  background:black;
-  overflow:hidden;
-  height:100vh;
+  font-family:Arial;
+  background:#000; /* Full black */
+  color:white;
+  padding:15px;
+  padding-bottom:140px;
+  text-align:center;
+  overflow-x:hidden;
+  position:relative; /* For absolute diamonds */
 }
 
-/* Diamond class */
+/* ===== FLOATING DIAMONDS ===== */
 .diamond {
   position:absolute;
   width:50px;
@@ -31,44 +37,6 @@ body{
   0% {transform: translate(0, 0);}
   100% {transform: translate(var(--x-move, 100px), var(--y-move, 500px));}
 }
-</style>
-</head>
-<body>
-
-<script>
-// Number of diamonds
-const numDiamonds = 20; // hama thanama
-for(let i=0;i<numDiamonds;i++){
-  const diamond = document.createElement('div');
-  diamond.className = 'diamond';
-
-  // Random start position
-  const startX = Math.random() * window.innerWidth;
-  const startY = Math.random() * window.innerHeight;
-  diamond.style.left = startX + 'px';
-  diamond.style.top = startY + 'px';
-
-  // Random movement
-  const xMove = (Math.random() - 0.5) * 300; // horizontal move
-  const yMove = Math.random() * 500 + 200;    // vertical move
-  diamond.style.setProperty('--x-move', xMove + 'px');
-  diamond.style.setProperty('--y-move', yMove + 'px');
-
-  // Random speed
-  const speed = Math.random() * 10 + 10; // 10s to 20s
-  diamond.style.animationDuration = speed + 's';
-
-  // Random size
-  const size = Math.random() * 40 + 30; // 30px to 70px
-  diamond.style.width = size + 'px';
-  diamond.style.height = size + 'px';
-
-  document.body.appendChild(diamond);
-}
-</script>
-
-</body>
-</html>
 
 /* ===== STORE LAYOUT ===== */
 .store-title{
@@ -96,7 +64,7 @@ for(let i=0;i<numDiamonds;i++){
 }
 
 .card{
-  background:#000; 
+  background:#000;
   padding:20px;
   border-radius:15px;
   border:2px solid #ffffff;
@@ -202,7 +170,9 @@ for(let i=0;i<numDiamonds;i++){
 </head>
 <body>
 
+<!-- Store Title -->
 <div class="store-title">KAVIYA DAIOMED STORE</div>
+
 <div id="products"></div>
 
 <div class="bottom-bar">
@@ -211,6 +181,7 @@ for(let i=0;i<numDiamonds;i++){
 </div>
 
 <script>
+// ==================== STORE DATA ====================
 const sections = [
   {
     title:"MEMBERSHIP",
@@ -256,6 +227,7 @@ let container = document.getElementById("products");
 let cart = {};
 let index = 0;
 
+// Images
 const itemImages = {
   "WEEKLY LITE MEMBERSHIP":"3ezFGJgnumUR3SqEjz3cAJBi4J7nEG9fla2myobY.png",
   "WEEKLY MEMBERSHIP":"oss-a4dc82551f55d986ea4bab3e8521c172.png",
@@ -264,37 +236,24 @@ const itemImages = {
   "VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
   "S VIP MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
   "S VIP PLUS MEMBERSHIP":"F40FBC28-383D-47E5-ADBC-82C12FB39773-430x430.png",
-  "25 💎":"diamond-clipart-design-illustration-free-png.png",
-  "50 💎":"diamond-clipart-design-illustration-free-png.png",
-  "75 💎":"diamond-clipart-design-illustration-free-png.png",
-  "100 💎":"diamond-clipart-design-illustration-free-png.png",
-  "150 💎":"diamond-clipart-design-illustration-free-png.png",
-  "200 💎":"diamond-clipart-design-illustration-free-png.png",
-  "310 💎":"diamond-clipart-design-illustration-free-png.png",
-  "350 💎":"diamond-clipart-design-illustration-free-png.png",
-  "520 💎":"diamond-clipart-design-illustration-free-png.png",
-  "830 💎":"diamond-clipart-design-illustration-free-png.png",
-  "1060 💎":"diamond-clipart-design-illustration-free-png.png",
-  "2180 💎":"diamond-clipart-design-illustration-free-png.png",
-  "3240 💎":"diamond-clipart-design-illustration-free-png.png",
-  "5600 💎":"diamond-clipart-design-illustration-free-png.png",
-  "6660 💎":"diamond-clipart-design-illustration-free-png.png",
-  "8840 💎":"diamond-clipart-design-illustration-free-png.png",
-  "11500 💎":"diamond-clipart-design-illustration-free-png.png",
-  "15500 💎":"diamond-clipart-design-illustration-free-png.png",
-  "23000 💎":"diamond-clipart-design-illustration-free-png.png",
-  "46000 💎":"diamond-clipart-design-illustration-free-png.png",
-  "LEVEL 6":"IMG_20260223_234328_528.jpg",
-  "LEVEL 10":"IMG_20260223_234328_528.jpg",
-  "LEVEL 15":"IMG_20260223_234328_528.jpg",
-  "LEVEL 20":"IMG_20260223_234328_528.jpg",
-  "LEVEL 25":"IMG_20260223_234328_528.jpg",
-  "LEVEL 30":"IMG_20260223_234328_528.jpg",
-  "EVO ACCESS — 3 DAY":"IMG_20260223_234325_627.jpg",
-  "EVO ACCESS — 7 DAY":"IMG_20260223_234325_627.jpg",
+  "25 💎":"untitled-2025-09-21T105937.573.jpg","50 💎":"untitled-2025-09-21T105937.573.jpg",
+  "75 💎":"untitled-2025-09-21T105937.573.jpg","100 💎":"untitled-2025-09-21T105937.573.jpg",
+  "150 💎":"untitled-2025-09-21T105937.573.jpg","200 💎":"untitled-2025-09-21T105937.573.jpg",
+  "310 💎":"untitled-2025-09-21T105937.573.jpg","350 💎":"untitled-2025-09-21T105937.573.jpg",
+  "520 💎":"untitled-2025-09-21T105937.573.jpg","830 💎":"untitled-2025-09-21T105937.573.jpg",
+  "1060 💎":"untitled-2025-09-21T105937.573.jpg","2180 💎":"untitled-2025-09-21T105937.573.jpg",
+  "3240 💎":"untitled-2025-09-21T105937.573.jpg","5600 💎":"untitled-2025-09-21T105937.573.jpg",
+  "6660 💎":"untitled-2025-09-21T105937.573.jpg","8840 💎":"untitled-2025-09-21T105937.573.jpg",
+  "11500 💎":"untitled-2025-09-21T105937.573.jpg","15500 💎":"untitled-2025-09-21T105937.573.jpg",
+  "23000 💎":"untitled-2025-09-21T105937.573.jpg","46000 💎":"untitled-2025-09-21T105937.573.jpg",
+  "LEVEL 6":"IMG_20260223_234328_528.jpg","LEVEL 10":"IMG_20260223_234328_528.jpg",
+  "LEVEL 15":"IMG_20260223_234328_528.jpg","LEVEL 20":"IMG_20260223_234328_528.jpg",
+  "LEVEL 25":"IMG_20260223_234328_528.jpg","LEVEL 30":"IMG_20260223_234328_528.jpg",
+  "EVO ACCESS — 3 DAY":"IMG_20260223_234325_627.jpg","EVO ACCESS — 7 DAY":"IMG_20260223_234325_627.jpg",
   "EVO ACCESS — 30 DAY":"IMG_20260223_234325_627.jpg"
 };
 
+// ==================== CREATE PRODUCT CARDS ====================
 sections.forEach(section=>{
   container.innerHTML += `<div class="section"><h2>${section.title}</h2><div class="grid">`;
   section.items.forEach(item=>{
@@ -317,6 +276,7 @@ sections.forEach(section=>{
   container.innerHTML += `</div></div>`;
 });
 
+// ==================== CART FUNCTIONS ====================
 function change(i,val){
   let q=document.getElementById("q"+i);
   let qty=parseInt(q.innerText);
@@ -354,6 +314,36 @@ function goCheckout(){
   localStorage.setItem("cart",JSON.stringify(cart));
   localStorage.setItem("items",JSON.stringify(sections.flatMap(section => section.items)));
   location.href="checkout.html";
+}
+
+// ==================== CREATE FLOATING DIAMONDS ====================
+const numDiamonds = 20;
+for(let i=0;i<numDiamonds;i++){
+  const diamond = document.createElement('div');
+  diamond.className = 'diamond';
+
+  // Random start position
+  const startX = Math.random() * window.innerWidth;
+  const startY = Math.random() * window.innerHeight;
+  diamond.style.left = startX + 'px';
+  diamond.style.top = startY + 'px';
+
+  // Random movement
+  const xMove = (Math.random() - 0.5) * 300;
+  const yMove = Math.random() * 500 + 200;
+  diamond.style.setProperty('--x-move', xMove + 'px');
+  diamond.style.setProperty('--y-move', yMove + 'px');
+
+  // Random speed
+  const speed = Math.random() * 10 + 10;
+  diamond.style.animationDuration = speed + 's';
+
+  // Random size
+  const size = Math.random() * 40 + 30;
+  diamond.style.width = size + 'px';
+  diamond.style.height = size + 'px';
+
+  document.body.appendChild(diamond);
 }
 </script>
 
