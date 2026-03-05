@@ -146,6 +146,7 @@ font-weight:bold;
 
 <button id="loginBtn" class="loginbtn" onclick="login()">LOGIN</button>
 <button class="topup" onclick="goTopup()">TOP UP NOW</button>
+<button class="bank" onclick="goBank()">EZ TO BANK TRANSFER</button>
 <button class="contact" onclick="contactAdmin()">CONTACT ADMIN</button>
 
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
@@ -234,6 +235,14 @@ return;
 location.href="store.html";
 }
 
+ function goBank(){
+if(!loggedIn){
+alert("⚠️ Please first login");
+return;
+}
+location.href="bank.html";
+} 
+  
 function contactAdmin(){
 let phone = "94773847598";
 let message = "Hello Kaviya Admin, I need help.";
