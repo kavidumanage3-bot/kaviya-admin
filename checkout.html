@@ -51,6 +51,12 @@ font-weight:bold;
 cursor:pointer;
 background:linear-gradient(90deg,#00c6ff,#0072ff);
 color:white;
+transition:0.3s;
+}
+
+button:disabled{
+opacity:0.6;
+cursor:not-allowed;
 }
 
 #contactBtn{
@@ -75,8 +81,6 @@ text-align:center;
 margin-top:8px;
 }
 
-/* SUCCESS POPUP */
-
 #successBox{
 display:none;
 position:fixed;
@@ -96,7 +100,6 @@ z-index:999;
 color:#00ff99;
 margin-bottom:10px;
 }
-
 </style>
 </head>
 <body>
@@ -105,8 +108,6 @@ margin-bottom:10px;
 
 <div id="summary"></div>
 <div class="box total" id="total"></div>
-
-<!-- BANK DETAILS -->
 
 <div class="box">
 🏦 <b>COMMERCIAL BANK</b><br>
@@ -149,7 +150,7 @@ WhatsApp Number
 📤 Upload Transfer Receipt
 <input type="file" id="receipt" accept="image/*">
 
-<button onclick="sendToTelegram()">ORDER SENDING</button>
+<button id="orderBtn" onclick="sendToTelegram()">ORDER SENDING</button>
 
 <div class="warning">
 EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමීම අනිවාරය වේ.
@@ -159,7 +160,6 @@ EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමී
 
 </div>
 
-<!-- SUCCESS POPUP -->
 <div id="successBox">
 <h3>✅ Order Sent Successfully!</h3>
 <p>Your Order ID:</p>
@@ -186,9 +186,13 @@ total+=items[i][1]*cart[i];
 document.getElementById("total").innerText="TOTAL: "+total+" LKR";
 
 let lastOrderId="";
-let adminNumber="94773847598"; // CHANGE ADMIN NUMBER
+let adminNumber="94773847598";
 
 async function sendToTelegram(){
+
+let btn=document.getElementById("orderBtn");
+btn.innerText="SENDING...";
+btn.disabled=true;
 
 let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerId").value;
@@ -197,11 +201,15 @@ let receipt=document.getElementById("receipt");
 
 if(name==""||id==""||wp==""){
 alert("Fill all fields!");
+btn.innerText="ORDER SENDING";
+btn.disabled=false;
 return;
 }
 
 if(receipt.files.length==0){
 alert("Upload receipt!");
+btn.innerText="ORDER SENDING";
+btn.disabled=false;
 return;
 }
 
@@ -231,22 +239,43 @@ formData.append("chat_id",chatId);
 formData.append("caption",message);
 formData.append("photo",receipt.files[0]);
 
-await fetch("https://api.telegram.org/bot"+botToken+"/sendPhoto",{
+try{
+
+let response=await fetch("https://api.telegram.org/bot"+botToken+"/sendPhoto",{
 method:"POST",
 body:formData
 });
 
-// Show nice popup instead of alert
+if(response.ok){
+
 document.getElementById("orderDisplay").innerText=orderId;
 document.getElementById("successBox").style.display="block";
 
-// Hide popup after 3 sec
 setTimeout(()=>{
 document.getElementById("successBox").style.display="none";
 },3000);
 
-// Show Contact Admin button
 document.getElementById("contactBtn").style.display="block";
+
+btn.innerText="ORDER SENT ✅";
+
+setTimeout(()=>{
+btn.innerText="ORDER SENDING";
+btn.disabled=false;
+},3000);
+
+}else{
+alert("Error sending order!");
+btn.innerText="ORDER SENDING";
+btn.disabled=false;
+}
+
+}catch(error){
+alert("Network Error!");
+btn.innerText="ORDER SENDING";
+btn.disabled=false;
+}
+
 }
 
 function contactAdmin(){
@@ -255,7 +284,7 @@ let name=document.getElementById("playerName").value;
 let id=document.getElementById("playerId").value;
 let wp=document.getElementById("whatsapp").value;
 
-let fullMessage =
+let fullMessage=
 "🛒 *ORDER CONFIRMATION*\n\n"+
 "🆔 Order ID: "+lastOrderId+"\n"+
 "👤 Name: "+name+"\n"+
@@ -270,10 +299,8 @@ fullMessage+=items[i][0]+" x "+cart[i]+" = "+(items[i][1]*cart[i])+" LKR\n";
 
 fullMessage+="\n💰 Total: "+total+" LKR (+20 EZ Fee)";
 
-// Auto copy Order ID
 navigator.clipboard.writeText(lastOrderId);
 
-// Open WhatsApp with full order
 window.open(
 "https://wa.me/"+adminNumber+"?text="+encodeURIComponent(fullMessage),
 "_blank"
@@ -282,6 +309,5 @@ window.open(
 }
 
 </script>
-
 </body>
 </html>
