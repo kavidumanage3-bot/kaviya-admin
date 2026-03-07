@@ -114,6 +114,7 @@ cursor:not-allowed;
 
 .loginbtn{ background:#00ff99; color:black; }
 .topup{ background:#00c6d7; color:black; }
+.bank{ background:#ffcc00; color:black; }
 .contact{ background:transparent; border:2px solid white; color:white; }
 
 .footer-text{
@@ -166,7 +167,7 @@ pw.type = (pw.type === "password") ? "text" : "password";
 
 async function login(){
 
-if(isLogging) return; // block multiple clicks
+if(isLogging) return;
 
 let btn = document.getElementById("loginBtn");
 btn.disabled = true;
@@ -184,7 +185,6 @@ isLogging = false;
 return;
 }
 
-// simulate small delay
 await new Promise(resolve => setTimeout(resolve, 1000));
 
 loggedIn = true;
@@ -235,14 +235,14 @@ return;
 location.href="store.html";
 }
 
- function goBank(){
+function goBank(){
 if(!loggedIn){
 alert("⚠️ Please first login");
 return;
 }
-location.href="bank.html";
-} 
-  
+location.href="ez-bank.html";
+}
+
 function contactAdmin(){
 let phone = "94773847598";
 let message = "Hello Kaviya Admin, I need help.";
