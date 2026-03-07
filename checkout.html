@@ -150,18 +150,18 @@ WhatsApp Number
 📤 Upload Transfer Receipt
 <input type="file" id="receipt" accept="image/*">
 
-<button id="orderBtn" onclick="sendToTelegram()">ORDER SENDING</button>
+<button id="orderBtn" onclick="sendToTelegram()">ORDER TELEGRAM SENDING</button>
 
 <div class="warning">
 EZ Cash ගෙවීමේදී රු.20 වැඩියෙන් දැමීම අනිවාරය වේ.
 </div>
 
-<button id="contactBtn" onclick="contactAdmin()">CONTACT ADMIN</button>
+<button id="contactBtn" onclick="contactAdmin()">ODER WHATSHAP SENDING</button>
 
 </div>
 
 <div id="successBox">
-<h3>✅ Order Sent Successfully!</h3>
+<h3>✅ Order Sent Telegram Successfully!</h3>
 <p>Your Order ID:</p>
 <p id="orderDisplay" style="font-weight:bold;"></p>
 </div>
@@ -257,7 +257,7 @@ document.getElementById("successBox").style.display="none";
 
 document.getElementById("contactBtn").style.display="block";
 
-btn.innerText="ORDER SENT ✅";
+btn.innerText="ORDER TELEGRAM SENT ✅";
 
 setTimeout(()=>{
 btn.innerText="ORDER SENDING";
