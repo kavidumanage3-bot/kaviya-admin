@@ -16,6 +16,10 @@ body{
   font-size: 28px;
 }
 
+#text {
+  white-space: pre;
+}
+
 .cursor{
   display:inline-block;
   width:3px;
@@ -34,24 +38,26 @@ body{
 <div id="text"></div><div class="cursor"></div>
 
 <script>
-let message = "WELCOME TO KAVIYA DIAMOND STORE";
-let index = 0;
-let speed = 100; // typing speed in ms
+document.addEventListener("DOMContentLoaded", function(){
+  let message = "WELCOME TO KAVIYA DIAMOND STORE";
+  let index = 0;
+  let textDiv = document.getElementById("text");
+  let speed = 100;
 
-function type(){
-  if(index < message.length){
-    document.getElementById("text").innerHTML += message.charAt(index);
-    index++;
-    setTimeout(type, speed);
-  } else {
-    // typing finished, wait 1 second then redirect
-    setTimeout(()=>{ 
-      window.location.href="index.html"; // redirect to login page
-    }, 1000);
+  function type(){
+    if(index < message.length){
+      textDiv.textContent += message.charAt(index);
+      index++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(()=>{ 
+        window.location.href="index.html";
+      }, 1000);
+    }
   }
-}
 
-window.onload = type;
+  type();
+});
 </script>
 
 </body>
