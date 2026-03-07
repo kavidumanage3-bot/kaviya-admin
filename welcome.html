@@ -15,18 +15,12 @@ body{
   font-family: monospace;
   font-size: 28px;
 }
-
-#text {
-  white-space: pre;
-}
-
 .cursor{
   display:inline-block;
   width:3px;
   background:#00ff88;
   animation: blink 0.7s infinite;
 }
-
 @keyframes blink{
   0%,50%,100%{opacity:1;}
   25%,75%{opacity:0;}
@@ -38,26 +32,23 @@ body{
 <div id="text"></div><div class="cursor"></div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  let message = "WELCOME TO KAVIYA DIAMOND STORE";
-  let index = 0;
-  let textDiv = document.getElementById("text");
-  let speed = 100;
+let message = "WELCOME TO KAVIYA DIAMOND STORE";
+let index = 0;
+let speed = 100;
 
-  function type(){
-    if(index < message.length){
-      textDiv.textContent += message.charAt(index);
-      index++;
-      setTimeout(type, speed);
-    } else {
-      setTimeout(()=>{ 
-        window.location.href="index.html";
-      }, 1000);
-    }
+function type(){
+  if(index < message.length){
+    document.getElementById("text").textContent += message.charAt(index);
+    index++;
+    setTimeout(type, speed);
+  } else {
+    setTimeout(()=>{ 
+      window.location.href="index.html"; // redirect
+    }, 1000);
   }
+}
 
-  type();
-});
+window.onload = type;
 </script>
 
 </body>
