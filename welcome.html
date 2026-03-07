@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WELCOME</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:black;
+  color:#00ff88;
+  font-family: monospace;
+  font-size: 28px;
+}
+
+.cursor{
+  display:inline-block;
+  width:3px;
+  background:#00ff88;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink{
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div id="text"></div><div class="cursor"></div>
+
+<script>
+let message = "WELCOME TO KAVIYA DIAMOND STORE";
+let index = 0;
+let speed = 100; // typing speed in ms
+
+function type(){
+  if(index < message.length){
+    document.getElementById("text").innerHTML += message.charAt(index);
+    index++;
+    setTimeout(type, speed);
+  } else {
+    // typing finished, wait 1 second then redirect
+    setTimeout(()=>{ 
+      window.location.href="index.html"; // redirect to index.html (login page)
+    }, 1000);
+  }
+}
+
+window.onload = type;
+</script>
+
+</body>
+</html>
