@@ -6,7 +6,7 @@ $pack = $_POST['pack'];
 $message = "/id $uid $pack";
 
 $botToken = "8799375203:AAEbldBCM66UiShErsHzHxRO9nejgot7kO0";
-$chatId = "-8324590734";
+$chatId = "-8799375203";
 
 $url = "https://api.telegram.org/bot$botToken/sendMessage";
 
